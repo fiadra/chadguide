@@ -3,13 +3,18 @@ name = "chadguide"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Paweł Koch"},
+    {name = "Paweł Kauf"},
     {name = "Filip Rabiega"}
 ]
 license = {text = "GPL"}
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "requests (>=2.32.5,<3.0.0)",
+    "python-dotenv (>=1.2.1,<2.0.0)",
+    "pandas (>=2.3.3,<3.0.0)",
+    "streamlit (>=1.52.2,<2.0.0)",
+    "plotly (>=6.5.0,<7.0.0)"
 ]
 
 

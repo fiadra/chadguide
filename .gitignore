@@ -1,1 +1,15 @@
-.git
+# --- Konfiguracja i Zmienne Środowiskowe  ---
+.env
+
+# --- Środowisko Wirtualne ---
+/Duffel_api/venv/
+
+# --- Python i pliki tymczasowe  ---
+__pycache__/
+*.py[cod]
+
+# --- Bazy danych ---
+*.db
+
+# --- Logi ---
+*.log
