@@ -172,6 +172,22 @@ def scan_route_for_week(
                         origin, destination
                     )
                     break
+            elif status_code == 422:
+                # Unprocessable Entity - invalid route/airports
+                logger.error(
+                    "   Invalid route %s -> %s (422 error). Skipping remaining dates.",
+                    origin, destination
+                )
+                all_days_successful = False
+                break
+            elif status_code == 504:
+                # Gateway Timeout - suppliers can't find flights (e.g., same-city routes)
+                logger.error(
+                    "   Route %s -> %s timed out (504). Skipping remaining dates.",
+                    origin, destination
+                )
+                all_days_successful = False
+                break
             else:
                 # Other HTTP errors (500, etc.)
                 logger.error(
