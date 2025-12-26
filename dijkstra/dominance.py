@@ -17,7 +17,7 @@ def dominates(l1: Label, l2: Label) -> bool:
 
 def pareto_filter(labels: List[Label]) -> List[Label]:
     """
-    Keep only Pareto-optimal labels using the `dominates` function.
+    Keep only Pareto-optimal labels using the 'dominates' function.
     """
     pareto = []
 

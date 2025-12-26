@@ -44,7 +44,7 @@ def try_insert_label(
     new_label: Label,
 ) -> bool:
     """
-    Try to insert `new_label` into a list of labels for the same state.
+    Try to insert 'new_label' into a list of labels for the same state.
 
     Returns True if the label should be kept (and inserted),
     False if it is dominated and should be discarded.
