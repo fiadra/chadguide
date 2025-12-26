@@ -41,6 +41,31 @@ def filter_feasible_flights(
     ]
 
 
+def try_insert_label(
+    labels_at_state: list[Label],
+    new_label: Label,
+) -> bool:
+    """
+    Try to insert `new_label` into a list of labels for the same state.
+
+    Returns True if the label should be kept (and inserted),
+    False if it is dominated and should be discarded.
+    """
+    to_remove = []
+
+    for existing in labels_at_state:
+        if dominates(existing, new_label):
+            return False  # new label is dominated
+        if dominates(new_label, existing):
+            to_remove.append(existing)
+
+    for r in to_remove:
+        labels_at_state.remove(r)
+
+    labels_at_state.append(new_label)
+    return True
+
+
 def dijkstra(
     flights_df: pd.DataFrame,
     start_city: str,
@@ -48,7 +73,20 @@ def dijkstra(
     T_min: int,
     T_max: int,
 ) -> List[Label]:
+    """
+    Multi-criteria Dijkstra algorithm for finding Pareto-optimal routes.
 
+    Args:
+        flights_df: DataFrame with flights (columns: departure_airport, arrival_airport,
+                                            dep_time, arr_time, price)
+        start_city: starting airport code
+        required_cities: dictionary of airport codes to visit
+        T_min: earliest start time (float)
+        T_max: latest end time (float)
+
+    Returns:
+        List of Pareto-optimal Label objects representing complete routes.
+    """
     flights_by_city = build_flights_by_city(flights_df)
     labels: Dict[tuple[str, int], List[Label]] = defaultdict(list)
     pq: List[tuple[float, float, Label]] = []
@@ -79,23 +117,7 @@ def dijkstra(
             new_label = create_new_label(label, flight, required_cities)
             key = (new_label.city, frozenset(new_label.visited))
 
-            dominated = False
-            to_remove: List[Label] = []
-
-            for existing in labels[key]:
-                if dominates(existing, new_label):
-                    dominated = True
-                    break
-                if dominates(new_label, existing):
-                    to_remove.append(existing)
-
-            if dominated:
-                continue
-
-            for r in to_remove:
-                labels[key].remove(r)
-
-            labels[key].append(new_label)
-            heapq.heappush(pq, (new_label.cost, new_label.time, new_label))
+            if try_insert_label(labels[key], new_label):
+                heapq.heappush(pq, (new_label.cost, new_label.time, new_label))
 
     return pareto_filter(solutions)

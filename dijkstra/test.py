@@ -11,7 +11,7 @@ T_max = (datetime.now() + timedelta(days=7) - epoch).total_seconds() / 60
 solutions = dijkstra(
     flights_df,
     start_city="JFK",
-    required_cities={"LAX": 0, "ATL": 1},
+    required_cities={"LAX": 0, "ATL": 1, "LHR": 2, "CDG": 3, "FRA": 4},
     T_min=T_min,
     T_max=T_max,
 )
