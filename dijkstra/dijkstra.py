@@ -1,6 +1,6 @@
 import heapq
 from collections import defaultdict
-from typing import List, Dict
+from typing import List, Dict, Set
 from labels import Label
 from dominance import dominates, pareto_filter
 import pandas as pd
@@ -13,9 +13,7 @@ def build_flights_by_city(flights_df: pd.DataFrame) -> Dict[str, pd.DataFrame]:
     return {city: group for city, group in flights_df.groupby("departure_airport")}
 
 
-def create_new_label(
-    label: Label, flight: pd.Series, required_cities: Dict[str, int]
-) -> Label:
+def create_new_label(label: Label, flight: pd.Series, required_cities: Set[str]) -> Label:
     """
     Generate a new label after taking a flight.
     """
@@ -69,7 +67,7 @@ def try_insert_label(
 def dijkstra(
     flights_df: pd.DataFrame,
     start_city: str,
-    required_cities: Dict[str, int],
+    required_cities: Set[str],
     T_min: int,
     T_max: int,
 ) -> List[Label]:
@@ -80,7 +78,7 @@ def dijkstra(
         flights_df: DataFrame with flights (columns: departure_airport, arrival_airport,
                                             dep_time, arr_time, price)
         start_city: starting airport code
-        required_cities: dictionary of airport codes to visit
+        required_cities: set of airport codes to visit
         T_min: earliest start time (float)
         T_max: latest end time (float)
 
@@ -103,7 +101,7 @@ def dijkstra(
         if label.time > T_max:
             continue
 
-        if label.city == start_city and label.visited == set(required_cities):
+        if label.city == start_city and label.visited == required_cities:
             solutions.append(label)
             continue
 
