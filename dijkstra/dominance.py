@@ -8,7 +8,7 @@ def dominates(l1: Label, l2: Label) -> bool:
     """
     return (
         l1.city == l2.city
-        and l1.visited_mask == l2.visited_mask
+        and l1.visited == l2.visited
         and l1.time <= l2.time
         and l1.cost <= l2.cost
         and (l1.time < l2.time or l1.cost < l2.cost)

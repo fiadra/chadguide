@@ -22,12 +22,12 @@ def create_new_label(
     new_city: str = flight["arrival_airport"]
     new_time: float = flight["arr_time"]
     new_cost: float = label.cost + flight["price"]
-    new_mask: int = label.visited_mask
+    new_visited = set(label.visited)
 
     if new_city in required_cities:
-        new_mask |= 1 << required_cities[new_city]
+        new_visited.add(new_city)
 
-    return Label(city=new_city, time=new_time, visited_mask=new_mask, cost=new_cost)
+    return Label(city=new_city, time=new_time, visited=new_visited, cost=new_cost)
 
 
 def filter_feasible_flights(
@@ -49,14 +49,11 @@ def dijkstra(
     T_max: int,
 ) -> List[Label]:
 
-    k = len(required_cities)
-    ALL_VISITED = (1 << k) - 1
-
     flights_by_city = build_flights_by_city(flights_df)
     labels: Dict[tuple[str, int], List[Label]] = defaultdict(list)
     pq: List[tuple[float, float, Label]] = []
 
-    start_label = Label(city=start_city, time=T_min, visited_mask=0, cost=0.0)
+    start_label = Label(city=start_city, time=T_min, visited=set(), cost=0.0)
     labels[(start_city, 0)].append(start_label)
     heapq.heappush(pq, (0.0, T_min, start_label))
 
@@ -68,7 +65,7 @@ def dijkstra(
         if label.time > T_max:
             continue
 
-        if label.city == start_city and label.visited_mask == ALL_VISITED:
+        if label.city == start_city and label.visited == set(required_cities):
             solutions.append(label)
             continue
 
@@ -80,7 +77,7 @@ def dijkstra(
 
         for _, flight in feasible_flights.iterrows():
             new_label = create_new_label(label, flight, required_cities)
-            key = (new_label.city, new_label.visited_mask)
+            key = (new_label.city, frozenset(new_label.visited))
 
             dominated = False
             to_remove: List[Label] = []
