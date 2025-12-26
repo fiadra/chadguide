@@ -1,4 +1,5 @@
 from labels import Label
+from typing import List
 
 
 def dominates(l1: Label, l2: Label) -> bool:
@@ -14,7 +15,7 @@ def dominates(l1: Label, l2: Label) -> bool:
     )
 
 
-def pareto_filter(labels):
+def pareto_filter(labels: List[Label]) -> List[Label]:
     """
     Keep only Pareto-optimal labels using the `dominates` function.
     """
@@ -30,7 +31,8 @@ def pareto_filter(labels):
                 dominated = True
                 break
             if dominates(label, p):
-                # This label dominates existing one -> mark existing for removal
+                # This label dominates existing one ->
+                # mark existing for removal
                 to_remove.append(p)
 
         if dominated:
