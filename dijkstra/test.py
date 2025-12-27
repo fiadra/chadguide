@@ -1,7 +1,7 @@
-from dijkstra import dijkstra
-from load_flights import load_flights
+from .alg import dijkstra
+from .load_flights import load_flights
+from .reconstruction import reconstruct_path
 from datetime import datetime, timedelta
-from reconstruction import reconstruct_path
 
 flights_df = load_flights()
 

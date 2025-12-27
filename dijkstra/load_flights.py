@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 
 
-def load_flights(db_path="flights.db"):
+def load_flights(db_path="dijkstra/flights.db"):
     conn = sqlite3.connect(db_path)
 
     df = pd.read_sql_query(

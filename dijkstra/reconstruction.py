@@ -1,6 +1,6 @@
+from .labels import Label
 from typing import List, Tuple, Optional
 import pandas as pd
-from labels import Label
 
 
 def reconstruct_path(label: Label) -> Tuple[List[Label], List[pd.Series]]:

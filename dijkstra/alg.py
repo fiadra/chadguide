@@ -1,8 +1,8 @@
-import heapq
+from .labels import Label
+from .dominance import dominates, pareto_filter
 from collections import defaultdict
 from typing import List, Dict, Set
-from labels import Label
-from dominance import dominates, pareto_filter
+import heapq
 import pandas as pd
 
 
