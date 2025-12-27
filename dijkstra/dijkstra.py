@@ -25,7 +25,14 @@ def create_new_label(label: Label, flight: pd.Series, required_cities: Set[str])
     if new_city in required_cities:
         new_visited.add(new_city)
 
-    return Label(city=new_city, time=new_time, visited=new_visited, cost=new_cost)
+    return Label(
+        city=new_city,
+        time=new_time,
+        visited=new_visited,
+        cost=new_cost,
+        prev=label,
+        flight=flight,
+    )
 
 
 def filter_feasible_flights(

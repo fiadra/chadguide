@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import Set
+from typing import Set, Optional
+import pandas as pd
 
 
 @dataclass(frozen=True)
@@ -8,3 +9,5 @@ class Label:
     time: float
     visited: Set[str]
     cost: float
+    prev: Optional["Label"] = None
+    flight: Optional[pd.Series] = None
