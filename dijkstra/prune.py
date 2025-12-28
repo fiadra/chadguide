@@ -1,4 +1,4 @@
-from typing import List, Set, Optional
+from typing import Set, Optional
 import pandas as pd
 
 
@@ -33,13 +33,13 @@ def extract_airports(
 
 
 def build_reachable_airports(
-    flights_df: pd.DataFrame, sources: List[str], max_dist: int = 2
+    flights_df: pd.DataFrame, sources: Set[str], max_dist: int = 2
 ) -> Set[str]:
     """
     Vectorized computation of airports reachable from sources within max_dist hops.
     """
-    reachable = set(sources)
-    frontier = set(sources)
+    reachable = sources
+    frontier = sources
 
     for _ in range(max_dist):
         if not frontier:

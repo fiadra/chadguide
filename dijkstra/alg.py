@@ -13,14 +13,16 @@ def build_flights_by_city(flights_df: pd.DataFrame) -> Dict[str, pd.DataFrame]:
     return {city: group for city, group in flights_df.groupby("departure_airport")}
 
 
-def create_new_label(label: Label, flight: pd.Series, required_cities: Set[str]) -> Label:
+def create_new_label(
+    label: Label, flight: pd.Series, required_cities: Set[str]
+) -> Label:
     """
     Generate a new label after taking a flight.
     """
     new_city: str = flight["arrival_airport"]
     new_time: float = flight["arr_time"]
     new_cost: float = label.cost + flight["price"]
-    new_visited = set(label.visited)
+    new_visited: set = set(label.visited)
 
     if new_city in required_cities:
         new_visited.add(new_city)
@@ -47,8 +49,7 @@ def filter_feasible_flights(
 
 
 def try_insert_label(
-    labels_at_state: list[Label],
-    new_label: Label,
+    labels_at_state: list[Label], new_label: Label
 ) -> bool:
     """
     Try to insert 'new_label' into a list of labels for the same state.
