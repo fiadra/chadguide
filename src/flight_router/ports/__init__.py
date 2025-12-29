@@ -11,9 +11,11 @@ from src.flight_router.ports.graph_repository import (
     FlightGraphCache,
     GraphNotInitializedError,
 )
+from src.flight_router.ports.route_finder import RouteFinder
 
 __all__ = [
     "FlightDataProvider",
     "FlightGraphCache",
     "GraphNotInitializedError",
+    "RouteFinder",
 ]
