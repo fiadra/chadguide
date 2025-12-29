@@ -1,10 +1,15 @@
+from collections import defaultdict
+from typing import Dict, List, Tuple
+
 from .labels import Label
-from typing import List
 
 
 def dominates(l1: Label, l2: Label) -> bool:
     """
     Check whether one label dominates the other.
+
+    l1 dominates l2 if they have the same city and visited set,
+    l1 is no worse in both time and cost, and strictly better in at least one.
     """
     return (
         l1.city == l2.city
@@ -17,31 +22,44 @@ def dominates(l1: Label, l2: Label) -> bool:
 
 def pareto_filter(labels: List[Label]) -> List[Label]:
     """
-    Keep only Pareto-optimal labels using the 'dominates' function.
+    Keep only Pareto-optimal labels.
+
+    Optimized O(n log n) algorithm using sorting.
+
+    For labels with the same (city, visited) state, dominance reduces to
+    a 2D Pareto front problem on (cost, time). We solve this by:
+    1. Grouping labels by (city, frozenset(visited))
+    2. Sorting each group by (cost, time) ascending
+    3. Keeping labels with strictly decreasing time (Pareto-optimal)
+
+    Args:
+        labels: List of labels to filter.
+
+    Returns:
+        List of Pareto-optimal labels.
     """
-    pareto = []
+    if not labels:
+        return []
 
+    # Group labels by (city, frozenset(visited))
+    groups: Dict[Tuple[str, frozenset], List[Label]] = defaultdict(list)
     for label in labels:
-        dominated = False
-        to_remove = []
+        key = (label.city, frozenset(label.visited))
+        groups[key].append(label)
 
-        for p in pareto:
-            if dominates(p, label):
-                # Existing label dominates this one -> discard it
-                dominated = True
-                break
-            if dominates(label, p):
-                # This label dominates existing one ->
-                # mark existing for removal
-                to_remove.append(p)
+    result: List[Label] = []
 
-        if dominated:
-            continue
+    for group in groups.values():
+        # Sort by cost (primary), then time (secondary) - both ascending
+        sorted_labels = sorted(group, key=lambda l: (l.cost, l.time))
 
-        # Remove dominated labels
-        for r in to_remove:
-            pareto.remove(r)
+        # Keep labels with strictly decreasing time
+        # After sorting by cost, a label is Pareto-optimal iff
+        # its time is less than all previously seen labels
+        min_time = float("inf")
+        for label in sorted_labels:
+            if label.time < min_time:
+                result.append(label)
+                min_time = label.time
 
-        pareto.append(label)
-
-    return pareto
+    return result

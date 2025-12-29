@@ -1,9 +1,12 @@
-from .labels import Label
-from .dominance import dominates, pareto_filter
-from collections import defaultdict
-from typing import List, Dict, Set
 import heapq
+from collections import defaultdict
+from typing import Dict, List, Set
+
 import pandas as pd
+
+from .dominance import dominates, pareto_filter
+from .labels import Label
+from .validation import validate_dijkstra_inputs
 
 
 def build_flights_by_city(flights_df: pd.DataFrame) -> Dict[str, pd.DataFrame]:
@@ -76,8 +79,8 @@ def dijkstra(
     flights_df: pd.DataFrame,
     start_city: str,
     required_cities: Set[str],
-    T_min: int,
-    T_max: int,
+    T_min: float,
+    T_max: float,
 ) -> List[Label]:
     """
     Multi-criteria Dijkstra algorithm for finding Pareto-optimal routes.
@@ -85,14 +88,23 @@ def dijkstra(
     Args:
         flights_df: DataFrame with flights (columns: departure_airport, arrival_airport,
                                             dep_time, arr_time, price)
-        start_city: starting airport code
-        required_cities: set of airport codes to visit
-        T_min: earliest start time (float)
-        T_max: latest end time (float)
+        start_city: Starting airport IATA code.
+        required_cities: Set of airport codes that must be visited.
+        T_min: Earliest start time (minutes since epoch).
+        T_max: Latest end time (minutes since epoch).
 
     Returns:
         List of Pareto-optimal Label objects representing complete routes.
+
+    Raises:
+        EmptyFlightsError: If flights DataFrame is empty.
+        MissingColumnsError: If required columns are missing.
+        InvalidAirportError: If start_city or required cities not found.
+        InvalidTimeRangeError: If T_min > T_max.
     """
+    # Validate inputs before processing
+    validate_dijkstra_inputs(flights_df, start_city, required_cities, T_min, T_max)
+
     flights_by_city = build_flights_by_city(flights_df)
     labels: Dict[tuple[str, int], List[Label]] = defaultdict(list)
     pq: List[tuple[float, float, Label]] = []
