@@ -1,7 +1,7 @@
 import pytest
 
-from dijkstra.dominance import dominates, pareto_filter
-from dijkstra.labels import Label
+from src.dijkstra.dominance import dominates, pareto_filter
+from src.dijkstra.labels import Label
 
 
 # -------------------------

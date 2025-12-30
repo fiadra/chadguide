@@ -13,9 +13,9 @@ from typing import Dict, List, Optional
 
 import pandas as pd
 
-from dijkstra.alg import dijkstra
-from dijkstra.labels import Label
-from dijkstra.reconstruction import reconstruct_path
+from src.dijkstra.alg import dijkstra
+from src.dijkstra.labels import Label
+from src.dijkstra.reconstruction import reconstruct_path
 
 from src.flight_router.adapters.algorithms.immutability import (
     make_defensive_copy,

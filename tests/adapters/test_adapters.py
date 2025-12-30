@@ -341,7 +341,7 @@ class TestDijkstraRouteFinder:
         )
 
         # Import Label for mock
-        from dijkstra.labels import Label
+        from src.dijkstra.labels import Label
 
         # Create label chain
         label1 = Label(

@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from dijkstra.alg import dijkstra
+from src.dijkstra.alg import dijkstra
 
 
 # -------------------------

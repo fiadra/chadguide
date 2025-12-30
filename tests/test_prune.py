@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from dijkstra.prune import (
+from src.dijkstra.prune import (
     extract_countries,
     extract_airports,
     build_reachable_airports,

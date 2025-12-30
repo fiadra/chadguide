@@ -10,8 +10,8 @@ import sys
 import pandas as pd
 import pytest
 
-from dijkstra.labels import Label
-from dijkstra.reconstruction import reconstruct_path, print_sols
+from src.dijkstra.labels import Label
+from src.dijkstra.reconstruction import reconstruct_path, print_sols
 
 
 # -------------------------
