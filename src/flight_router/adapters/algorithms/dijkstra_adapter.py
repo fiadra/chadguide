@@ -71,7 +71,7 @@ class DijkstraRouteFinder(RouteFinder):
         """
         Find Pareto-optimal routes with IMMUTABILITY SAFETY and OPTIMIZED DATA ACCESS.
 
-        Optimization (Phase 3.5):
+        Optimization:
         - Builds flights_by_city from CityIndex (O(num_airports), not O(n))
         - Passes pre-computed dict to dijkstra, skipping expensive groupby()
         - Uses zero-copy DataFrame views from CityIndex slices

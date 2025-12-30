@@ -15,6 +15,21 @@ The algorithm finds **round-trip routes** that start from an origin, visit all r
 
 ---
 
+## Quick Start
+
+For an interactive tutorial, see the Jupyter notebook:
+
+📓 **[examples/01_getting_started.ipynb](examples/01_getting_started.ipynb)**
+
+The notebook covers:
+- Database discovery (available airports and date ranges)
+- Single and multi-city route searches
+- Route detail inspection with flight times
+- Performance benchmarking
+- Raw epoch-based API for advanced use cases
+
+---
+
 ## Architecture
 
 ```mermaid
