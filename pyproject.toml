@@ -23,6 +23,17 @@ dependencies = [
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
+[project.optional-dependencies]
+benchmark = [
+    "pytest-benchmark>=4.0.0"
+]
+
 [tool.pytest.ini_options]
 addopts = "--import-mode=importlib"
 testpaths = ["tests"]
+
+[tool.pytest-benchmark]
+# Default benchmark settings
+min_rounds = 5
+warmup = true
+warmup_iterations = 1
