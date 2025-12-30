@@ -1,12 +1,17 @@
 """
-Dijkstra Algorithm Adapter - Bridge between new architecture and legacy algorithm.
+Dijkstra Algorithm Adapter - Bridge between architecture and algorithm.
 
-Wraps the existing dijkstra module with immutability safety and converts
+Wraps the dijkstra module with immutability safety and converts
 Label output to RouteResult schema objects.
+
+Uses CityIndex for O(num_airports) flights_by_city construction
+instead of O(n) groupby() per request.
 """
 
 import logging
-from typing import List, Optional
+from typing import Dict, List, Optional
+
+import pandas as pd
 
 from dijkstra.alg import dijkstra
 from dijkstra.labels import Label
@@ -64,14 +69,15 @@ class DijkstraRouteFinder(RouteFinder):
         t_max: float,
     ) -> List[RouteResult]:
         """
-        Find Pareto-optimal routes with IMMUTABILITY SAFETY.
+        Find Pareto-optimal routes with IMMUTABILITY SAFETY and OPTIMIZED DATA ACCESS.
 
-        Strategy:
-        1. Default: Set immutable flag (zero-copy, fast)
-        2. If algorithm fails due to mutation: enable defensive copy
+        Optimization (Phase 3.5):
+        - Builds flights_by_city from CityIndex (O(num_airports), not O(n))
+        - Passes pre-computed dict to dijkstra, skipping expensive groupby()
+        - Uses zero-copy DataFrame views from CityIndex slices
 
         Args:
-            graph: Pre-built CachedFlightGraph.
+            graph: Pre-built CachedFlightGraph with CityIndex.
             start_city: Origin airport.
             required_cities: Must-visit airports.
             t_min, t_max: Time window in epoch minutes.
@@ -93,13 +99,16 @@ class DijkstraRouteFinder(RouteFinder):
             flights_df = make_immutable(flights_df)
 
         try:
-            # Call legacy dijkstra algorithm
+            # Build flights_by_city from CityIndex (O(num_airports))
+            flights_by_city = self._build_flights_by_city_from_index(graph)
+
             solutions: List[Label] = dijkstra(
                 flights_df=flights_df,
                 start_city=start_city,
                 required_cities=required_cities,
                 T_min=t_min,
                 T_max=t_max,
+                flights_by_city=flights_by_city,
             )
 
             logger.debug(
@@ -126,6 +135,26 @@ class DijkstraRouteFinder(RouteFinder):
                     "Enable require_defensive_copy=True or fix algorithm."
                 ) from e
             raise
+
+    def _build_flights_by_city_from_index(
+        self, graph: CachedFlightGraph
+    ) -> Dict[str, pd.DataFrame]:
+        """
+        Build flights_by_city dict from CityIndex using zero-copy views.
+
+        This is O(num_airports) vs O(n) for groupby().
+        For 250k flights with 100 airports: ~100 dict entries vs 250k row scan.
+
+        Args:
+            graph: CachedFlightGraph with pre-built CityIndex.
+
+        Returns:
+            Dict mapping city code to DataFrame view of departing flights.
+        """
+        return {
+            city: graph.get_flights_for_city(city)
+            for city in graph.city_index.keys()
+        }
 
     def _label_to_route_result(self, label: Label, route_id: int) -> RouteResult:
         """
@@ -162,9 +191,8 @@ class DijkstraRouteFinder(RouteFinder):
         return RouteResult.from_segments(route_id=route_id, segments=segments)
 
     def _safe_get(self, flight, key: str) -> Optional[str]:
-        """Safely extract optional field from flight Series."""
-        if key in flight.index:
-            val = flight[key]
-            if val is not None and str(val) != "nan":
-                return str(val)
+        """Safely extract optional field from flight (Series or FlightRecord)."""
+        val = flight.get(key)
+        if val is not None and str(val) != "nan":
+            return str(val)
         return None
