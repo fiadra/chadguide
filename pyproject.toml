@@ -14,10 +14,26 @@ dependencies = [
     "python-dotenv (>=1.2.1,<2.0.0)",
     "pandas (>=2.3.3,<3.0.0)",
     "streamlit (>=1.52.2,<2.0.0)",
-    "plotly (>=6.5.0,<7.0.0)"
+    "plotly (>=6.5.0,<7.0.0)",
+    "pandera (>=0.20.0,<1.0.0)"
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[project.optional-dependencies]
+benchmark = [
+    "pytest-benchmark>=4.0.0"
+]
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+testpaths = ["tests"]
+
+[tool.pytest-benchmark]
+# Default benchmark settings
+min_rounds = 5
+warmup = true
+warmup_iterations = 1

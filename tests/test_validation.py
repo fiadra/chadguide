@@ -7,7 +7,7 @@ Tests input validation functions and custom exceptions.
 import pandas as pd
 import pytest
 
-from dijkstra.exceptions import (
+from src.dijkstra.exceptions import (
     DijkstraError,
     EmptyFlightsError,
     InvalidAirportError,
@@ -15,7 +15,7 @@ from dijkstra.exceptions import (
     MissingColumnsError,
     ValidationError,
 )
-from dijkstra.validation import (
+from src.dijkstra.validation import (
     REQUIRED_COLUMNS,
     validate_airport_exists,
     validate_dijkstra_inputs,

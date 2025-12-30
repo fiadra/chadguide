@@ -11,7 +11,7 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from dijkstra.load_flights import load_flights
+from src.dijkstra.load_flights import load_flights
 
 
 # -------------------------

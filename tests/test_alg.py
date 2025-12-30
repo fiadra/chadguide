@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from dijkstra.alg import dijkstra
+from src.dijkstra.alg import dijkstra
 
 
 # -------------------------
@@ -13,15 +13,22 @@ def time_limits():
     return 0, 100
 
 
+def build_flights_by_city(df):
+    """Build flights_by_city dict from DataFrame (test helper)."""
+    return {city: group for city, group in df.groupby("departure_airport")}
+
+
 @pytest.fixture
 def run_dijkstra():
     def _run(flights_df, start_city, required_cities, T_min, T_max):
+        flights_by_city = build_flights_by_city(flights_df)
         return dijkstra(
             flights_df,
             start_city=start_city,
             required_cities=required_cities,
             T_min=T_min,
             T_max=T_max,
+            flights_by_city=flights_by_city,
         )
 
     return _run

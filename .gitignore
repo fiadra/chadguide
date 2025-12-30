@@ -13,6 +13,8 @@ __pycache__/
 
 # --- Bazy danych ---
 *.db
+# Exception: curated demo database for flight_router examples
+!src/flight_router/examples/data/demo_flights.db
 
 # --- Logi ---
 *.log
