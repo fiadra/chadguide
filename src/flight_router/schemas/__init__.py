@@ -12,6 +12,12 @@ from .flight import (
     FlightDataFrame,
 )
 from .route import RouteSegment, RouteResult, RouteSegmentSchema, RouteResultSchema
+from .validation import (
+    DEFAULT_MATCHING_WEIGHTS,
+    MatchingWeights,
+    ValidatedRoute,
+    ValidationConfig,
+)
 
 __all__ = [
     # Flight schemas
@@ -27,4 +33,9 @@ __all__ = [
     "RouteResult",
     "RouteSegmentSchema",
     "RouteResultSchema",
+    # Validation schemas
+    "DEFAULT_MATCHING_WEIGHTS",
+    "MatchingWeights",
+    "ValidatedRoute",
+    "ValidationConfig",
 ]
