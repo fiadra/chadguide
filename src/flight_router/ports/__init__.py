@@ -11,11 +11,21 @@ from src.flight_router.ports.graph_repository import (
     FlightGraphCache,
     GraphNotInitializedError,
 )
+from src.flight_router.ports.offer_validator import (
+    OfferValidator,
+    RouteValidation,
+    SegmentValidation,
+    ValidationStatus,
+)
 from src.flight_router.ports.route_finder import RouteFinder
 
 __all__ = [
     "FlightDataProvider",
     "FlightGraphCache",
     "GraphNotInitializedError",
+    "OfferValidator",
     "RouteFinder",
+    "RouteValidation",
+    "SegmentValidation",
+    "ValidationStatus",
 ]
