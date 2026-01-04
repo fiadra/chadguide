@@ -123,13 +123,104 @@ class RouteResult:
 
 ---
 
+## Validation API
+
+Live validation confirms cached route availability and pricing against the Duffel API before booking.
+
+### RouteValidationService
+
+```python
+from src.flight_router.services import RouteValidationService
+from src.flight_router.adapters.validators import DuffelOfferValidator
+
+validator = DuffelOfferValidator(api_token="your_duffel_token")
+service = RouteValidationService(validator)
+```
+
+**Methods:**
+
+| Method | Description |
+|--------|-------------|
+| `validate_route(route, departure_date)` | Validate single route (async) |
+| `validate_routes(routes, departure_date, validate_top_n=None)` | Batch validation with optional limit |
+| `validate_route_on_demand(route, departure_date)` | Lazy validation for user-selected routes |
+
+### ValidationStatus
+
+| Status | Meaning | Bookable? |
+|--------|---------|-----------|
+| `CONFIRMED` | Price within ±5% tolerance | ✅ Yes |
+| `PRICE_CHANGED` | Price differs by >5%, show warning | ✅ Yes |
+| `UNAVAILABLE` | Flight not found in live search | ❌ No |
+| `API_ERROR` | Validation failed, retry later | ❌ No |
+
+### ValidatedRoute
+
+```python
+@dataclass(frozen=True)
+class ValidatedRoute:
+    route: RouteResult
+    validation: Optional[RouteValidation]
+
+    # Computed properties
+    is_validated: bool      # True if validation was performed
+    is_bookable: bool       # True for CONFIRMED/PRICE_CHANGED
+    total_price: float      # Live price if available, else cached
+    price_confidence: str   # "high" | "medium" | "low" | "unvalidated"
+```
+
+### Usage Example
+
+```python
+from datetime import date
+
+# Validate top 3 routes from search results
+validated = await service.validate_routes(
+    routes=search_results,
+    departure_date=date(2026, 7, 15),
+    validate_top_n=3,
+)
+
+for result in validated:
+    if result.is_bookable:
+        print(f"Route {result.route.route_id}: €{result.total_price:.2f}")
+        print(f"  Confidence: {result.price_confidence}")
+        print(f"  Status: {result.validation.status.value}")
+```
+
+---
+
 ## Configuration
+
+### FindOptimalRoutes Parameters
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `db_path` | `Duffel_api/flights.db` | SQLite database path |
 | `cache_ttl` | 1 hour | Time before background refresh triggers |
 | `require_defensive_copy` | `False` | Copy DataFrame before algorithm (slower, safer) |
+
+### ValidationConfig Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `price_confirmed_threshold` | 5.0 | Max % price change for CONFIRMED status |
+| `price_changed_threshold` | 25.0 | Max % change before UNAVAILABLE |
+| `min_confidence_threshold` | 30.0 | Min confidence score (0-100) to accept match |
+| `max_concurrent_requests` | 3 | Parallel API request limit |
+| `request_timeout_ms` | 10000 | Per-request timeout in milliseconds |
+| `max_retries` | 5 | Retry attempts on rate limit (429) |
+| `backoff_multiplier` | 2.0 | Exponential backoff factor |
+
+```python
+from src.flight_router.schemas.validation import ValidationConfig
+
+config = ValidationConfig(
+    price_confirmed_threshold=3.0,  # Stricter price tolerance
+    max_concurrent_requests=5,       # More parallel requests
+)
+validator = DuffelOfferValidator(api_token="...", config=config)
+```
 
 ---
 
@@ -176,35 +267,42 @@ graph TB
 
     subgraph Services["Services Layer"]
         SVC[RouteFinderService<br/>Domain Orchestrator]
+        VSVC[RouteValidationService<br/>Live Validation]
     end
 
     subgraph Adapters["Adapter Layer"]
         DP[DuffelDataProvider<br/>SQL → DataFrame]
         ALG[DijkstraRouteFinder<br/>Algorithm Wrapper]
         REPO[FlightGraphRepository<br/>Zero-Copy Cache]
+        VAL[DuffelOfferValidator<br/>Live API Validation]
     end
 
     subgraph Ports["Port Interfaces"]
         P1[FlightDataProvider]
         P2[RouteFinder]
         P3[FlightGraphCache]
+        P4[OfferValidator]
     end
 
     subgraph Schemas["Schema Contracts"]
         S1[CoreFlightSchema]
         S2[TravelConstraints]
         S3[RouteResult]
+        S4[ValidatedRoute]
     end
 
     subgraph Infra["Infrastructure"]
         DB[(SQLite)]
         CACHE[InMemoryCache]
         POOL[ThreadPoolExecutor]
+        DUFFEL[[Duffel API]]
     end
 
     API --> SVC
+    API --> VSVC
     SVC --> ALG
     SVC --> REPO
+    VSVC --> VAL
     REPO --> DP
     REPO --> CACHE
     REPO --> POOL
@@ -212,12 +310,15 @@ graph TB
     DP -.implements.-> P1
     ALG -.implements.-> P2
     CACHE -.implements.-> P3
+    VAL -.implements.-> P4
 
     DP --> S1
     SVC --> S2
     ALG --> S3
+    VSVC --> S4
 
     DP --> DB
+    VAL --> DUFFEL
 ```
 
 ### Layer Responsibilities
@@ -225,10 +326,10 @@ graph TB
 | Layer | Purpose | Key Classes |
 |-------|---------|-------------|
 | **Application** | Public API, dependency injection, lifecycle management | `FindOptimalRoutes` |
-| **Services** | Domain orchestration, constraint validation, metrics logging | `RouteFinderService` |
-| **Adapters** | Concrete implementations of port interfaces | `DuffelDataProvider`, `DijkstraRouteFinder`, `FlightGraphRepository` |
-| **Ports** | Abstract interfaces (ABCs/Protocols) for dependency inversion | `FlightDataProvider`, `RouteFinder`, `FlightGraphCache` |
-| **Schemas** | Data contracts using Pandera DataFrameModels and frozen dataclasses | `CoreFlightSchema`, `TravelConstraints`, `RouteResult` |
+| **Services** | Domain orchestration, constraint validation, live validation | `RouteFinderService`, `RouteValidationService` |
+| **Adapters** | Concrete implementations of port interfaces | `DuffelDataProvider`, `DijkstraRouteFinder`, `FlightGraphRepository`, `DuffelOfferValidator` |
+| **Ports** | Abstract interfaces (ABCs/Protocols) for dependency inversion | `FlightDataProvider`, `RouteFinder`, `FlightGraphCache`, `OfferValidator` |
+| **Schemas** | Data contracts using Pandera DataFrameModels and frozen dataclasses | `CoreFlightSchema`, `TravelConstraints`, `RouteResult`, `ValidatedRoute` |
 
 ---
 
@@ -354,6 +455,47 @@ If code attempts mutation: `ValueError: assignment destination is read-only`
 
 ---
 
+### 6. Live Validation Pattern
+
+**Problem**: Cached flight data becomes stale - prices change, flights sell out, schedules shift. Users see "phantom routes" that fail at booking.
+
+**Solution**: Re-search strategy with confidence scoring validates routes against live Duffel API before presenting to users.
+
+```python
+# Validation flow
+RouteResult → RouteValidationService → DuffelOfferValidator → ValidatedRoute
+                                              ↓
+                                      Duffel API (re-search)
+                                              ↓
+                                      Offer Matching (scoring)
+                                              ↓
+                                      ValidationStatus + Confidence
+```
+
+**Key Design Decisions:**
+
+| Decision | Rationale |
+|----------|-----------|
+| **Worst-status-wins** | One failed segment = entire route fails |
+| **Parallel segment validation** | Validates segments concurrently with semaphore |
+| **Confidence scoring** | 10-factor algorithm matches cached vs live offers |
+| **Exponential backoff** | Handles Duffel rate limits (429) gracefully |
+| **Placeholder detection** | Filters "ZZ" carrier offers (route doesn't exist) |
+
+**Scoring Weights (PoC-validated):**
+
+| Factor | Points | Description |
+|--------|--------|-------------|
+| Carrier match | +50 | Same airline |
+| Hour exact | +30 | Same departure hour |
+| Price exact | +30 | Within 5% |
+| Non-stop | +20 | No connections |
+| Carrier mismatch | -20 | Different airline |
+| Hour outside | -30 | >1 hour difference |
+| Price outside | -50 | >25% difference |
+
+---
+
 ## Developer Guide
 
 ### Extending the Schema
@@ -410,7 +552,11 @@ To add a new column (e.g., `terminal_transfer_time`):
 
 ## Future Enhancements
 
-### Shared Memory Cache (Phase 2)
+### Live Route Validation (Implemented)
+
+Route validation against Duffel API is now available. See [Validation API](#validation-api) section.
+
+### Shared Memory Cache
 
 For multi-worker deployments (4 Gunicorn workers × 2GB = 8GB wasted), the `FlightGraphCache` protocol supports:
 
