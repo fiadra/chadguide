@@ -105,7 +105,7 @@ class DuffelOfferValidator(OfferValidator):
                 base_url=DUFFEL_API_URL,
                 headers={
                     "Authorization": f"Bearer {self._api_token}",
-                    "Duffel-Version": "v1",
+                    "Duffel-Version": "v2",
                     "Content-Type": "application/json",
                     "Accept": "application/json",
                 },
@@ -283,7 +283,7 @@ class DuffelOfferValidator(OfferValidator):
                     params={"return_offers": "true"},
                 )
 
-                if response.status_code == 200:
+                if response.status_code in (200, 201):
                     data = response.json()
                     return data.get("data", {}).get("offers", [])
 
