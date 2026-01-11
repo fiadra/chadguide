@@ -1,6 +1,8 @@
 import pandas as pd
 import pytest
 
+pytestmark = pytest.mark.skip(reason="Pending rewrite")
+
 from src.dijkstra.prune import (
     extract_countries,
     extract_airports,

@@ -14,6 +14,7 @@ from typing import Dict, List, Optional
 import pandas as pd
 
 from src.dijkstra.alg import dijkstra
+from src.dijkstra.prune import prune_flights
 from src.dijkstra.labels import Label
 from src.dijkstra.reconstruction import reconstruct_path
 
@@ -88,7 +89,7 @@ class DijkstraRouteFinder(RouteFinder):
         Raises:
             RuntimeError: If algorithm attempts to mutate immutable DataFrame.
         """
-        flights_df = graph.flights_df
+        flights_df = prune_flights(graph.flights_df, start_city, required_cities)
 
         if self._require_copy:
             # DEFENSIVE COPY: Use only if dijkstra mutates input
