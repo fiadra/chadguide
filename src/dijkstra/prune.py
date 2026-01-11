@@ -2,36 +2,6 @@ from typing import Set, Optional
 import pandas as pd
 
 
-def extract_countries(
-    start_city: str, required_cities: Set[str], airports_df: pd.DataFrame
-) -> Set[str]:
-    """
-    Return all countries in which given airports are located.
-    """
-    airports = required_cities | {start_city}
-
-    return set(
-        airports_df.loc[
-            airports_df["airport"].isin(airports),
-            "country",
-        ]
-    )
-
-
-def extract_airports(
-    countries: Set[str], airports_df: pd.DataFrame
-) -> Set[str]:
-    """
-    Return all airports in given countries.
-    """
-    return set(
-        airports_df.loc[
-            airports_df["country"].isin(countries),
-            "airport",
-        ]
-    )
-
-
 def build_reachable_airports(
     flights_df: pd.DataFrame, sources: Set[str], max_dist: int = 2
 ) -> Set[str]:
@@ -81,7 +51,6 @@ def prune_flights_df(
 
 def prune_flights(
     flights_df: pd.DataFrame,
-    airports_df: pd.DataFrame,
     start_city: str,
     required_cities: Set[str],
     max_dist: Optional[int] = 2,
@@ -89,7 +58,6 @@ def prune_flights(
     """
     Full pipeline: prune flights based on reachability from source airports.
     """
-    countries = extract_countries(start_city, required_cities, airports_df)
-    sources = extract_airports(countries, airports_df)
+    sources = required_cities | {start_city}
     reachable = build_reachable_airports(flights_df, sources, max_dist)
     return prune_flights_df(flights_df, reachable)
