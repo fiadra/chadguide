@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChadGuide - Multi-City Flight Planner</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Leaflet.js for map animation -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'terracotta': {
+                            50: '#fef6f3',
+                            100: '#fdeae4',
+                            200: '#fbd5c9',
+                            300: '#f6b5a1',
+                            400: '#ef8a6d',
+                            500: '#e07a5f',
+                            600: '#cb5a3d',
+                            700: '#aa4731',
+                            800: '#8c3d2c',
+                            900: '#743629',
+                            950: '#3f1912',
+                        },
+                        'cream': {
+                            50: '#fefdfb',
+                            100: '#fcf9f3',
+                            200: '#f9f3e7',
+                            300: '#f4ead6',
+                            400: '#eddcbe',
+                            500: '#e5cca3',
+                        },
+                        'navy': {
+                            50: '#f6f6f8',
+                            100: '#ececf1',
+                            200: '#d5d6e0',
+                            300: '#b1b3c5',
+                            400: '#878ba5',
+                            500: '#696d8b',
+                            600: '#545773',
+                            700: '#45475e',
+                            800: '#3d405b',
+                            900: '#34364c',
+                            950: '#232433',
+                        },
+                        'sage': {
+                            50: '#f3f8f5',
+                            100: '#e4efe8',
+                            200: '#c9dfd2',
+                            300: '#a2c7b1',
+                            400: '#81b29a',
+                            500: '#5a9473',
+                            600: '#47785c',
+                            700: '#3a604b',
+                            800: '#314e3e',
+                            900: '#2a4134',
+                            950: '#15241c',
+                        },
+                        'gold': {
+                            50: '#fefcf5',
+                            100: '#fdf8e6',
+                            200: '#faf0c9',
+                            300: '#f5e3a3',
+                            400: '#f2cc8f',
+                            500: '#e9b35a',
+                            600: '#d49a3e',
+                            700: '#b17c32',
+                            800: '#8f632e',
+                            900: '#755228',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Source Sans 3', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .card-warm {
+            background: linear-gradient(145deg, #fefdfb 0%, #fcf9f3 100%);
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(52, 54, 76, 0.95);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Map container */
+        #loading-map {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            background: #232433;
+        }
+
+        /* Animation markers */
+        .pulse-marker {
+            animation: pulse-ring 1.5s ease-out infinite;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(129, 178, 154, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(129, 178, 154, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(129, 178, 154, 0); }
+        }
+
+        .locked-marker {
+            animation: lock-flash 0.3s ease-out;
+        }
+        @keyframes lock-flash {
+            0% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* Airport labels */
+        .airport-label {
+            background: rgba(35, 36, 51, 0.9) !important;
+            border: 1px solid rgba(242, 204, 143, 0.3) !important;
+            color: #fcf9f3 !important;
+            padding: 4px 8px !important;
+            border-radius: 6px !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+        }
+        .origin-label {
+            border-color: rgba(224, 122, 95, 0.5) !important;
+        }
+        .dest-label {
+            border-color: rgba(129, 178, 154, 0.5) !important;
+        }
+        .leaflet-tooltip-left:before,
+        .leaflet-tooltip-right:before,
+        .leaflet-tooltip-top:before,
+        .leaflet-tooltip-bottom:before {
+            border-color: transparent !important;
+        }
+
+        /* Route testing animation */
+        .route-testing {
+            animation: route-draw 0.5s ease-out;
+        }
+        @keyframes route-draw {
+            from { stroke-dashoffset: 100; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Progress bar */
+        .progress-fill {
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-body bg-cream-100 text-navy-800 antialiased min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-cream-100/95 backdrop-blur-sm border-b border-cream-200">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-navy-800 rounded-full flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+                        <i class="fa-solid fa-compass text-gold-400 text-lg"></i>
+                    </div>
+                    <span class="font-display font-semibold text-xl tracking-tight italic">ChadGuide</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-8">
+            <h1 class="font-display text-3xl sm:text-4xl font-medium text-navy-900 mb-3">
+                Plan Your Multi-City Trip
+            </h1>
+            <p class="text-navy-600">
+                Select your destinations and travel dates
+            </p>
+        </div>
+
+        <!-- Trip Form Card -->
+        <div class="card-warm rounded-2xl shadow-xl shadow-navy-900/10 p-6 md:p-8 border border-cream-300/50">
+            <form id="trip-form">
+                <!-- Cities Selection -->
+                <div class="mb-6">
+                    <label class="flex items-center gap-2 text-sm font-semibold text-navy-600 mb-3 uppercase tracking-wider">
+                        <i class="fa-solid fa-map-location-dot text-terracotta-500"></i>
+                        Destinations
+                    </label>
+
+                    <!-- City Input with Autocomplete -->
+                    <div class="flex gap-2 mb-3">
+                        <div class="relative flex-1">
+                            <input type="text" id="city-input" placeholder="Search for a city..."
+                                   class="w-full px-4 py-3 bg-white border-2 border-cream-300 rounded-xl text-navy-800 placeholder-navy-400 focus:outline-none focus:border-terracotta-400 transition-all font-medium"
+                                   autocomplete="off">
+                            <i class="fa-solid fa-search absolute right-4 top-1/2 -translate-y-1/2 text-navy-400"></i>
+                        </div>
+                        <!-- Hidden add button - autocomplete handles selection -->
+                        <button type="button" id="add-city-btn" class="hidden px-5 py-3 bg-terracotta-500 text-white rounded-xl font-semibold">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <!-- Selected Cities Tags -->
+                    <div id="selected-cities" class="flex flex-wrap gap-2 min-h-[48px] p-3 bg-white rounded-xl border-2 border-dashed border-cream-300">
+                        <span id="empty-cities-hint" class="text-navy-400 text-sm py-2">Add destinations...</span>
+                    </div>
+
+                    <div class="mt-2 text-xs text-navy-500">
+                        <span><strong id="city-count">0</strong> destinations selected</span>
+                    </div>
+                </div>
+
+                <!-- Date Range -->
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div>
+                        <label for="start-date" class="block text-xs font-semibold text-navy-600 mb-2 uppercase tracking-wider">
+                            Start Date
+                        </label>
+                        <input type="date" id="start-date"
+                               class="w-full px-3 py-2.5 bg-white border-2 border-cream-300 rounded-xl text-navy-800 focus:outline-none focus:border-terracotta-400 transition-all text-sm"
+                               required>
+                    </div>
+                    <div>
+                        <label for="end-date" class="block text-xs font-semibold text-navy-600 mb-2 uppercase tracking-wider">
+                            End Date
+                        </label>
+                        <input type="date" id="end-date"
+                               class="w-full px-3 py-2.5 bg-white border-2 border-cream-300 rounded-xl text-navy-800 focus:outline-none focus:border-terracotta-400 transition-all text-sm"
+                               required>
+                    </div>
+                </div>
+
+                <!-- Trip Summary Pill -->
+                <div class="bg-gradient-to-r from-navy-800 to-navy-900 rounded-xl p-4 mb-6 text-cream-100">
+                    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-terracotta-400"></i>
+                            <strong id="summary-cities">0 cities</strong>
+                        </span>
+                        <span class="text-navy-500">|</span>
+                        <span class="flex items-center gap-2">
+                            <i class="fa-regular fa-calendar text-gold-400"></i>
+                            <strong id="summary-duration">-- days</strong>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submit-btn" class="w-full py-4 bg-gradient-to-r from-terracotta-500 to-terracotta-600 text-white rounded-xl font-semibold text-lg hover:from-terracotta-600 hover:to-terracotta-700 transform hover:-translate-y-0.5 transition-all shadow-lg shadow-terracotta-500/30 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                    <i class="fa-solid fa-route"></i>
+                    Generate Optimized Route
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="w-full max-w-lg mx-4">
+            <div class="bg-navy-900 rounded-2xl p-6 shadow-2xl border border-navy-700">
+                <!-- Header -->
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 bg-navy-800 rounded-full flex items-center justify-center">
+                        <i id="loading-icon" class="fa-solid fa-satellite-dish text-gold-400"></i>
+                    </div>
+                    <div>
+                        <h3 id="loading-title" class="font-display font-semibold text-cream-100">Scanning Database</h3>
+                        <p id="loading-message" class="text-cream-400 text-sm">Initializing...</p>
+                    </div>
+                </div>
+
+                <!-- Map Container -->
+                <div id="loading-map" class="mb-4"></div>
+
+                <!-- Progress Bar -->
+                <div class="bg-navy-800 rounded-full h-2 overflow-hidden">
+                    <div id="loading-progress" class="progress-fill h-full bg-gradient-to-r from-terracotta-500 to-gold-400" style="width: 0%"></div>
+                </div>
+                <p class="text-center text-cream-500 text-xs mt-2">
+                    <span id="loading-percent">0</span>% complete
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/airport-index.js"></script>
+    <script src="js/loading-animation.js"></script>
+    <script src="js/city-selector.js"></script>
+    <script src="js/api-client.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Results - ChadGuide</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'terracotta': {
+                            50: '#fef6f3',
+                            100: '#fdeae4',
+                            200: '#fbd5c9',
+                            300: '#f6b5a1',
+                            400: '#ef8a6d',
+                            500: '#e07a5f',
+                            600: '#cb5a3d',
+                            700: '#aa4731',
+                            800: '#8c3d2c',
+                            900: '#743629',
+                            950: '#3f1912',
+                        },
+                        'cream': {
+                            50: '#fefdfb',
+                            100: '#fcf9f3',
+                            200: '#f9f3e7',
+                            300: '#f4ead6',
+                            400: '#eddcbe',
+                            500: '#e5cca3',
+                        },
+                        'navy': {
+                            50: '#f6f6f8',
+                            100: '#ececf1',
+                            200: '#d5d6e0',
+                            300: '#b1b3c5',
+                            400: '#878ba5',
+                            500: '#696d8b',
+                            600: '#545773',
+                            700: '#45475e',
+                            800: '#3d405b',
+                            900: '#34364c',
+                            950: '#232433',
+                        },
+                        'sage': {
+                            50: '#f3f8f5',
+                            100: '#e4efe8',
+                            200: '#c9dfd2',
+                            300: '#a2c7b1',
+                            400: '#81b29a',
+                            500: '#5a9473',
+                            600: '#47785c',
+                            700: '#3a604b',
+                            800: '#314e3e',
+                            900: '#2a4134',
+                            950: '#15241c',
+                        },
+                        'gold': {
+                            50: '#fefcf5',
+                            100: '#fdf8e6',
+                            200: '#faf0c9',
+                            300: '#f5e3a3',
+                            400: '#f2cc8f',
+                            500: '#e9b35a',
+                            600: '#d49a3e',
+                            700: '#b17c32',
+                            800: '#8f632e',
+                            900: '#755228',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Source Sans 3', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .card-warm {
+            background: linear-gradient(145deg, #fefdfb 0%, #fcf9f3 100%);
+        }
+    </style>
+</head>
+<body class="font-body bg-cream-100 text-navy-800 antialiased min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-cream-100/95 backdrop-blur-sm border-b border-cream-200">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-navy-800 rounded-full flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+                        <i class="fa-solid fa-compass text-gold-400 text-lg"></i>
+                    </div>
+                    <span class="font-display font-semibold text-xl tracking-tight italic">RouteMind</span>
+                </a>
+
+                <!-- Back Link -->
+                <a href="index.html" class="flex items-center gap-2 text-navy-600 hover:text-terracotta-500 transition-colors font-medium">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    New Search
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-8">
+            <h1 class="font-display text-3xl sm:text-4xl font-medium text-navy-900 mb-3">
+                Your Optimized Route
+            </h1>
+            <p class="text-navy-600" id="search-summary">
+                <!-- Will be populated by JS -->
+            </p>
+        </div>
+
+        <!-- Results Container -->
+        <div id="results-container" class="card-warm rounded-2xl shadow-xl shadow-navy-900/10 p-8 border border-cream-300/50">
+            <!-- Placeholder - will be replaced with actual results -->
+            <div class="text-center py-12">
+                <div class="w-16 h-16 bg-cream-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-route text-navy-400 text-2xl"></i>
+                </div>
+                <h2 class="font-display text-xl text-navy-700 mb-2">Results will appear here</h2>
+                <p class="text-navy-500 text-sm mb-6">This page will display your optimized flight routes</p>
+                <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 bg-terracotta-500 text-white rounded-xl font-semibold hover:bg-terracotta-600 transition-colors">
+                    <i class="fa-solid fa-search"></i>
+                    Start a New Search
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Display search parameters from sessionStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchData = sessionStorage.getItem('routeSearchData');
+            if (searchData) {
+                const data = JSON.parse(searchData);
+                const summaryEl = document.getElementById('search-summary');
+                if (summaryEl && data.cities && data.cities.length > 0) {
+                    summaryEl.textContent = `${data.cities.join(' → ')} | ${data.start_date} to ${data.end_date}`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
