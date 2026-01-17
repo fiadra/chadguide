@@ -1,26 +1,30 @@
 import requests
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 from config import radius, get_api_key
+from exceptions import (
+    GeoapifyAPIError,
+    GeoapifyCityNotFoundError,
+    GeoapifyInvalidParameterError,
+)
 
 GeoJSONFeatureCollection = Dict[str, Any]
 
 
 class GeoapifyClient:
-    # Base URL of the Geoapify API
     BASE_URL = "https://api.geoapify.com"
 
-    def __init__(self, api_key: Optional[str]):
+    def __init__(self, api_key: Optional[str] = None):
         """
         Initialize the Geoapify client with an API key.
 
         Args:
-            api_key (str): Your Geoapify API key.
+            api_key (Optional[str]): Your Geoapify API key. If None, will use config.get_api_key().
         """
-        if api_key is None:
-            self.api_key = get_api_key()  # will raise if missing
-        else:
-            self.api_key = api_key
-
+        self.api_key = api_key or get_api_key()
+        if not self.api_key:
+            raise GeoapifyInvalidParameterError(
+                "api_key", "API key must be provided or configured"
+            )
         self.session = requests.Session()
 
     def get(self, path: str, params: Dict[str, Any]) -> Dict[str, Any]:
@@ -29,30 +33,47 @@ class GeoapifyClient:
 
         Args:
             path (str): The API endpoint path (e.g., "/v2/places").
-            params (Dict[str, Any]): Query parameters to include in the request.
+            params (Dict[str, Any]): Query parameters.
 
         Returns:
-            Dict[str, Any]: The JSON response parsed into a Python dictionary.
+            Dict[str, Any]: Parsed JSON response.
 
         Raises:
-            requests.HTTPError: If the HTTP request fails (non-2xx response).
+            GeoapifyAPIError: If the API returns a non-2xx response.
         """
-        # Add the API key to the query parameters for authentication
         params["apiKey"] = self.api_key
-
-        # Construct the full URL by combining the base URL and the endpoint path
         url = f"{self.BASE_URL}{path}"
 
-        # Send the GET request using the session
-        response = self.session.get(url, params=params, timeout=5)
+        try:
+            response = self.session.get(url, params=params, timeout=5)
+            response.raise_for_status()
+        except requests.HTTPError as e:
+            raise GeoapifyAPIError(response.status_code, str(e))
+        except requests.RequestException as e:
+            # Catch network-level errors
+            raise GeoapifyAPIError(-1, f"Network error: {str(e)}")
 
-        # Raise an exception if the response status code indicates an error
-        response.raise_for_status()
+        try:
+            return response.json()
+        except ValueError as e:
+            raise GeoapifyAPIError(
+                response.status_code, f"Invalid JSON response: {str(e)}"
+            )
 
-        # Return the response body as a Python dictionary
-        return response.json()
+    def get_place_coords(self, city: str) -> Tuple[float, float]:
+        """
+        Get the longitude and latitude of a city.
 
-    def get_place_coords(self, city: str) -> Optional[str]:
+        Args:
+            city (str): City name.
+
+        Returns:
+            Tuple[float, float]: (longitude, latitude)
+
+        Raises:
+            GeoapifyCityNotFoundError: If the city cannot be found.
+            GeoapifyAPIError: If the API call fails.
+        """
         data = self.get(
             "/v1/geocode/search",
             {
@@ -64,52 +85,47 @@ class GeoapifyClient:
 
         features = data.get("features", [])
         if not features:
-            return None
+            raise GeoapifyCityNotFoundError(city)
 
-        return features[0]["properties"]["lon"], features[0]["properties"]["lat"]
+        props = features[0].get("properties", {})
+        lon, lat = props.get("lon"), props.get("lat")
+        if lon is None or lat is None:
+            raise GeoapifyCityNotFoundError(city)
+
+        return lon, lat
 
     def fetch_amenities(
         self,
         city: str,
         categories: List[str],
-        limit: int = 3,
+        limit: Optional[int] = 3,
     ) -> GeoJSONFeatureCollection:
         """
-        Fetch amenities (places) within a city's administrative boundary.
-
-        This method performs multiple API calls to Geoapify for each category
-        and combines the results into a single GeoJSON FeatureCollection.
+        Fetch amenities within a city's vicinity.
 
         Args:
-            city (str): The name of the city to search in.
-            categories (List[str]): A list of categories to fetch (e.g., ["restaurant", "park"]).
-            limit (int, optional): Maximum number of results per category. Defaults to 3.
+            city (str): City name.
+            categories (List[str]): List of category strings (e.g., ["restaurant", "park"]).
+            limit (int, optional): Maximum results per category.
 
         Returns:
-            Dict[str, Any]: A GeoJSON-style FeatureCollection containing the fetched amenities.
+            GeoJSONFeatureCollection: GeoJSON FeatureCollection of amenities.
 
         Raises:
-            ValueError: If the place ID for the city cannot be fetched.
+            GeoapifyCityNotFoundError: If the city cannot be located.
+            GeoapifyAPIError: If an API call fails.
+            GeoapifyInvalidParameterError: If categories is empty.
         """
-        # Return early if `categories` is empty
         if not categories:
-            return {"type": "FeatureCollection", "features": []}
+            raise GeoapifyInvalidParameterError(
+                "categories", "At least one category must be provided"
+            )
 
         longitude, latitude = self.get_place_coords(city)
 
-        # If we cannot find a place ID, raise an exception
-        if longitude is None or latitude is None:
-            raise ValueError(f"Could not fetch place coordinates for city '{city}'")
-
-        # Initialize an empty list to store all features (amenities) across categories
         features = []
 
-        # Loop through each requested category
         for category in categories:
-            # Make a GET request to the Geoapify /v2/places endpoint
-            # The request filters results by the city's place_id
-            # The limit parameter restricts how many results are returned
-            # The language parameter ensures results are in English
             data = self.get(
                 "/v2/places",
                 {
@@ -120,12 +136,8 @@ class GeoapifyClient:
                     "limit": limit,
                 },
             )
-
-            # Extract the "features" list from the API response and add it to our master list
-            # If the "features" key is missing, default to an empty list
             features.extend(data.get("features", []))
 
-        # Return all the fetched features in a standard GeoJSON FeatureCollection format
         return {
             "type": "FeatureCollection",
             "features": features,
