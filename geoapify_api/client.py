@@ -1,8 +1,9 @@
 import requests
 from typing import Dict, Any, List, Optional
-from config import get_api_key
-from geocoding import get_place_id
+from config import radius, get_api_key
+
 GeoJSONFeatureCollection = Dict[str, Any]
+
 
 class GeoapifyClient:
     # Base URL of the Geoapify API
@@ -51,7 +52,7 @@ class GeoapifyClient:
         # Return the response body as a Python dictionary
         return response.json()
 
-    def get_place_id(self, city: str) -> Optional[str]:
+    def get_place_coords(self, city: str) -> Optional[str]:
         data = self.get(
             "/v1/geocode/search",
             {
@@ -65,7 +66,7 @@ class GeoapifyClient:
         if not features:
             return None
 
-        return features[0]["properties"]["place_id"]
+        return features[0]["properties"]["lon"], features[0]["properties"]["lat"]
 
     def fetch_amenities(
         self,
@@ -94,11 +95,11 @@ class GeoapifyClient:
         if not categories:
             return {"type": "FeatureCollection", "features": []}
 
-        place_id = self.get_place_id(city)
+        longitude, latitude = self.get_place_coords(city)
 
         # If we cannot find a place ID, raise an exception
-        if not place_id:
-            raise ValueError(f"Could not fetch place ID for city '{city}'")
+        if longitude is None or latitude is None:
+            raise ValueError(f"Could not fetch place coordinates for city '{city}'")
 
         # Initialize an empty list to store all features (amenities) across categories
         features = []
@@ -113,7 +114,8 @@ class GeoapifyClient:
                 "/v2/places",
                 {
                     "categories": category,
-                    "filter": f"place:{place_id}",
+                    "filter": f"circle:{longitude},{latitude},{radius}",
+                    "bias": f"proximity:{longitude},{latitude}",
                     "lang": "en",
                     "limit": limit,
                 },
