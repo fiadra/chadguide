@@ -5,6 +5,9 @@ Provides a hierarchy of exceptions for clear error handling
 and debugging of json-fetching operations.
 """
 
+from typing import Any
+
+
 class GeoapifyError(Exception):
     """Base exception for all Geoapify client errors."""
     pass
@@ -12,8 +15,9 @@ class GeoapifyError(Exception):
 
 class GeoapifyAPIError(GeoapifyError):
     """Raised when the Geoapify API returns an HTTP error or invalid response."""
-    def __init__(self, status_code: int, message: str = ""):
+    def __init__(self, status_code: int, message: str = "", payload: Any = None):
         self.status_code = status_code
+        self.payload = payload
         self.message = message or f"Geoapify API returned status code {status_code}"
         super().__init__(self.message)
 
