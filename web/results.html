@@ -107,7 +107,7 @@
                     <div class="w-10 h-10 bg-navy-800 rounded-full flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
                         <i class="fa-solid fa-compass text-gold-400 text-lg"></i>
                     </div>
-                    <span class="font-display font-semibold text-xl tracking-tight italic">RouteMind</span>
+                    <span class="font-display font-semibold text-xl tracking-tight italic">ChadGuide</span>
                 </a>
 
                 <!-- Back Link -->
@@ -123,40 +123,150 @@
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="text-center mb-8">
             <h1 class="font-display text-3xl sm:text-4xl font-medium text-navy-900 mb-3">
-                Your Optimized Route
+                Your Optimized Routes
             </h1>
-            <p class="text-navy-600" id="search-summary">
-                <!-- Will be populated by JS -->
-            </p>
+            <p class="text-navy-600" id="search-summary"></p>
         </div>
 
         <!-- Results Container -->
-        <div id="results-container" class="card-warm rounded-2xl shadow-xl shadow-navy-900/10 p-8 border border-cream-300/50">
-            <!-- Placeholder - will be replaced with actual results -->
-            <div class="text-center py-12">
-                <div class="w-16 h-16 bg-cream-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fa-solid fa-route text-navy-400 text-2xl"></i>
+        <div id="results-container" class="space-y-6">
+            <!-- Placeholder - shown when no results -->
+            <div id="empty-state" class="card-warm rounded-2xl shadow-xl shadow-navy-900/10 p-8 border border-cream-300/50">
+                <div class="text-center py-12">
+                    <div class="w-16 h-16 bg-cream-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-route text-navy-400 text-2xl"></i>
+                    </div>
+                    <h2 class="font-display text-xl text-navy-700 mb-2">No routes found</h2>
+                    <p class="text-navy-500 text-sm mb-6">Try a different search or check your dates</p>
+                    <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 bg-terracotta-500 text-white rounded-xl font-semibold hover:bg-terracotta-600 transition-colors">
+                        <i class="fa-solid fa-search"></i>
+                        Start a New Search
+                    </a>
                 </div>
-                <h2 class="font-display text-xl text-navy-700 mb-2">Results will appear here</h2>
-                <p class="text-navy-500 text-sm mb-6">This page will display your optimized flight routes</p>
-                <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 bg-terracotta-500 text-white rounded-xl font-semibold hover:bg-terracotta-600 transition-colors">
-                    <i class="fa-solid fa-search"></i>
-                    Start a New Search
-                </a>
             </div>
         </div>
     </main>
 
     <script>
-        // Display search parameters from sessionStorage
+        // Formatting helpers
+        function formatTime(epochMinutes) {
+            const date = new Date(epochMinutes * 60 * 1000);
+            return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
+        }
+
+        function formatDate(epochMinutes) {
+            const date = new Date(epochMinutes * 60 * 1000);
+            return date.toLocaleDateString('en-GB', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+        }
+
+        function formatDuration(minutes) {
+            const h = Math.floor(minutes / 60);
+            const m = Math.round(minutes % 60);
+            return h > 0 ? `${h}h ${m}m` : `${m}m`;
+        }
+
+        function formatPrice(price) {
+            return `€${price.toFixed(2)}`;
+        }
+
+        // Render a single segment
+        function renderSegment(segment) {
+            return `
+                <div class="flex items-start gap-4 py-4 border-t border-cream-200">
+                    <div class="w-10 h-10 bg-navy-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-plane text-navy-500"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-semibold text-navy-800">
+                                ${segment.departure_airport} <i class="fa-solid fa-arrow-right text-xs text-navy-400 mx-2"></i> ${segment.arrival_airport}
+                            </span>
+                            <span class="text-terracotta-600 font-semibold">${formatPrice(segment.price)}</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-sm text-navy-500">
+                            <span class="flex items-center gap-1">
+                                <i class="fa-solid fa-clock text-xs"></i>
+                                ${formatDate(segment.dep_time)}, ${formatTime(segment.dep_time)} - ${formatTime(segment.arr_time)}
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <i class="fa-solid fa-hourglass-half text-xs"></i>
+                                ${formatDuration(segment.duration)}
+                            </span>
+                        </div>
+                        <div class="text-sm text-navy-400 mt-1">
+                            ${segment.carrier_name || segment.carrier_code}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render all routes
+        function renderRoutes(routes) {
+            const container = document.getElementById('results-container');
+            document.getElementById('empty-state').style.display = 'none';
+
+            const routesHtml = routes.map((route, index) => `
+                <div class="card-warm rounded-2xl shadow-xl shadow-navy-900/10 border border-cream-300/50 overflow-hidden">
+                    <!-- Route Header -->
+                    <div class="bg-navy-800 text-cream-100 px-6 py-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-cream-400 text-sm">Route ${index + 1}</span>
+                            <div class="font-display text-lg font-semibold">
+                                ${route.route_cities.join(' → ')}
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-cream-400 text-sm">Total</span>
+                            <div class="font-display text-2xl font-bold text-gold-400">
+                                ${formatPrice(route.total_cost)}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Segments -->
+                    <div class="px-6 pb-4">
+                        ${route.segments.map(seg => renderSegment(seg)).join('')}
+                    </div>
+                    <!-- Footer -->
+                    <div class="bg-cream-200/50 px-6 py-3 flex items-center justify-between text-sm text-navy-600">
+                        <span><i class="fa-solid fa-plane-up mr-2"></i>${route.num_segments} flight${route.num_segments > 1 ? 's' : ''}</span>
+                        <span><i class="fa-solid fa-clock mr-2"></i>Total: ${formatDuration(route.total_time)}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = routesHtml;
+        }
+
+        // Update search summary
+        function updateSummary(searchData) {
+            const summaryEl = document.getElementById('search-summary');
+            if (!searchData.origin_city) return;
+
+            const cities = [searchData.origin_city, ...searchData.cities];
+            summaryEl.textContent = `${cities.join(' → ')} | ${searchData.departure_date} to ${searchData.return_date}`;
+        }
+
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            const searchData = sessionStorage.getItem('routeSearchData');
-            if (searchData) {
-                const data = JSON.parse(searchData);
-                const summaryEl = document.getElementById('search-summary');
-                if (summaryEl && data.cities && data.cities.length > 0) {
-                    summaryEl.textContent = `${data.cities.join(' → ')} | ${data.start_date} to ${data.end_date}`;
-                }
+            // Debug: Log what's in sessionStorage
+            console.log('Raw routeSearchData:', sessionStorage.getItem('routeSearchData'));
+            console.log('Raw routeResults:', sessionStorage.getItem('routeResults'));
+
+            const searchData = JSON.parse(sessionStorage.getItem('routeSearchData') || '{}');
+            const results = JSON.parse(sessionStorage.getItem('routeResults') || '[]');
+
+            console.log('Parsed searchData:', searchData);
+            console.log('Parsed results:', results);
+            console.log('Results count:', results.length);
+
+            updateSummary(searchData);
+
+            if (results.length > 0) {
+                console.log('Rendering routes:', results);
+                renderRoutes(results);
+            } else {
+                console.log('No results to render - showing empty state');
             }
         });
     </script>
