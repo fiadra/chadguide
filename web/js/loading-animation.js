@@ -726,10 +726,179 @@ class GenerativeConsole {
      * Destroy the console
      */
     destroy() {
+        this.stopAttractionCycle();
         this._cleanup();
         if (this.map) {
             this.map.remove();
             this.map = null;
+        }
+    }
+
+    // ==========================================
+    // ATTRACTIONS POPUP METHODS
+    // ==========================================
+
+    /**
+     * Set attractions to display on the map during loading
+     * @param {Object} attractionsByCity - { "Barcelona": [...], "Madrid": [...] }
+     */
+    setAttractions(attractionsByCity) {
+        this.attractions = attractionsByCity;
+        this.attractionQueue = this._buildAttractionQueue();
+        this.currentAttractionIndex = 0;
+        this.attractionPopup = null;
+    }
+
+    /**
+     * Build a shuffled queue of attractions with city coordinates
+     */
+    _buildAttractionQueue() {
+        const queue = [];
+
+        for (const [city, attractions] of Object.entries(this.attractions || {})) {
+            // Find airport for this city (case-insensitive match)
+            const airport = this.destinationAirports.find(
+                a => a.city.toLowerCase() === city.toLowerCase()
+            );
+            if (!airport) continue;
+
+            for (const attr of attractions) {
+                queue.push({
+                    ...attr,
+                    city,
+                    // Use airport coordinates as display position
+                    displayLat: airport.lat,
+                    displayLng: airport.lng,
+                });
+            }
+        }
+
+        // Shuffle the queue (Fisher-Yates)
+        for (let i = queue.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [queue[i], queue[j]] = [queue[j], queue[i]];
+        }
+
+        return queue;
+    }
+
+    /**
+     * Show the next attraction as a popup on the map
+     */
+    showNextAttraction() {
+        if (!this.attractionQueue || this.attractionQueue.length === 0) return;
+        if (!this.map) return;
+
+        // Remove previous popup
+        if (this.attractionPopup) {
+            this.attractionPopup.remove();
+        }
+
+        const attr = this.attractionQueue[this.currentAttractionIndex];
+        this.currentAttractionIndex =
+            (this.currentAttractionIndex + 1) % this.attractionQueue.length;
+
+        // Get category icon
+        const icon = this._getCategoryIcon(attr.category);
+
+        // Build popup content with optional image
+        // Prefer local_image (Google Images) over image_url (Wikimedia)
+        let imageUrl = null;
+        if (attr.local_image) {
+            const apiBase = window.ApiClient?.API_BASE_URL || 'http://localhost:8000';
+            imageUrl = `${apiBase}/${attr.local_image}`;
+        } else if (attr.image_url) {
+            imageUrl = attr.image_url;
+        }
+
+        // Use Polish name if available, fallback to original
+        const displayName = attr.name_pl || attr.name;
+
+        const imageHtml = imageUrl
+            ? `<img src="${imageUrl}" alt="${displayName}" class="attraction-popup-img" onerror="this.style.display='none'">`
+            : '';
+
+        // Google search link (uses original name, not name_pl)
+        const googleQuery = encodeURIComponent(`${attr.name} ${attr.city}`);
+        const googleLinkHtml = `<a href="https://www.google.com/search?q=${googleQuery}" target="_blank" class="attraction-popup-link" title="Szukaj w Google">
+            <i class="fa-brands fa-google"></i>
+        </a>`;
+
+        // Create Leaflet popup
+        this.attractionPopup = L.popup({
+            closeButton: false,
+            autoClose: false,
+            closeOnClick: false,
+            className: 'attraction-popup',
+            offset: [0, -15],
+            maxWidth: 280,
+        })
+            .setLatLng([attr.displayLat, attr.displayLng])
+            .setContent(`
+                <div class="attraction-popup-content">
+                    ${imageHtml}
+                    <div class="attraction-popup-body">
+                        <span class="attraction-popup-icon">${icon}</span>
+                        <div class="attraction-popup-text">
+                            <strong>${displayName}</strong>
+                            <span>${attr.city}</span>
+                        </div>
+                        ${googleLinkHtml}
+                    </div>
+                </div>
+            `)
+            .openOn(this.map);
+
+        // Auto-close after 2.5s
+        setTimeout(() => {
+            if (this.attractionPopup) {
+                this.attractionPopup.remove();
+                this.attractionPopup = null;
+            }
+        }, 2500);
+    }
+
+    /**
+     * Get emoji icon for attraction category
+     */
+    _getCategoryIcon(category) {
+        const icons = {
+            'tourism.sights': '🏛️',
+            'tourism.attraction': '⭐',
+            'entertainment.museum': '🎨',
+            'leisure.park': '🌳',
+            'catering.restaurant': '🍽️',
+            'accommodation.hotel': '🏨',
+        };
+        return icons[category] || '📍';
+    }
+
+    /**
+     * Start the attraction popup cycle
+     * @param {number} intervalMs - Time between popups (default 3500ms)
+     */
+    startAttractionCycle(intervalMs = 3500) {
+        // First attraction after 1s (give time for map to settle)
+        setTimeout(() => this.showNextAttraction(), 1000);
+
+        // Subsequent attractions at regular intervals
+        this.attractionInterval = setInterval(
+            () => this.showNextAttraction(),
+            intervalMs
+        );
+    }
+
+    /**
+     * Stop the attraction popup cycle
+     */
+    stopAttractionCycle() {
+        if (this.attractionInterval) {
+            clearInterval(this.attractionInterval);
+            this.attractionInterval = null;
+        }
+        if (this.attractionPopup) {
+            this.attractionPopup.remove();
+            this.attractionPopup = null;
         }
     }
 }
