@@ -180,6 +180,88 @@
         .progress-fill {
             transition: width 0.3s ease;
         }
+
+        /* Attraction Popups on map */
+        .attraction-popup .leaflet-popup-content-wrapper {
+            background: rgba(35, 36, 51, 0.98);
+            color: #fcf9f3;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(242, 204, 143, 0.2);
+            padding: 0;
+            overflow: hidden;
+        }
+        .attraction-popup .leaflet-popup-content {
+            margin: 0;
+            width: 240px;
+        }
+        .attraction-popup .leaflet-popup-tip {
+            background: rgba(35, 36, 51, 0.98);
+            border: 1px solid rgba(242, 204, 143, 0.2);
+            border-top: none;
+            border-left: none;
+        }
+        .attraction-popup-content {
+            display: flex;
+            flex-direction: column;
+            animation: popupFadeIn 0.3s ease;
+        }
+        .attraction-popup-img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(242, 204, 143, 0.2);
+        }
+        .attraction-popup-body {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+        }
+        @keyframes popupFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .attraction-popup-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .attraction-popup-text {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+        }
+        .attraction-popup-text strong {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+            color: #fcf9f3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .attraction-popup-text span {
+            font-size: 0.7rem;
+            color: rgba(252, 249, 243, 0.7);
+        }
+        .attraction-popup-link {
+            margin-left: auto;
+            color: #f2cc8f;
+            font-size: 1.1rem;
+            padding: 4px;
+            flex-shrink: 0;
+            transition: color 0.2s;
+        }
+        .attraction-popup-link:hover {
+            color: #fff;
+        }
     </style>
 </head>
 <body class="font-body bg-cream-100 text-navy-800 antialiased min-h-screen">

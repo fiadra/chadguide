@@ -7,7 +7,8 @@
 const API_BASE_URL = 'http://localhost:8000';
 const API_ENDPOINTS = {
     searchRoutes: '/search',
-    searchStream: '/search/stream'
+    searchStream: '/search/stream',
+    attractions: '/api/attractions'
 };
 
 // Loading animation instance
@@ -51,6 +52,32 @@ function hideLoadingAnimation() {
     if (loadingConsole) {
         loadingConsole.destroy();
         loadingConsole = null;
+    }
+}
+
+/**
+ * Fetch tourist attractions for cities (non-blocking)
+ * @param {string[]} cities - Array of city names
+ * @returns {Promise<Object>} Map of city -> attractions array
+ */
+async function fetchAttractions(cities) {
+    if (!cities || cities.length === 0) return {};
+
+    try {
+        const citiesParam = cities.join(',');
+        const response = await fetch(
+            `${API_BASE_URL}${API_ENDPOINTS.attractions}?cities=${encodeURIComponent(citiesParam)}`
+        );
+
+        if (!response.ok) {
+            console.warn('Attractions fetch failed:', response.status);
+            return {};
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.warn('Failed to fetch attractions:', error);
+        return {}; // Fail gracefully - animation works without attractions
     }
 }
 
@@ -220,6 +247,14 @@ function handleFormSubmit(event) {
             (stageInfo) => updateLoadingUI(stageInfo)
         );
 
+        // Fetch attractions in parallel (non-blocking)
+        // This enriches the loading experience with tourist info
+        fetchAttractions(cities).then(attractions => {
+            console.log('Attractions loaded:', Object.keys(attractions));
+            animationConsole.setAttractions(attractions);
+            animationConsole.startAttractionCycle(2500);
+        });
+
         // API call with stage signals that DRIVE the animation
         searchRoutesStream(requestData, (stage) => {
             console.log('Backend stage:', stage);
@@ -250,14 +285,16 @@ function handleFormSubmit(event) {
             const stored = sessionStorage.getItem('routeResults');
             console.log('Verified storage (first 500 chars):', stored ? stored.substring(0, 500) : 'null');
 
-            // Tell animation to complete and redirect
+            // Complete animation (attractions keep showing until redirect)
             animationConsole.completeAndFinish(() => {
                 console.log('Animation complete, redirecting...');
+                animationConsole.stopAttractionCycle();
                 redirect();
             });
         })
         .catch(error => {
             console.error('Search failed:', error);
+            animationConsole.stopAttractionCycle();
             hideLoadingAnimation();
             alert('Search failed. Please try again.');
         });
@@ -293,6 +330,7 @@ window.ApiClient = {
     searchRoutesStream,
     showLoadingAnimation,
     hideLoadingAnimation,
+    fetchAttractions,
     API_BASE_URL,
     API_ENDPOINTS
 };

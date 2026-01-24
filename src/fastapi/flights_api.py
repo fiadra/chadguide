@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict
 from datetime import datetime
 from typing import Set, List, Optional
@@ -17,6 +18,7 @@ from src.flight_router.application import FindOptimalRoutes
 from src.flight_router.schemas.route import RouteSegment, RouteResult
 from src.flight_router.adapters.validators.duffel_validator import DuffelOfferValidator
 from src.flight_router.services.route_validation_service import RouteValidationService
+import random
 
 DEMO_DB = Path("src/flight_router/examples/data/demo_flights.db")
 router = FindOptimalRoutes(db_path=DEMO_DB)
@@ -35,6 +37,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Serve local attraction images
+app.mount("/images", StaticFiles(directory="data/images"), name="images")
 
 
 # --- Pydantic Schemas (The JSON Contract) ---
@@ -180,3 +185,56 @@ async def search_with_validation(request: SearchRequest):
 
     # Stage 3: Complete
     yield {"event": "complete", "data": json.dumps({"routes": results})}
+
+
+# Load pre-fetched attractions data (no API calls at runtime)
+ATTRACTIONS_FILE = Path("data/attractions.json")
+_attractions_cache: dict = None
+
+
+def _load_attractions() -> dict:
+    """Load attractions from JSON file (cached in memory)."""
+    global _attractions_cache
+    if _attractions_cache is None:
+        if ATTRACTIONS_FILE.exists():
+            with open(ATTRACTIONS_FILE, "r", encoding="utf-8") as f:
+                _attractions_cache = json.load(f)
+        else:
+            _attractions_cache = {}
+    return _attractions_cache
+
+
+@app.get("/api/attractions")
+async def get_attractions(cities: str, limit: int = 5):
+    """
+    Get tourist attractions for the specified cities.
+
+    Data is pre-fetched and stored in a JSON file.
+    No external API calls are made at runtime.
+
+    Args:
+        cities: Comma-separated list of city names (e.g., "Barcelona,Madrid")
+        limit: Max attractions per city (default 5)
+
+    Returns:
+        Dict mapping city names to lists of attractions.
+    """
+    city_list = [c.strip() for c in cities.split(",") if c.strip()]
+
+    if not city_list:
+        return {}
+
+    all_attractions = _load_attractions()
+    result = {}
+
+    for city in city_list:
+        city_data = all_attractions.get(city, [])
+
+        if city_data:
+            # Randomly select up to `limit` attractions
+            selected = random.sample(city_data, min(limit, len(city_data)))
+            result[city] = selected
+        else:
+            result[city] = []
+
+    return result
