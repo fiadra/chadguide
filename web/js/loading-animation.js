@@ -747,6 +747,8 @@ class GenerativeConsole {
         this.attractionQueue = this._buildAttractionQueue();
         this.currentAttractionIndex = 0;
         this.attractionPopup = null;
+        this.attractionCycleTimeout = null;  // Central timer for attraction cycle
+        this._attractionIntervalMs = 4500;   // Default interval between attractions
     }
 
     /**
@@ -848,14 +850,7 @@ class GenerativeConsole {
                 </div>
             `)
             .openOn(this.map);
-
-        // Auto-close after 2.5s
-        setTimeout(() => {
-            if (this.attractionPopup) {
-                this.attractionPopup.remove();
-                this.attractionPopup = null;
-            }
-        }, 2500);
+        // Popup will be removed by next showNextAttraction() call, not by a separate timeout
     }
 
     /**
@@ -875,27 +870,45 @@ class GenerativeConsole {
 
     /**
      * Start the attraction popup cycle
-     * @param {number} intervalMs - Time between popups (default 3500ms)
+     * @param {number} intervalMs - Time between popups (default 2500ms)
      */
-    startAttractionCycle(intervalMs = 3500) {
-        // First attraction after 1s (give time for map to settle)
-        setTimeout(() => this.showNextAttraction(), 1000);
+    startAttractionCycle(intervalMs = 2500) {
+        // Clear any existing cycle
+        this.stopAttractionCycle();
 
-        // Subsequent attractions at regular intervals
-        this.attractionInterval = setInterval(
-            () => this.showNextAttraction(),
-            intervalMs
-        );
+        // Store interval for recursive calls
+        this._attractionIntervalMs = intervalMs;
+
+        // First attraction after 500ms (quick start)
+        this.attractionCycleTimeout = setTimeout(() => {
+            this._showAndScheduleNext();
+        }, 500);
+    }
+
+    /**
+     * Show current attraction and schedule the next one (recursive setTimeout)
+     * @private
+     */
+    _showAndScheduleNext() {
+        // Show current attraction
+        this.showNextAttraction();
+
+        // Schedule next attraction (recursive setTimeout instead of setInterval)
+        this.attractionCycleTimeout = setTimeout(() => {
+            this._showAndScheduleNext();
+        }, this._attractionIntervalMs);
     }
 
     /**
      * Stop the attraction popup cycle
      */
     stopAttractionCycle() {
-        if (this.attractionInterval) {
-            clearInterval(this.attractionInterval);
-            this.attractionInterval = null;
+        // Clear the central timeout (stops the recursive chain)
+        if (this.attractionCycleTimeout) {
+            clearTimeout(this.attractionCycleTimeout);
+            this.attractionCycleTimeout = null;
         }
+        // Remove popup if exists
         if (this.attractionPopup) {
             this.attractionPopup.remove();
             this.attractionPopup = null;

@@ -252,7 +252,7 @@ function handleFormSubmit(event) {
         fetchAttractions(cities).then(attractions => {
             console.log('Attractions loaded:', Object.keys(attractions));
             animationConsole.setAttractions(attractions);
-            animationConsole.startAttractionCycle(3500);
+            animationConsole.startAttractionCycle(2500);
         });
 
         // API call with stage signals that DRIVE the animation
@@ -285,10 +285,10 @@ function handleFormSubmit(event) {
             const stored = sessionStorage.getItem('routeResults');
             console.log('Verified storage (first 500 chars):', stored ? stored.substring(0, 500) : 'null');
 
-            // Stop attraction popups and complete animation
-            animationConsole.stopAttractionCycle();
+            // Complete animation (attractions keep showing until redirect)
             animationConsole.completeAndFinish(() => {
                 console.log('Animation complete, redirecting...');
+                animationConsole.stopAttractionCycle();
                 redirect();
             });
         })
