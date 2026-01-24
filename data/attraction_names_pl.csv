@@ -1,0 +1,603 @@
+city,original_name,name_pl,source
+Aalborg,Aalborg Historiske Museum,Muzeum Historyczne w Aalborgu,manual
+Aalborg,Utzon Center,Centrum Utzona,manual
+Aalborg,Kunsten,Kunsten - Muzeum Sztuki Nowoczesnej,manual
+Aalborg,Aalborg Teater,Teatr w Aalborgu,manual
+Aalborg,Aalborg Rådhus,Ratusz w Aalborgu,manual
+Aarhus,Kulbroen,Most Kulbroen,manual
+Aarhus,Vikingemuseet,Muzeum Wikingów,manual
+Aarhus,KØN,KØN - Muzeum Kobiet w Danii,fixed
+Aarhus,Besættelsesmuseet,Muzeum Okupacji,manual
+Aarhus,Kunsthal Aarhus,Hala Sztuki w Aarhus,manual
+Akureyri,Nonnahús,Dom Nonni,manual
+Akureyri,Minjasafnið á Akureyri,Muzeum w Akureyri,manual
+Akureyri,Listasafnið á Akureyri,Galeria Sztuki w Akureyri,manual
+Akureyri,Helgi magri og Þórunn hyrna,Pomnik Helgiego i Þórunny,manual
+Akureyri,Davíðshús,Dom Davida,manual
+Alesund,Skodje kyrkje,Kościół w Skodje,manual
+Alesund,Sykkylven Naturmuseum,Muzeum Przyrody Sykkylven,manual
+Alesund,Møbelmuseet,Muzeum Mebli,manual
+Alesund,Middelaldermuseet Borgundkaupangen,Muzeum Średniowieczne Borgundkaupangen,manual
+Alesund,Sunnmøre museum,Muzeum Sunnmøre,manual
+Amsterdam,Grachtengordel van Amsterdam,Pierścień Kanałów w Amsterdamie,fixed_report
+Amsterdam,Nationaal Monument,Pomnik Narodowy,manual
+Amsterdam,De Papegaai,Kościół Papugi,manual
+Amsterdam,Huiszittenbrug,Most Huiszittenbrug,manual
+Amsterdam,Beurs van Berlage,Giełda Berlage'a,manual
+Ankara,Güven Abidesi,Pomnik Zaufania,manual
+Ankara,Etnografya Müzesi,Muzeum Etnograficzne,manual
+Ankara,Ankara Resim ve Heykel Müzesi,Muzeum Malarstwa i Rzeźby w Ankarze,manual
+Ankara,Atatürk ve Kurtuluş Savaşı Müzesi,Muzeum Atatürka i Wojny o Niepodległość,manual
+Ankara,Mehmet Akif Ersoy Evi ve Müzesi,Dom-Muzeum Mehmeta Akifa Ersoya,manual
+Antalya,Atatürk Heykeli,Pomnik Atatürka,manual
+Antalya,Antalya Oyuncak Müzesi,Muzeum Zabawek w Antalyi,manual
+Antalya,Antalya Etnografya Müzesi,Muzeum Etnograficzne w Antalyi,manual
+Antalya,Karatay Medresesi,Medresa Karatay,manual
+Antalya,Antalya Deniz Biyolojisi Müzesi,Muzeum Biologii Morskiej w Antalyi,manual
+Athens,Ακρόπολη,Akropol ateński,auto_wiki
+Athens,Δημοτική Σχολή,Szkoła Miejska,manual
+Athens,Μέγαρο Βάιλερ,Pałac Weilera,manual
+Athens,Βίλα Τράιμπερ,Willa Treibera,manual
+Athens,Κτήριο Γυμνασίου,Budynek Gimnazjum,manual
+Banja Luka,Tvrđava Kastel,Twierdza Kastel,auto_wiki
+Banja Luka,Narodno pozorište Republike Srpske,Teatr Narodowy Republiki Serbskiej,manual
+Banja Luka,Gornji Šeher,Górne Miasto,manual
+Banja Luka,Ostaci hrama Sv. Trojice porušenog 1941,Ruiny cerkwi Świętej Trójcy zburzonej w 1941,manual
+Banja Luka,Kristov kip,Figura Chrystusa,manual
+Basel,Staatsarchiv des Kantons Basel-Stadt,Archiwum Państwowe Kantonu Bazylea-Miasto,manual
+Basel,Blaues Haus,Niebieski Dom,manual
+Basel,Weisses Haus,Biały Dom,manual
+Basel,Hauptpost,Główna Poczta,manual
+Basel,Pharmaziemuseum Universität Basel,Muzeum Farmacji Uniwersytetu w Bazylei,manual
+Belfast,Crumlin Road Courthouse (Derelict),Sąd przy Crumlin Road (opuszczony),manual
+Belfast,Crumlin Road Gaol,Więzienie Crumlin Road,manual
+Belfast,Northern Ireland War Memorial,Pomnik Wojen Irlandii Północnej,manual
+Belfast,W5,W5 - Centrum Nauki,manual
+Belfast,Ulster Museum,Muzeum Ulster,manual
+Belgrade,Српска академија наука и уметности,Serbska Akademia Nauk i Sztuk,manual
+Belgrade,Зграда задужбине Николе Спасића,Budynek Fundacji Nikoli Spasicia,manual
+Belgrade,Капетан Мишино здање,Budynek Kapitana Miszy,manual
+Belgrade,Задужбина Илије М. Коларца,Fundacja Iliji M. Kolarca,manual
+Belgrade,Кућа Николе Предића,Dom Nikoli Predicia,manual
+Bergen,Korskirken,Kościół Krzyża Świętego,manual
+Bergen,Bergen skolemuseum,Muzeum Szkolnictwa w Bergen,manual
+Bergen,Buekorpsmuseet,Muzeum Buekorps,manual
+Bergen,Torgallmenningen,Plac Torgallmenningen,manual
+Berlin,Gerhard von Scharnhorst,Pomnik Gerharda von Scharnhorsta,manual
+Berlin,Staatsoper Unter den Linden,Opera Państwowa Unter den Linden,fixed
+Berlin,Friedrich Wilhelm Bülow,Pomnik Friedricha Wilhelma Bülowa,manual
+Berlin,Humboldt-Universität zu Berlin,Uniwersytet Humboldtów w Berlinie,auto_wiki
+Berlin,Neue Wache,Nowy Odwach,auto_wiki
+Billund,Jelling Kirke,Kościół w Jelling,manual
+Billund,Jellingestenene,Kamienie runiczne z Jelling,auto_wiki
+Billund,Egnsmuseet i Vandel,Muzeum Regionalne w Vandel,manual
+Billund,Abildhøj,Wzgórze Abildhøj,manual
+Billund,Vandel Bunker-Museum,Muzeum Bunkrów w Vandel,manual
+Birmingham,Council House,Siedziba Rady Miejskiej w Birmingham,fixed_final_review
+Birmingham,Victoria Square House,Dom na Placu Wiktorii,manual
+Birmingham,Town Hall,Ratusz Miejski,manual
+Birmingham,Birmingham Museum & Art Gallery,Muzeum i Galeria Sztuki w Birmingham,fixed_report5
+Birmingham,Newman Brothers Coffin Furniture Factory,Fabryka Okuć Trumiennych Newman Brothers,manual
+Bodrum,Bodrum Antik Tiyatrosu,Antyczny Teatr w Bodrum,manual
+Bodrum,Zeki Müren Sanat Müzesi,Muzeum Sztuki Zekiego Mürena,manual
+Bodrum,Aya Nikola Kilisesi,Kościół Świętego Mikołaja,manual
+Bodrum,Bodrum Sualtı Arkeoloji Müzesi,Muzeum Archeologii Podwodnej w Bodrum,manual
+Bodrum,Atatürk,Pomnik Atatürka,manual
+Bologna,Portici commerciali dei Banchi,Arkady handlowe Banchi,manual
+Bologna,Portici commerciali del Pavaglione,Arkady handlowe Pavaglione,manual
+Bologna,Strada porticata di Galliera,Ulica arkadowa Galliera,manual
+Bologna,Palazzo d'Accursio,Pałac Accursio,manual
+Bologna,Palazzo dei Notai,Pałac Notariuszy,manual
+Bordeaux,"Bordeaux, Port de la Lune","Bordeaux, Port Księżyca",manual
+Bordeaux,Musée des Arts Décoratifs et du Design,Muzeum Sztuki Dekoracyjnej i Designu,manual
+Bordeaux,Porte Dijeaux,Brama Dijeaux,manual
+Bordeaux,Palais Rohan,Pałac Rohan,manual
+Bordeaux,Centre Jean-Moulin,Centrum Jean-Moulin,manual
+Bremen,Roland,Posąg Rolanda w Bremie,auto_wiki
+Bremen,Rathaus,Ratusz w Bremie,auto_wiki
+Bremen,Güldenkammer,Złota Komnata,manual
+Bremen,Herold,Pomnik Herolda,manual
+Bremen,Paula-Modersohn-Becker-Museum,Muzeum Pauli Modersohn-Becker,manual
+Bristol,Corn Exchange,Giełda Zbożowa,manual
+Bristol,Framework,Framework,manual
+Bristol,The Red Lodge Museum,Muzeum Red Lodge,manual
+Bristol,We The Curious,We The Curious - Centrum Nauki,fixed_report
+Brussels,Grand-Place - Grote Markt,Grand Place,auto_wiki
+Brussels,L'Agneau Blanc - Het Wit Lammeke,Biały Baranek,manual
+Brussels,Les Grands Carmes,Wielcy Karmelici,manual
+Brussels,Hôtel de Roest d'Alkemade,Hotel Roest d'Alkemade,manual
+Brussels,Musée Mode & Dentelle - Mode & Kant Museum,Muzeum Mody i Koronek,manual
+Bucharest,Ministerul Agriculturii și Dezvoltării Rurale,Ministerstwo Rolnictwa i Rozwoju Wsi,manual
+Bucharest,Palatul Suțu,Pałac Suțu,manual
+Bucharest,Spitalul Clinic Colțea,Szpital Kliniczny Colțea,manual
+Bucharest,Biserica „Trei Ierarhi“ - Colțea,Cerkiew Trzech Hierarchów Colțea,fixed_final_review
+Bucharest,Muzeul Municipiului București,Muzeum Miasta Bukareszt,manual
+Budapest,"Budapest, Duna-part látképe, a Budai Várnegyed és az Andrássy út","Budapeszt, nabrzeże Dunaju, Dzielnica Zamkowa i aleja Andrássyego",manual
+Budapest,Széchenyi lánchíd,Most Łańcuchowy w Budapeszcie,auto_wiki
+Budapest,Budapesti Történeti Múzeum,Muzeum Historyczne Budapesztu,auto_wiki
+Budapest,Magyar Nemzeti Galéria,Węgierska Galeria Narodowa,auto_wiki
+Budapest,Budavári Sikló,Kolejka linowo-terenowa na Wzgórze Zamkowe,fixed_report4
+Catania,Pozzo di Gammazita,Studnia Gammazity,manual
+Catania,Chiesa della Santissima Trinità,Kościół Świętej Trójcy,manual
+Catania,Terme Achilliane,Termy Achillesa,manual
+Catania,Cattedrale di Sant'Agata,Katedra św. Agaty w Katanii,auto_wiki
+Chalons,Église Saint-Alpin,Kościół Świętego Alpina,manual
+Chalons,Musée Jules Garinet,Muzeum Julesa Garineta,manual
+Chalons,Centre national des arts du Cirque,Narodowe Centrum Sztuki Cyrkowej,manual
+Chalons,"Caves médiévales, sous la galerie Saint-Germain",Średniowieczne piwnice pod galerią Saint-Germain,manual
+Chania,Κυδωνία,Kydonia,manual
+Chania,Τούρκικο Λουτρό,Łaźnia turecka,manual
+Chania,Etz Hayyim Synagogue,Synagoga Etz Chaim w Chanii,auto_wiki
+Chania,Τζαμί στα Τσικαλαριά,Meczet w Tsikalaria,manual
+Chania,Πύργος Μαλάξας,Wieża Malaksas,manual
+Chisinau,Arcul de Triumf,Łuk triumfalny w Kiszyniowie,auto_wiki
+Chisinau,Piatra Comemorativă a Victimelor Ocupației Sovietice și ale Regimului Totalitar Comunist,Kamień Pamięci Ofiar Okupacji Sowieckiej i Reżimu Komunistycznego,manual
+Chisinau,Muzeul Național de Istorie a Moldovei,Narodowe Muzeum Historii Mołdawii,manual
+Chisinau,Muzeul Național de Artă al Moldovei,Narodowe Muzeum Sztuki Mołdawii,auto_wiki
+Chisinau,Monumentul lui Ștefan cel Mare și Sfânt,Pomnik Stefana Wielkiego w Kiszyniowie,auto_wiki
+Cluj-Napoca,Palatul Bánffy,Pałac Bánffych,manual
+Cluj-Napoca,Casa Szentkereszthy,Dom Szentkereszthy,manual
+Cluj-Napoca,Muzeul de Artă,Muzeum Sztuki,manual
+Cluj-Napoca,Statuia lui Matei Corvin,Pomnik Macieja Korwina,manual
+Cluj-Napoca,Biserica Romano-Catolică Sfântul Mihail,Kościół św. Michała w Klużu-Napoce,auto_wiki
+Cologne,Jan von Werth-Brunnen,Fontanna Jana von Wertha,manual
+Cologne,Duftmuseum im Farina-Haus,Muzeum perfum w Kolonii,auto_wiki
+Cologne,Wallraf-Richartz-Museum & Foundation Corboud,Wallraf-Richartz-Museum & Fondation Corboud,auto_wiki
+Cologne,Medizinhistorisches Museum Köln,Muzeum Historii Medycyny w Kolonii,manual
+Cologne,Senftöpfchen,Senftöpfchen - Kabaret,manual
+Copenhagen,Kastrupgårdsamlingen,Kolekcja Kastrupgård,manual
+Copenhagen,Arbejdermuseet,Muzeum Robotników,manual
+Copenhagen,Botanisk Museum,Muzeum Botaniczne,manual
+Copenhagen,Nørrebro Teater,Teatr Nørrebro,manual
+Copenhagen,Folketeatret,Teatr Ludowy,manual
+Corfu,Νέο Φρούριο,Nowa Twierdza,manual
+Corfu,Σερβικό Μουσείο Κέρκυρας,Serbskie Muzeum na Korfu,manual
+Corfu,Αρχαιολογικό Μουσείο Κέρκυρας,Muzeum Archeologiczne na Korfu,manual
+Cork,Parliament Bridge,Most Parlamentu,manual
+Cork,The Butter Museum,Muzeum Masła,manual
+Cork,Crawford Art Gallery,Galeria Sztuki Crawford,manual
+Cork,Cork Opera House,Opera w Cork,manual
+Cork,Triskel Art Centre,Centrum Sztuki Triskel,manual
+Dalaman,Enver Yalçın Yörük Müzesi,Muzeum Envera Yalçına Yörüka,manual
+Dalaman,Atatürk Anıtı,Pomnik Atatürka,manual
+Dalaman,Amphitheater,Amfiteatr,manual
+Dalaman,Dalaman kültür merkezi,Centrum Kultury w Dalaman,manual
+Dublin,Saint Winifred's Well,Źródło Świętej Winifredy,manual
+Dublin,Spire of Dublin,Iglica Dublińska,fixed
+Dublin,The James Joyce Centre,Centrum Jamesa Joyce'a,manual
+Dublin,Abbey Theatre,Abbey Theatre,auto_wiki
+Dublin,Jim Larkin 1876-1947,Pomnik Jima Larkina,manual
+Dusseldorf,Wilhelm-Marx-Haus,Dom Wilhelma Marxa,manual
+Dusseldorf,Heine Haus,Dom Heinego,manual
+Dusseldorf,Neanderkirche,Kościół Neandera,manual
+Dusseldorf,Kunstverein für die Rheinlande und Westfalen,Stowarzyszenie Artystyczne Nadrenii i Westfalii,manual
+Dusseldorf,K20 - Kunstsammlung NRW,K20 - Kolekcja Sztuki Nadrenii Północnej-Westfalii,manual
+Edinburgh,St Mary's Metropolitan Cathedral (RC),Archikatedra Najświętszej Maryi Panny Wniebowziętej w Edynburgu,auto_wiki
+Edinburgh,St Cecilia's Hall,Sala Świętej Cecylii,manual
+Edinburgh,Trinity Apse,Apsyda Trinity,manual
+Edinburgh,Museum of Childhood,Muzeum Dzieciństwa,manual
+Egilsstadir,Höfðasel,Höfðasel - Historyczna farma,fixed_report
+Egilsstadir,Safnahús,Dom Muzeów,manual
+Egilsstadir,"Skaftfell. Center for Visual Art, East Iceland",Skaftfell - Centrum Sztuki Wizualnej Wschodniej Islandii,manual
+Egilsstadir,Gálgaklettur,Skała Szubieniczna,manual
+Egilsstadir,Menningarmiðstöð Fljótsdalshéraðs MMF,Centrum Kultury Fljótsdalshérað,manual
+Eindhoven,Sint-Catharinakerk,Kościół Świętej Katarzyny,manual
+Eindhoven,Augustijnenkerk,Kościół Augustianów,manual
+Eindhoven,Philips Museum,Muzeum Philipsa,manual
+Eindhoven,Van Abbemuseum,Muzeum Van Abbe,manual
+Eindhoven,Erfgoedhuis,Dom Dziedzictwa,manual
+Frankfurt,Gerechtigkeitsbrunnen,Fontanna Sprawiedliwości,manual
+Frankfurt,Alte Nikolaikirche,Stary Kościół Świętego Mikołaja,manual
+Frankfurt,Glockenturm der Alten Nikolaikirche,Dzwonnica Starego Kościoła Świętego Mikołaja,manual
+Frankfurt,Paulskirche,Kościół Świętego Pawła we Frankfurcie nad Menem,auto_wiki
+Frankfurt,Haus Wertheym,Dom Wertheyma,manual
+Gazipasa,Ataturk,Pomnik Atatürka,manual
+Gazipasa,TURKER MALİKANESİ,Rezydencja Türker,manual
+Gazipasa,Deniz Kızı,Syrenka,manual
+Gazipasa,Kuşhane,Kuşhane (Ptaszarnia),fixed_report5
+Gdansk,Złota Kamienica,Złota Kamienica w Gdańsku,fixed_report
+Gdansk,Fontanna Neptuna,Fontanna Neptuna w Gdańsku,auto_wiki
+Gdansk,Dwór Artusa,Dwór Artusa w Gdańsku,auto_wiki
+Gdansk,Ratusz Głównego Miasta,Ratusz Głównego Miasta w Gdańsku,auto_wiki
+Gdansk,Muzeum Narodowe w Gdańsku o/Zielona Brama,Muzeum Narodowe w Gdańsku,auto_wiki
+Geneva,Gare Haute du Téléphérique du Salève,Górna stacja kolejki linowej na Salève,manual
+Geneva,Maison Racle,Dom Racle,manual
+Geneva,Maison de Loes,Dom de Loes,manual
+Geneva,Mur des réformateurs,Pomnik Reformacji w Genewie,auto_wiki
+Geneva,Cathédrale Saint-Pierre,Katedra św. Piotra w Genewie,auto_wiki
+Glasgow,Merchants' House,Dom Kupców,manual
+Glasgow,Hutchesons' Hall,Hala Hutchesonów,manual
+Glasgow,George V Bridge,Most Jerzego V,manual
+Graz,Hauptplatz,Rynek Główny,manual
+Graz,Erzherzog-Johann-Brunnen,Fontanna Arcyksięcia Jana,manual
+Graz,Rathaus,Ratusz,manual
+Graz,Landeszeughaus,Arsenał Krajowy,manual
+Graz,GrazMuseum,Muzeum Grazu,manual
+Hamburg,Mönckebergbrunnen,Fontanna Mönckeberga,manual
+Hamburg,Thalia Theater,Teatr Thalia,manual
+Hamburg,Evangelisch-lutherische Hauptkirche St. Jacobi,Kościół św. Jakuba w Hamburgu,auto_wiki
+Hamburg,Rappolthaus,Dom Rappolda,manual
+Hanover,Kaufhaus Magis,Dom Towarowy Magis,manual
+Hanover,Opernhaus,Opera,manual
+Hanover,Kunstverein Hannover,Stowarzyszenie Artystyczne w Hanowerze,manual
+Hanover,Historisches Museum Hannover,Muzeum Historyczne w Hanowerze,manual
+Hanover,Goseriedebad,Kąpielisko Goseriede,manual
+Harstad,Harstad kirke,Kościół w Harstad,manual
+Harstad,Trondenes kirke,Kościół w Trondenes,manual
+Harstad,Trondenes historiske senter,Centrum Historyczne Trondenes,manual
+Harstad,Tollboden,Komora Celna,manual
+Harstad,Skonnerten Anna Rogde,Szkuner Anna Rogde,manual
+Haugesund,Haraldstøtta,Obelisk Haralda,manual
+Haugesund,Tonjer fyr,Latarnia morska Tonjer,manual
+Haugesund,Haugesund billedgalleri,Galeria Obrazów w Haugesund,manual
+Haugesund,Haugland festning,Twierdza Haugland,manual
+Haugesund,Kvala batteri,Bateria Kvala,manual
+Heraklion,Ανάκτορο της Κνωσού,Pałac w Knossos,fixed_report4
+Heraklion,Ζώμινθος,Zominthos,manual
+Heraklion,Μουσείο Χριστιανικής Τέχνης,Muzeum Sztuki Chrześcijańskiej,manual
+Heraklion,Ιστορικό Μουσείο Κρήτης,Muzeum Historyczne na Krecie,auto_wiki
+Heraklion,Αρχαιολογικό Μουσείο,Muzeum Archeologiczne w Heraklionie,auto_wiki
+Iasi,"Muzeul Memorial ""Mihail Kogălniceanu""",Muzeum Pamiątkowe Mihaila Kogălniceanu,manual
+Iasi,Palatul Culturii,Pałac Kultury w Jassach,auto_wiki
+Iasi,Teatrul Național „Vasile Alecsandri”,Teatr Narodowy im. Vasile Alecsandri,manual
+Iasi,Statuia Vasile Alecsandri,Pomnik Vasile Alecsandri,manual
+Iasi,"Muzeul Memorial ""Poni - Cernătescu""",Muzeum Pamiątkowe Poni-Cernătescu,manual
+Innsbruck,Palais Troyer-Spaur,Pałac Troyer-Spaur,manual
+Innsbruck,Hofburg,Pałac Hofburg w Innsbrucku,auto_wiki
+Innsbruck,Jüdischer Friedhof,Cmentarz Żydowski,manual
+Innsbruck,Alter Jüdischer Friedhof,Stary Cmentarz Żydowski,manual
+Innsbruck,Palais Trapp,Pałac Trappów,manual
+Istanbul,Ayasofya-i Kebir Câmi-i Şerifi,Hagia Sophia,auto_wiki
+Istanbul,Kariye Camii,Kościół Chora (Muzeum Chora),fixed_report5
+Istanbul,İbrahim Paşa Sarayı,Pałac Ibrahima Paszy,manual
+Istanbul,Theodosius Dikilitaşı,Obelisk Teodozjusza,auto_wiki
+Istanbul,Türk ve İslam Eserleri Müzesi,Muzeum Sztuki Tureckiej i Islamskiej w Stambule,auto_wiki
+Izmir,İzmir Saat Kulesi,Wieża zegarowa w Izmirze,auto_wiki
+Izmir,Izmir Archaeology Museum,Muzeum Archeologiczne w Izmirze,auto_wiki
+Izmir,İzmir Etnografya Müzesi,Muzeum Etnograficzne w Izmirze,manual
+Izmir,İlk Kurşun Anıtı,Pomnik Pierwszego Strzału,manual
+Izmir,Sanat Galerisi,Galeria Sztuki,manual
+Katowice,Gmach Biznesu,Gmach Banku Gospodarstwa Krajowego w Katowicach,auto_wiki
+Katowice,Kamienica Pod Butem,Kamienica Pod Butem w Katowicach,fixed_report5
+Katowice,Teatr Śląski im. Stanisława Wyspiańskiego,Teatr Śląski im. Stanisława Wyspiańskiego w Katowicach,auto_wiki
+Katowice,Hotel Grand,Hotel Grand w Katowicach,fixed_report5
+Katowice,Muzeum Historii Komputerów i Informatyki,Muzeum Historii Komputerów i Informatyki,auto_wiki
+Kaunas,Kauno Tado Ivanausko zoologijos muziejus,Muzeum Zoologiczne Tadasa Ivanauskasa w Kownie,auto_wiki
+Kaunas,Istorinė prezidentūra,Pałac Prezydencki w Kownie,auto_wiki
+Kaunas,Kauno valstybinė Filharmonija,Filharmonia Państwowa w Kownie,manual
+Kaunas,Kauno muzikinis teatras,Teatr Muzyczny w Kownie,manual
+Kaunas,Kauno valstybinis lėlių teatras,Państwowy Teatr Lalek w Kownie,manual
+Klagenfurt,Israelitischer Friedhof,Cmentarz Izraelski,manual
+Klagenfurt,Hl. Ulrich,Kościół Świętego Ulryka,fixed_final_review
+Klagenfurt,Schloss Krastowitz,Zamek Krastowitz,manual
+Klagenfurt,Burgruine Zeiselberg,Ruiny zamku Zeiselberg,manual
+Klagenfurt,Schloss Rain,Zamek Rain,manual
+Knock,"National Museum of Ireland, Country Life",Muzeum Narodowe Irlandii - Życie Wiejskie,manual
+Knock,Clonalis House,Dom Clonalis,manual
+Knock,Knock Shrine,Sanktuarium w Knock,manual
+Knock,Megalithic tomb,Grobowiec megalityczny,manual
+Knock,Dermot & Grania's Bed,Łoże Dermota i Granii,manual
+Kos,Κάστρο της Νερατζιάς,Zamek Neratzia,manual
+Kos,Αρχαίο στάδιο Κω,Starożytny stadion na Kos,manual
+Kos,Αγορά,Agora,manual
+Kos,Αρχαιολογικό Μουσείο Κω,Muzeum Archeologiczne na Kos,manual
+Kos,Άγαλμα του Ιπποκράτη,Pomnik Hipokratesa,manual
+Krakow,Historyczne centrum Krakowa,Stare Miasto w Krakowie,auto_wiki
+Krakow,Sukiennice,Sukiennice w Krakowie,auto_wiki
+Krakow,Kościół pw. Świętego Wojciecha Biskupa i Męczennika,Kościół św. Wojciecha w Krakowie (Rynek Główny),auto_wiki
+Krakow,Bazylika Wniebowzięcia Najświętszej Maryi Panny,Kościół archiprezbiterialny Wniebowzięcia Najświętszej Marii Panny w Krakowie,auto_wiki
+Krakow,Kościół pw. Świętego Jana Chrzciciela i Świętego Jana Ewangelisty,Kościół św. Jana Chrzciciela i św. Jana Ewangelisty w Krakowie,auto_wiki
+Kristiansand,Kilden,Kilden - Centrum Sztuki,manual
+Kristiansand,Christiansø festning,Twierdza Christiansø,manual
+Kristiansand,Laksevigsteinen,Kamień Laksevigsteinen,manual
+Kristiansand,Kanonmuseet,Muzeum Armat,manual
+Kristiansand,Historielagets Museum,Muzeum Towarzystwa Historycznego,manual
+Larnaca,Choirokoitia Neolithic Settlement,Chirokitia (stanowisko archeologiczne),auto_wiki
+Larnaca,Archaeological Museum of Larnaca,Muzeum Archeologiczne w Larnace,manual
+Larnaca,Pierides Museum - Bank of Cyprus Cultural Foundation,Muzeum Pierides - Fundacja Kulturalna Banku Cypru,manual
+Larnaca,Fountain & Statue of Artemis,Fontanna i posąg Artemidy,manual
+Larnaca,Ancient Kition,Starożytne Kition,manual
+Lille,Bâtiment dit la Grande Garde,Budynek Wielkiej Straży,manual
+Lille,Musée de l'Hospice Comtesse,Muzeum Hospicjum Hrabiny,manual
+Lille,Palais des Beaux-Arts,Palais des Beaux-Arts w Lille,auto_wiki
+Linz,Dreifaltigkeitssäule,Kolumna Świętej Trójcy,manual
+Linz,Alter Dom,Stara Katedra w Linzu,auto_wiki
+Linz,Lentos Kunstmuseum Linz,Muzeum Sztuki Lentos w Linzu,manual
+Linz,Altes Rathaus,Stary Ratusz,manual
+Linz,Hauptplatz,Rynek Główny,manual
+London,Charles I,Pomnik Karola I,manual
+London,Nelson's Column,Kolumna Nelsona,auto_wiki
+London,Admiralty Arch,Admiralty Arch,auto_wiki
+London,High Commission of Canada,Wysoka Komisja Kanady,manual
+London,Benjamin Franklin House,Dom Benjamina Franklina,manual
+Lublin,Kościół pw. Świętego Stanisława Biskupa i Męczenika,Bazylika św. Stanisława Biskupa Męczennika w Lublinie,auto_wiki
+Lublin,Cerkiew Przemienienia Pańskiego,Sobór Przemienienia Pańskiego w Lublinie,auto_wiki
+Lublin,Muzeum Narodowe w Lublinie,Muzeum Narodowe w Lublinie,auto_wiki
+Lublin,Piwnica pod Fortuną,Piwnica pod Fortuną,auto_wiki
+Lublin,Brama Grodzka,Brama Grodzka w Lublinie,auto_wiki
+Luxembourg,Luxembourg City: Old Quarters & Fortifications,Twierdza Luksemburg,auto_wiki
+Luxembourg,Edmond de la Fontaine & Michel Lentz,Pomnik Edmonda de la Fontaine'a i Michela Lentza,manual
+Luxembourg,Casino Luxembourg - Forum d'art contemporain,Casino Luksemburg - Forum Sztuki Współczesnej,manual
+Luxembourg,Musée national d'histore et d'art Luxembourg,Narodowe Muzeum Historii i Sztuki Luksemburga,manual
+Luxembourg,Lëtzebuerg City Museum,Muzeum Miasta Luksemburg,manual
+Lyon,Site historique de Lyon,Historyczne centrum Lyonu,manual
+Lyon,Théâtre des Célestins,Teatr Celestynów,manual
+Lyon,Musée de l'Illusion,Muzeum Iluzji,manual
+Lyon,Cité Internationale de la Gastronomie de Lyon,Międzynarodowe Centrum Gastronomii w Lyonie,manual
+Lyon,Statue équestre de Louis XIV,Pomnik konny Ludwika XIV,manual
+Manchester,Manchester Town Hall,Ratusz w Manchesterze,manual
+Manchester,Midland Bank,Bank Midland,manual
+Manchester,Albert Hall,Albert Hall,manual
+Manchester,St. Ann's Church,Kościół Świętej Anny,manual
+Manchester,Great Northern,Great Northern,manual
+Marseille,Hôtel de ville,Ratusz,manual
+Marseille,Maison Diamantée,Dom Diamentowy,manual
+Marseille,Musée des Docks romains,Muzeum Doków Rzymskich,manual
+Marseille,Musée d'histoire de Marseille,Muzeum Historii Marsylii,manual
+Marseille,Musée d'Archéologie Méditerranéenne,Muzeum Archeologii Śródziemnomorskiej,manual
+Milan,Santa Maria delle Grazie,Santa Maria delle Grazie,auto_wiki
+Milan,Palazzina Appiani,Pałacyk Appiani,manual
+Milan,Battistero di San Giovanni alle Fonti,Baptysterium Świętego Jana przy Źródłach,manual
+Milan,Monumento a Vittorio Emanuele Secondo,Pomnik Wiktora Emanuela II w Mediolanie,auto_wiki
+Milan,Duomo di Milano,Katedra w Mediolanie,auto_wiki
+Mostar,"Mostar, the historic urban site",Historyczne centrum Mostaru,manual
+Mostar,Hrvatsko narodno kazalište Mostar,Chorwacki Teatr Narodowy w Mostarze,manual
+Mostar,The Hub of Fine Arts,Centrum Sztuk Pięknych,manual
+Munich,Mariensäule,Kolumna Maryjna,manual
+Munich,Neues Rathaus,Nowy Ratusz w Monachium,auto_wiki
+Munich,Thomass-Eck,Thomass-Eck,manual
+Munich,St. Peter,Kościół św. Piotra w Monachium,auto_wiki
+Munich,Fischbrunnen,Fontanna Rybna,manual
+Mykonos,Δήλος,Delos,auto_wiki
+Mykonos,Ναυτικό Μουσείο Αιγαίου,Muzeum Morskie Egejskie,manual
+Mykonos,Archaeological Museum Of Mykonos,Muzeum Archeologiczne na Mykonos,manual
+Mykonos,Archaeological Museum Delos,Muzeum Archeologiczne na Delos,manual
+Nantes,Hôtel Saint-Aignan,Hotel Saint-Aignan,manual
+Nantes,Enceinte gallo-romaine,Mury gallo-rzymskie,manual
+Nantes,Hôtel du Département,Siedziba Departamentu,manual
+Nantes,Monument aux Cinquante Otages et à la Résistance,Pomnik Pięćdziesięciu Zakładników i Ruchu Oporu,manual
+Nantes,Musée d'arts de Nantes,Muzeum Sztuki w Nantes,manual
+Naples,Ercolano,Herkulanum,auto_wiki
+Naples,Scavi archeologici di Oplonti,Wykopaliska archeologiczne w Oplontis,manual
+Naples,Parco Nazionale del Vesuvio,Park Narodowy Wezuwiusza,manual
+Naples,Palazzo Reale,Pałac Królewski w Neapolu,auto_wiki
+Nice,"Nice, la ville de la villégiature d’hiver de riviera",Nicea - miasto zimowego wypoczynku Riwiery,manual
+Nice,Synagogue de Nice,Synagoga w Nicei,auto_wiki
+Nice,Immeuble Garacci-Bensa,Kamienica Garacci-Bensa,manual
+Nice,Église Saint-Nicolas et Sainte-Alexandra,Cerkiew św. Mikołaja i św. Aleksandry w Nicei,auto_wiki
+Nice,Palais Baréty,Pałac Baréty,manual
+Nuremberg,Frauenkirche,Kościół Najświętszej Marii Panny w Norymberdze,auto_wiki
+Nuremberg,St. Sebald,Kościół św. Sebalda w Norymberdze,auto_wiki
+Nuremberg,St. Lorenz,Kościół św. Wawrzyńca w Norymberdze,auto_wiki
+Nuremberg,Melanchthon,Pomnik Melanchtona,manual
+Nuremberg,Deutsches Museum Nürnberg,Niemieckie Muzeum w Norymberdze,manual
+Ohrid,Антички театар,Starożytny Teatr w Ochrydzie,auto_wiki
+Ohrid,Свети Кирил и Методиј,Sobór św. Cyryla i Metodego w Ochrydzie,fixed_report
+Ohrid,Clock Tower,Wieża Zegarowa,manual
+Ohrid,Свети Климент Охридски,Cerkiew św. Klemensa z Ochrydy,fixed_report
+Ohrid,Свети Наум Охридски Чудотворец,Monaster św. Nauma z Ochrydy,fixed_report
+Oslo,Nationaltheatret,Teatr Narodowy w Oslo,auto_wiki
+Oslo,Nordisk bibelmuseum,Nordyckie Muzeum Biblii,manual
+Oslo,Det Norske Teatret,Teatr Norweski w Oslo,auto_wiki
+Oslo,Oslo Nye Centralteatret,Nowy Teatr Centralny w Oslo,manual
+Oslo,Wessels plass,Plac Wessela,manual
+Oulu,Maakuntamuseo,Muzeum Regionalne,manual
+Oulu,Merimiehenkotimuseo,Muzeum Domu Marynarza,manual
+Oulu,Oulun taidemuseo,Muzeum Sztuki w Oulu,manual
+Oulu,Tiedekeskus Tietomaa,Centrum Nauki Tietomaa,manual
+Oulu,Automuseo,Muzeum Motoryzacji,manual
+Palanga,Nuskendusio laivo „L-11“ vieta,Miejsce zatopionego statku L-11,manual
+Palanga,Melno sutartimi nustatytos LDK valstybinės sienos atkarpa II,Odcinek II granicy państwowej WKL wg traktatu mełneńskiego,manual
+Palanga,Nuskendusio laivo „L-9“ vieta,Miejsce zatopionego statku L-9,manual
+Palanga,Buvusi Nemirsetos laivų gelbėjimo stotis,Dawna stacja ratownictwa morskiego w Nemirseta,manual
+Palanga,Restoranas „John Karnowsky“,"Restauracja ""John Karnowsky""",manual
+Paphos,Τάφοι των Βασιλέων,Groby Królewskie,auto_wiki
+Paphos,Paphos Archaeological Park,Park Archeologiczny w Pafos,fixed_final_review
+Paphos,Palaipaphos,Stare Pafos,manual
+Paphos,Ottoman Hamam,Łaźnia osmańska,manual
+Paphos,Paphos Archaeological Museum,Muzeum Archeologiczne w Pafos,manual
+Paris,Cathédrale Notre-Dame de Paris,Katedra Notre-Dame w Paryżu,auto_wiki
+Paris,Hôtel Colbert,Hotel Colbert,manual
+Paris,Église Saint-Julien-le-Pauvre,Kościół Saint Julien-le-Pauvre w Paryżu,auto_wiki
+Paris,Édicule Guimard,Wejście metra Guimarda,manual
+Paris,Conciergerie,Conciergerie,auto_wiki
+Podgorica,Etnografski muzej Crne Gore,Muzeum Etnograficzne Czarnogóry,manual
+Podgorica,Sahat kula,Wieża Zegarowa,manual
+Podgorica,Dvorac Kralja Nikole,Pałac Króla Mikołaja,manual
+Podgorica,Muzeji galerije Podgorice,Muzea i Galerie Podgoricy,manual
+Podgorica,JU Prirodnjački Muzej Crne Gore,Muzeum Przyrodnicze Czarnogóry,manual
+Poznan,Odwach/ Muzeum Powstania Wielkopolskiego 1918-1919,Muzeum Powstania Wielkopolskiego 1918–1919,auto_wiki
+Poznan,Ratusz,Ratusz w Poznaniu,auto_wiki
+Poznan,Pałac Działyńskich,Pałac Działyńskich w Poznaniu,auto_wiki
+Poznan,Pałac Mielżyńskich,Pałac Mielżyńskich w Poznaniu,auto_wiki
+Poznan,Muzeum Instrumentów Muzycznych,Muzeum Instrumentów Muzycznych w Poznaniu,auto_wiki
+Prague,"Praha, památková rezervace","Praga, rezerwat zabytkowy",manual
+Prague,Staroměstské náměstí,Rynek Staromiejski w Pradze,auto_wiki
+Prague,Pomník mistra Jana Husa,Pomnik Jana Husa,auto_wiki
+Prague,palác Kinských,Pałac Kinskich w Pradze,auto_wiki
+Pristina,Manastir Gračanica,Monaster Gračanica,auto_wiki
+Pristina,Gazimestan,Gazimestan (pomnik bitwy na Kosowym Polu),fixed_report5
+Pristina,Parku Arkeologjik Ulpiana,Park Archeologiczny Ulpiana,manual
+Pristina,Crkva Vavedenja Presvete Bogorodice,Cerkiew Wprowadzenia Najświętszej Bogurodzicy,manual
+Reykjavik,Reykjavík 871±2,Reykjavík 871±2 - Muzeum Osadnictwa,manual
+Reykjavik,Aðalstræti 10,Aðalstræti 10,manual
+Reykjavik,Listasafn Íslands,Narodowa Galeria Islandii,auto_wiki
+Reykjavik,Listasafn Reykjavíkur,Muzeum sztuki w Reykjavíku,auto_wiki
+Reykjavik,Austurvöllur,Austurvöllur,auto_wiki
+Rhodes,Μεσαιωνική πόλη της Ρόδου,Średniowieczne miasto Rodos,manual
+Rhodes,Πλατεία Ιπποκράτους,Plac Hipokratesa,manual
+Rhodes,Εθνικό Θέατρο Ρόδου,Teatr Narodowy na Rodos,manual
+Rhodes,Αρχάγγελος Μιχαήλ,Archanioł Michał,manual
+Rhodes,Αρχαιολογικό Μουσειο,Muzeum Archeologiczne,manual
+Riga,Rīgas Doms,Katedra w Rydze,auto_wiki
+Riga,"Mākslas muzejs ""Rīgas Birža""",Muzeum Sztuki Ryska Giełda,manual
+Riga,Trīs brāļi,Trzej Bracia (Ryga),auto_wiki
+Riga,Svētā Jēkaba katedrāle,Katedra Świętego Jakuba w Rydze,auto_wiki
+Riga,Rīgas vēstures un kuģniecības muzejs,Muzeum Historii i Żeglugi w Rydze,manual
+Rome,Forum Romanum,Forum Romanum,auto_wiki
+Rome,Colonna di Traiano,Kolumna Trajana,auto_wiki
+Rome,Pantheon,Panteon w Rzymie,auto_wiki
+Rome,Colosseo,Koloseum,auto_wiki
+Rome,Colonna di Foca,Kolumna Fokasa,auto_wiki
+Rotterdam,Post Rotterdam,Poczta w Rotterdamie,manual
+Rotterdam,Desiderius Erasmus,Pomnik Erazma z Rotterdamu,manual
+Rotterdam,Grote of Sint-Laurenskerk,Kościół św. Wawrzyńca w Rotterdamie,auto_wiki
+Rotterdam,Het Schielandshuis,Dom Schielandów,manual
+Rotterdam,Maritiem Museum,Muzeum Morskie,manual
+Rovaniemi,Arktikum,Arktikum,manual
+Rovaniemi,Rovaniemen taidemuseo,Muzeum Sztuki w Rovaniemi,manual
+Rovaniemi,Tiedekeskus Pilke,Centrum Nauki Pilke,manual
+Rovaniemi,Rovaniemen kotiseutumuseo,Muzeum Regionalne w Rovaniemi,manual
+Rovaniemi,Jätkänkynttilä,Świeca Drwala,manual
+Rzeszow,Muzeum Etnograficzne im. Franciszka Kotuli,Muzeum Etnograficzne im. Franciszka Kotuli,original_pl
+Rzeszow,Biuro Wystaw Artystycznych,Biuro Wystaw Artystycznych w Rzeszowie,fixed_report
+Rzeszow,Teatr im. Wandy Siemaszkowej,Teatr im. Wandy Siemaszkowej w Rzeszowie,auto_wiki
+Rzeszow,Rzeszowskie Piwnice,Podziemna Trasa Turystyczna w Rzeszowie,auto_wiki
+Rzeszow,Muzeum Historii Miasta Rzeszowa,Muzeum Historii Miasta Rzeszowa,fixed_final
+Salzburg,Historisches Zentrum der Stadt Salzburg,Historyczne centrum Salzburga,manual
+Salzburg,Festung Hohensalzburg,Twierdza Hohensalzburg,auto_wiki
+Salzburg,Edmundsburg,Zamek Edmunda,manual
+Salzburg,Salzburger Dom,Katedra św. Ruperta w Salzburgu,auto_wiki
+Sandefjord,Hvalfangstmuseet,Muzeum Wielorybnictwa w Sandefjordzie,auto_wiki
+Sandefjord,Folehavna fort,Fort Folehavna,manual
+Sandefjord,Gokstad Kystlag,Stowarzyszenie Brzegowe Gokstad,manual
+Sandefjord,Motormuseet,Muzeum Motoryzacji,manual
+Sandefjord,Hvalbåten «Southern Actor»,Statek wielorybniczy Southern Actor,manual
+Sarajevo,Stambeni kompleks na Džidžikovcu,Kompleks mieszkalny na Džidžikovacu,manual
+Sarajevo,Napredak,Napredak,manual
+Sarajevo,Jevrejsko groblje,Cmentarz żydowski w Sarajewie,auto_wiki
+Sarajevo,Slavija Building,Budynek Slavija,manual
+Sarajevo,Zemaljski muzej Bosne i Hercegovine,Muzeum Narodowe Bośni i Hercegowiny,auto_wiki
+Shannon,Bunratty Castle,Zamek Bunratty,manual
+Shannon,Ennis Abbey,Opactwo w Ennis,manual
+Shannon,Clare Museum,Muzeum Clare,manual
+Shannon,Knockadoon Fort,Fort Knockadoon,manual
+Shannon,Glór,Glór - Centrum Sztuki,manual
+Skopje,Воин на коњ (Александар Македонски),Pomnik Wojownika na Koniu (Aleksander Macedoński),fixed_report4
+Skopje,Археолошки музеј на Македонија,Muzeum Archeologiczne Macedonii,manual
+Skopje,Музеј на македонската борба,Muzeum Walki Macedońskiej,auto_wiki
+Skopje,Меморијален центар на холокаустот на Евреите од Македонија,Centrum Holocaustu w Skopje,auto_wiki
+Skopje,Спомен куќа на Мајка Тереза,Dom Pamięci Matki Teresy,manual
+Stavanger,Stavanger domkirke,Katedra w Stavangerze,auto_wiki
+Stavanger,Valbergtårnet,Wieża Valbergtårnet,manual
+Stavanger,Stavanger maritime museum,Muzeum Morskie w Stavangerze,manual
+Stavanger,Norsk Oljemuseum,Norweskie Muzeum Ropy Naftowej,auto_wiki
+Stavanger,Rogaland Teater,Teatr Rogaland,manual
+Strasbourg,Grande Île,Wielka Wyspa,manual
+Strasbourg,Hôtel de Ville,Ratusz,manual
+Strasbourg,Hôtel des Deux Ponts,Hotel Dwóch Mostów,manual
+Strasbourg,Grenier d'abondance dit Kornspeicher,Spichlerz,manual
+Strasbourg,Opéra du Rhin,Opera Reńska,manual
+Stuttgart,Königin-Olga-Bau,Budynek Królowej Olgi,manual
+Stuttgart,Fruchtkasten,Spichlerz,manual
+Stuttgart,Ferdinand-Leitner-Steg,Kładka Ferdinanda Leitnera,manual
+Stuttgart,Schellenturm,Wieża Schellenturm,manual
+Stuttgart,Neues Schloss,Nowy Zamek,manual
+Szczecin,Archiwum Państwowe w Szczecinie,Archiwum Państwowe w Szczecinie,auto_wiki
+Szczecin,Kamienica Augusta Mintza,Kamienica Augusta Mintza w Szczecinie,auto_wiki
+Szczecin,Pomnik Bartolomeo Colleoniego,Pomnik Bartolomea Colleoniego w Szczecinie,auto_wiki
+Szczecin,Filharmonia im. Mieczysława Karłowicza,Filharmonia im. Mieczysława Karłowicza w Szczecinie,auto_wiki
+Szczecin,plac Lotników,Plac Lotników w Szczecinie,auto_wiki
+Tallinn,Suurgildi hoone,Dom Wielkiej Gildii,manual
+Tallinn,Fjodor Dostojevski,Pomnik Fiodora Dostojewskiego,manual
+Tallinn,A. H. Tammsaare,Pomnik A.H. Tammsaare,manual
+Tallinn,Viru värav,Brama Viru,manual
+Tallinn,Hämarik,Zmierzch,manual
+Tampere,Vakoilumuseo,Muzeum Szpiegostwa,manual
+Tampere,Työväenmuseo Werstas,Muzeum Robotnicze Werstas,manual
+Tampere,Museokeskus Vapriikki,Centrum Muzealne Vapriikki,manual
+Tampere,Mediamuseo Rupriikki,Muzeum Mediów Rupriikki,manual
+Tampere,Tampereen teatteri,Teatr w Tampere,manual
+Tartu,Tartu Tähetorn,Obserwatorium w Tartu,manual
+Tartu,Barclay de Tolly,Pomnik Barclay'a de Tolly,manual
+Tartu,Raekoja plats,Plac Ratuszowy,manual
+Tartu,Isa ja poeg,Ojciec i syn,manual
+Tartu,Kaitseväe Akadeemia muuseum,Muzeum Akademii Wojskowej,manual
+Thessaloniki,Διοικητικά Δικαστήρια Θεσσαλονίκης,Sądy Administracyjne w Salonikach,manual
+Thessaloniki,Μπέη Χαμάμ,Łaźnia Beja,manual
+Thessaloniki,Μουσείο Κινηματογράφου Θεσσαλονίκης,Muzeum Kina w Salonikach,manual
+Thessaloniki,Μουσείο Φωτογραφίας Θεσσαλονίκης,Muzeum Fotografii w Salonikach,manual
+Thessaloniki,Κρατικό Ωδείο Θεσσαλονίκης,Państwowe Konserwatorium w Salonikach,manual
+Timisoara,Teatrul Național Timișoara,Teatr Narodowy w Timișoarze,manual
+Timisoara,Muzeul Banatului,Muzeum Banatu,manual
+Timisoara,Castelul Huniade,Zamek Huniadych,manual
+Timisoara,Piața Victoriei,Plac Zwycięstwa,manual
+Timisoara,Fântâna cu pești,Fontanna z Rybami,manual
+Tirana,Kuvendi i Shqipërisë,Zgromadzenie Albanii,auto_wiki
+Tirana,Monumenti i Skënderbeut,Pomnik Skanderbega,manual
+Tirana,Kulla e Sahatit,Wieża zegarowa w Tiranie,auto_wiki
+Tirana,Muzeu Historik Kombëtar,Narodowe Muzeum Historyczne (Albania),auto_wiki
+Tirana,Bunk'Art 2,Bunk'Art 2,manual
+Tivat,Museum Maritimum,Muzeum Morskie Czarnogóry,auto_wiki
+Tivat,Spomenik Spasiću i Mašeri,Pomnik Spasicia i Maszery,manual
+Tivat,Naval Heritage Collection Museum,Muzeum Dziedzictwa Morskiego,manual
+Tivat,Muzej mačaka,Muzeum Kotów,manual
+Tivat,Pomorski arsenal,Arsenał Morski,manual
+Toulouse,Capitole,Kapitol,manual
+Toulouse,Église Notre-Dame-du-Taur,Kościół Notre-Dame-du-Taur,manual
+Toulouse,Hôtel du Grand Balcon,Hotel Grand Balcon,manual
+Toulouse,Ensemble conventuel des Jacobins,Zespół klasztorny Jakobinów,manual
+Toulouse,Musée du Vieux-Toulouse,Muzeum Starej Tuluzy,manual
+Trabzon,Trabzon Müzesi,Muzeum w Trabzonie,manual
+Trabzon,Alacahan,Alacahan,manual
+Trabzon,Erdoğdu Bey Cami,Meczet Erdoğdu Beja,manual
+Trabzon,Trabzon Şehir Müzesi,Muzeum Miejskie w Trabzonie,manual
+Trabzon,Trabzon Edebiyat Müzesi,Muzeum Literatury w Trabzonie,manual
+Tromso,Rådstua,Stary Ratusz,manual
+Tromso,M/S Polstjerna,M/S Polstjerna,manual
+Tromso,Vår Frue kirke,Prokatedra Naszej Pani w Tromsø,auto_wiki
+Tromso,Hålogaland teater,Teatr Hålogaland,manual
+Tromso,Katolske bispegården,Rezydencja Biskupia,manual
+Trondheim,Hornemansgården,Dwór Hornemana,manual
+Trondheim,Sommergården,Letni Dwór,manual
+Trondheim,Vår Frue kirke,Kościół Matki Bożej,manual
+Trondheim,Stiftsgården,Stiftsgården,auto_wiki
+Trondheim,Nordenfjeldske Kunstindustrimuseum,Północne Muzeum Sztuki Użytkowej,manual
+Turku,Turun tuomiokirkko,Katedra w Turku,auto_wiki
+Turku,Qwenselin talo,Dom Qwenselów,manual
+Turku,Apteekkimuseo,Muzeum Apteki,manual
+Turku,Aboa Vetus Ars Nova,Aboa Vetus Ars Nova,manual
+Turku,Suomen Partiomuseo,Fińskie Muzeum Harcerstwa,manual
+Tuzla,Tvrđava Srebrenik,Twierdza Srebrenik,manual
+Tuzla,Narodno pozorište Tuzla,Teatr Narodowy w Tuzli,manual
+Tuzla,Kapija Behram-begove medrese,Brama Medresy Behram-bega,manual
+Tuzla,Sojeničko naselje,Osada palafitowa,manual
+Tuzla,Muzej bosanskog jezika,Muzeum Języka Bośniackiego,manual
+Venice,"Villa Foscari, detta ""La Malcontenta""",Villa Foscari,auto_wiki
+Venice,Ca' d'Oro,Ca’ d’Oro,auto_wiki
+Venice,Negozio Olivetti,Sklep Olivetti,manual
+Venice,Teatro stabile del Veneto Carlo Goldoni,Teatr Stały Carlo Goldoniego,manual
+Vienna,Stephansdom,Katedra św. Szczepana w Wiedniu,auto_wiki
+Vienna,Churhaus,Dom Churhaus,manual
+Vienna,Haas-Haus,Haas-Haus,auto_wiki
+Vienna,Deutschordenshaus,Klasztor krzyżaków w Wiedniu,auto_wiki
+Vienna,Maria-Magdalena-Kapelle,Kaplica Marii Magdaleny,manual
+Vilnius,Struvės geodezinis punktas,Punkt geodezyjny Łuku Struvego,fixed_report
+Vilnius,Valdovų rūmai,Zamek Dolny w Wilnie,auto_wiki
+Vilnius,Lietuvos banko Pinigų muziejus,Muzeum Pieniędzy Banku Litwy,manual
+Vilnius,Vilniaus Ivano Lukievičiaus baltarusių muziejus,Wileńskie Muzeum Białoruskie im. Iwana Łuckiewicza,manual
+Visby,Hansestaden Visby,Hanzeatyckie miasto Visby,manual
+Visby,Gotlands konstmuseum,Muzeum Sztuki Gotlandii,manual
+Visby,Sankt Hans och Sankt Pers kyrkoruiner,Ruiny kościołów Sankt Hans i Sankt Per w Visby,auto_wiki
+Visby,Sankta Katarina ruin,Ruiny kościoła Sankta Katarina w Visby,auto_wiki
+Visby,Fornsalen,Muzeum Starożytności,manual
+Warsaw,Pałac Kultury i Nauki,Pałac Kultury i Nauki,auto_wiki
+Warsaw,Warszawa Centralna,Dworzec Centralny im. Stanisława Moniuszki,auto_wiki
+Warsaw,Kaplica pw. Świętej Barbary,Kaplica św. Barbary w Warszawie,fixed_report
+Warsaw,Park Mirowski,Park Mirowski w Warszawie,auto_wiki
+Warsaw,Ogród Saski,Ogród Saski w Warszawie,auto_wiki
+Wroclaw,Kamienica Pod Złotym Pucharem,Kamienica Pod Złotym Pucharem we Wrocławiu,auto_wiki
+Wroclaw,Kamienica Pod Złotą Koroną,Kamienica Pod Złotą Koroną we Wrocławiu,auto_wiki
+Wroclaw,Muzeum Farmacji Uniwersytetu Medycznego,Muzeum Farmacji Uniwersytetu Medycznego we Wrocławiu,auto_wiki
+Wroclaw,Muzeum Pana Tadeusza,Muzeum „Pana Tadeusza”,auto_wiki
+Wroclaw,Rynek,Rynek we Wrocławiu,auto_wiki
+Zakynthos,Ugo Foscolo 1778-1827,Pomnik Ugo Foscolo,manual
+Zakynthos,Museum of Post Byzantine Art,Muzeum Sztuki Pobizantyńskiej,manual
+Zakynthos,Agios Dionisios,Kościół Świętego Dionizego,manual
+Zakynthos,Dionysios Solomos Museum,Muzeum Dionizjosa Solomosa,manual
+Zakynthos,Maritime Museum,Muzeum Morskie,manual
+Zurich,Amtshaus I,Budynek Urzędowy I,manual
+Zurich,Fraumünster,Fraumünster,auto_wiki
+Zurich,Münsterbrücke,Most Münsterbrücke,manual
+Zurich,Alte Kantonsschule,Stara Szkoła Kantonalna,manual
+Zurich,Lindenhof-Keller,Piwnica Lindenhof,manual
