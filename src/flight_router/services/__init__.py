@@ -5,6 +5,9 @@ Services orchestrate the interaction between ports (repositories, algorithms)
 and domain logic (constraints validation, result transformation).
 """
 
+from src.flight_router.services.flight_data_expander_service import (
+    FlightDataExpanderService,
+)
 from src.flight_router.services.route_finder_service import RouteFinderService
 from src.flight_router.services.route_validation_service import (
     RouteValidationService,
@@ -12,6 +15,7 @@ from src.flight_router.services.route_validation_service import (
 )
 
 __all__ = [
+    "FlightDataExpanderService",
     "RouteFinderService",
     "RouteValidationService",
     "aggregate_route_status",
