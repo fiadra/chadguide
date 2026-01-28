@@ -155,6 +155,7 @@ def dijkstra(
     T_min: float,
     T_max: float,
     flights_by_city: Dict[str, pd.DataFrame],
+    min_stay_minutes: float = 0.0,
 ) -> List[Label]:
     """
     Multi-criteria Dijkstra algorithm for finding Pareto-optimal routes.
@@ -166,6 +167,8 @@ def dijkstra(
         T_min: Earliest departure time (minutes since epoch).
         T_max: Latest arrival time (minutes since epoch).
         flights_by_city: Pre-computed dict mapping departure city to DataFrame.
+        min_stay_minutes: Minimum time (in minutes) to stay at each
+            required city before departing. Default 0.0 (no constraint).
 
     Returns:
         List of Pareto-optimal Label objects representing complete routes.
@@ -208,7 +211,14 @@ def dijkstra(
             continue
 
         arrays = city_arrays[city]
-        feasible_idx = arrays.get_feasible_indices(label.time, T_max)
+
+        # Enforce minimum stay at destination cities
+        if min_stay_minutes > 0 and city in required_cities:
+            earliest_departure = label.time + min_stay_minutes
+        else:
+            earliest_departure = label.time
+
+        feasible_idx = arrays.get_feasible_indices(earliest_departure, T_max)
 
         for idx in feasible_idx:
             arr_airport = str(arrays.arr_airport[idx])
