@@ -37,6 +37,7 @@ class RouteFinder(ABC):
         required_cities: set[str],
         t_min: float,
         t_max: float,
+        min_stay_minutes: float = 0.0,
     ) -> List[RouteResult]:
         """
         Find optimal routes using the cached flight graph.
@@ -47,6 +48,7 @@ class RouteFinder(ABC):
             required_cities: Set of airports that must be visited.
             t_min: Earliest departure time (minutes since epoch).
             t_max: Latest arrival time (minutes since epoch).
+            min_stay_minutes: Minimum stay at each destination city (minutes).
 
         Returns:
             List of Pareto-optimal RouteResult objects.

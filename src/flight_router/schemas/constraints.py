@@ -26,6 +26,7 @@ class TravelConstraints:
         t_max: Latest arrival time (minutes since epoch).
         max_stops: Maximum number of intermediate stops (None = unlimited).
         max_price: Maximum total price (None = unlimited).
+        min_stay_hours: Minimum hours to stay at each destination city (None = no constraint).
     """
 
     start_city: str
@@ -34,6 +35,7 @@ class TravelConstraints:
     t_max: float
     max_stops: Optional[int] = None
     max_price: Optional[float] = None
+    min_stay_hours: Optional[float] = None
 
     def __post_init__(self) -> None:
         """Validate constraints after initialization."""
@@ -47,6 +49,10 @@ class TravelConstraints:
             raise ValueError(f"max_stops must be >= 0, got {self.max_stops}")
         if self.max_price is not None and self.max_price < 0:
             raise ValueError(f"max_price must be >= 0, got {self.max_price}")
+        if self.min_stay_hours is not None and self.min_stay_hours < 0:
+            raise ValueError(
+                f"min_stay_hours must be >= 0, got {self.min_stay_hours}"
+            )
 
     @classmethod
     def create(
@@ -57,6 +63,7 @@ class TravelConstraints:
         t_max: float = float("inf"),
         max_stops: Optional[int] = None,
         max_price: Optional[float] = None,
+        min_stay_hours: Optional[float] = None,
     ) -> "TravelConstraints":
         """
         Factory method for creating TravelConstraints.
@@ -70,6 +77,7 @@ class TravelConstraints:
             t_max: Latest arrival time.
             max_stops: Maximum intermediate stops.
             max_price: Maximum total price.
+            min_stay_hours: Minimum hours to stay at each destination city.
 
         Returns:
             Validated TravelConstraints instance.
@@ -86,6 +94,7 @@ class TravelConstraints:
             t_max=t_max,
             max_stops=max_stops,
             max_price=max_price,
+            min_stay_hours=min_stay_hours,
         )
 
     def with_time_window(self, t_min: float, t_max: float) -> "TravelConstraints":
@@ -97,6 +106,7 @@ class TravelConstraints:
             t_max=t_max,
             max_stops=self.max_stops,
             max_price=self.max_price,
+            min_stay_hours=self.min_stay_hours,
         )
 
     def with_required_cities(
@@ -112,6 +122,7 @@ class TravelConstraints:
             t_max=self.t_max,
             max_stops=self.max_stops,
             max_price=self.max_price,
+            min_stay_hours=self.min_stay_hours,
         )
 
 

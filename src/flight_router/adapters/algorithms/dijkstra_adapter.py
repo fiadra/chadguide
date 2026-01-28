@@ -83,6 +83,7 @@ class DijkstraRouteFinder(RouteFinder):
         required_cities: set[str],
         t_min: float,
         t_max: float,
+        min_stay_minutes: float = 0.0,
     ) -> List[RouteResult]:
         """
         Find Pareto-optimal routes with IMMUTABILITY SAFETY and OPTIMIZED DATA ACCESS.
@@ -147,6 +148,7 @@ class DijkstraRouteFinder(RouteFinder):
                 T_min=t_min,
                 T_max=t_max,
                 flights_by_city=flights_by_city,
+                min_stay_minutes=min_stay_minutes,
             )
 
             logger.debug(
