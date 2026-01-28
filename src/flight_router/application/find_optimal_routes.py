@@ -129,6 +129,7 @@ class FindOptimalRoutes:
         return_date: Optional[datetime] = None,
         max_stops: Optional[int] = None,
         max_price: Optional[float] = None,
+        min_stay_hours: Optional[float] = None,
     ) -> List[RouteResult]:
         """
         Search for optimal routes between airports.
@@ -163,6 +164,7 @@ class FindOptimalRoutes:
             arrival_before=return_date,
             max_stops=max_stops,
             max_price=max_price,
+            min_stay_hours=min_stay_hours,
         )
 
     def search_raw(
@@ -173,6 +175,7 @@ class FindOptimalRoutes:
         t_max: float = float("inf"),
         max_stops: Optional[int] = None,
         max_price: Optional[float] = None,
+        min_stay_hours: Optional[float] = None,
     ) -> List[RouteResult]:
         """
         Search for routes using raw epoch-based time parameters.
@@ -198,6 +201,7 @@ class FindOptimalRoutes:
             t_max=t_max,
             max_stops=max_stops,
             max_price=max_price,
+            min_stay_hours=min_stay_hours,
         )
 
     def get_available_airports(self) -> frozenset[str]:

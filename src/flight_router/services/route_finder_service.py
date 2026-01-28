@@ -66,6 +66,7 @@ class RouteFinderService:
         t_max: float = float("inf"),
         max_stops: Optional[int] = None,
         max_price: Optional[float] = None,
+        min_stay_hours: Optional[float] = None,
     ) -> List[RouteResult]:
         """
         Find Pareto-optimal routes matching the given constraints.
@@ -101,6 +102,7 @@ class RouteFinderService:
             t_max=t_max,
             max_stops=max_stops,
             max_price=max_price,
+            min_stay_hours=min_stay_hours,
         )
 
         logger.debug(
@@ -124,6 +126,8 @@ class RouteFinderService:
         )
 
         # 3. Delegate to algorithm adapter
+        min_stay_minutes = (constraints.min_stay_hours or 0.0) * 60
+
         algo_start = time.perf_counter()
         results = self._route_finder.find_routes(
             graph=graph,
@@ -131,6 +135,7 @@ class RouteFinderService:
             required_cities=set(constraints.required_cities),
             t_min=constraints.t_min,
             t_max=constraints.t_max,
+            min_stay_minutes=min_stay_minutes,
         )
         algo_time = time.perf_counter() - algo_start
 
@@ -188,6 +193,7 @@ class RouteFinderService:
         arrival_before: Optional[datetime] = None,
         max_stops: Optional[int] = None,
         max_price: Optional[float] = None,
+        min_stay_hours: Optional[float] = None,
     ) -> List[RouteResult]:
         """
         Find routes using datetime objects for time constraints.
@@ -227,6 +233,7 @@ class RouteFinderService:
             t_max=t_max,
             max_stops=max_stops,
             max_price=max_price,
+            min_stay_hours=min_stay_hours,
         )
 
     @property

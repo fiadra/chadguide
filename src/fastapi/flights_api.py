@@ -81,6 +81,7 @@ class SearchRequest(BaseModel):
     destinations: Set[str]
     departure_date: datetime
     return_date: Optional[datetime] = None
+    min_stay_hours: Optional[float] = None
 
 
 @app.post("/search", response_model=List[RouteResultSchema])
@@ -92,6 +93,7 @@ async def find_routes(request: SearchRequest):
         destinations=request.destinations,
         departure_date=request.departure_date,
         return_date=request.return_date,
+        min_stay_hours=request.min_stay_hours,
     )
 
     if not results:
@@ -128,6 +130,7 @@ async def search_with_validation(request: SearchRequest):
             destinations=request.destinations,
             departure_date=request.departure_date,
             return_date=request.return_date,
+            min_stay_hours=request.min_stay_hours,
         )
     )
 
