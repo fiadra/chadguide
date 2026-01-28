@@ -126,6 +126,15 @@
                 Your Optimized Routes
             </h1>
             <p class="text-navy-600" id="search-summary"></p>
+            <p class="text-navy-400 text-sm mt-1" id="results-count"></p>
+        </div>
+
+        <!-- Sort Toolbar -->
+        <div id="sort-toolbar" class="flex items-center gap-2 mb-6 hidden">
+            <span class="text-navy-500 font-medium text-sm">Sort by:</span>
+            <button class="sort-btn px-3 py-1.5 rounded-full text-sm font-medium transition-all bg-navy-800 text-white" data-sort="price">Price</button>
+            <button class="sort-btn px-3 py-1.5 rounded-full text-sm font-medium transition-all bg-cream-200 text-navy-600 hover:bg-cream-300" data-sort="time">Duration</button>
+            <button class="sort-btn px-3 py-1.5 rounded-full text-sm font-medium transition-all bg-cream-200 text-navy-600 hover:bg-cream-300" data-sort="flights">Flights</button>
         </div>
 
         <!-- Results Container -->
@@ -147,8 +156,13 @@
         </div>
     </main>
 
+    <script src="js/airport-index.js"></script>
     <script>
-        // Formatting helpers
+        // --- State ---
+        let allRoutes = [];
+        let currentSort = 'price';
+
+        // --- Formatting helpers ---
         function formatTime(epochMinutes) {
             const date = new Date(epochMinutes * 60 * 1000);
             return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
@@ -160,8 +174,10 @@
         }
 
         function formatDuration(minutes) {
-            const h = Math.floor(minutes / 60);
+            const d = Math.floor(minutes / (24 * 60));
+            const h = Math.floor((minutes % (24 * 60)) / 60);
             const m = Math.round(minutes % 60);
+            if (d > 0) return m > 0 ? `${d}d ${h}h ${m}m` : h > 0 ? `${d}d ${h}h` : `${d}d`;
             return h > 0 ? `${h}h ${m}m` : `${m}m`;
         }
 
@@ -175,8 +191,50 @@
             return `${roundedDays} days`;
         }
 
-        // Render a single segment
-        function renderSegment(segment) {
+        function cityName(iata) {
+            const info = window.AirportIndex && window.AirportIndex.getByIata(iata);
+            return info ? info.city : iata;
+        }
+
+        // --- Badge computation ---
+        function computeBadges(routes) {
+            if (routes.length === 0) return {};
+            const badges = {};
+            routes.forEach((_, i) => badges[i] = []);
+
+            const minCost = Math.min(...routes.map(r => r.total_cost));
+            const minTime = Math.min(...routes.map(r => r.total_flight_time || r.segments.reduce((sum, s) => sum + s.duration, 0)));
+            const minFlights = Math.min(...routes.map(r => r.num_segments));
+
+            routes.forEach((r, i) => {
+                if (r.total_cost === minCost) badges[i].push({ label: 'Cheapest', color: 'bg-sage-500' });
+                if ((r.total_flight_time || r.segments.reduce((sum, s) => sum + s.duration, 0)) === minTime) badges[i].push({ label: 'Fastest', color: 'bg-terracotta-500' });
+                if (r.num_segments === minFlights && routes.some(o => o.num_segments > minFlights))
+                    badges[i].push({ label: 'Fewest flights', color: 'bg-gold-500' });
+            });
+            return badges;
+        }
+
+        // --- Render a single segment with optional layover after ---
+        function renderSegment(segment, nextSegment) {
+            const carrierText = segment.carrier_name || segment.carrier_code || '';
+            const carrierHtml = carrierText
+                ? `<div class="text-sm text-navy-400 mt-1">${carrierText}</div>`
+                : '';
+
+            let layoverHtml = '';
+            if (nextSegment) {
+                const layoverMinutes = nextSegment.dep_time - segment.arr_time;
+                if (layoverMinutes > 0) {
+                    layoverHtml = `
+                        <div class="flex items-center gap-3 py-2 ml-5 border-l-2 border-sage-300 pl-4">
+                            <i class="fa-solid fa-city text-sage-400 text-xs"></i>
+                            <span class="text-sm text-sage-600 font-medium">${formatDuration(layoverMinutes)} in ${cityName(segment.arrival_airport)}</span>
+                        </div>
+                    `;
+                }
+            }
+
             return `
                 <div class="flex items-start gap-4 py-4 border-t border-cream-200">
                     <div class="w-10 h-10 bg-navy-100 rounded-full flex items-center justify-center flex-shrink-0">
@@ -185,7 +243,7 @@
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center justify-between mb-1">
                             <span class="font-semibold text-navy-800">
-                                ${segment.departure_airport} <i class="fa-solid fa-arrow-right text-xs text-navy-400 mx-2"></i> ${segment.arrival_airport}
+                                ${cityName(segment.departure_airport)} <i class="fa-solid fa-arrow-right text-xs text-navy-400 mx-2"></i> ${cityName(segment.arrival_airport)}
                             </span>
                             <span class="text-terracotta-600 font-semibold">${formatPrice(segment.price)}</span>
                         </div>
@@ -199,27 +257,59 @@
                                 ${formatDuration(segment.duration)}
                             </span>
                         </div>
-                        <div class="text-sm text-navy-400 mt-1">
-                            ${segment.carrier_name || segment.carrier_code}
-                        </div>
+                        ${carrierHtml}
                     </div>
                 </div>
+                ${layoverHtml}
             `;
         }
 
-        // Render all routes
+        // --- Sorting ---
+        function sortRoutes(routes, sortKey) {
+            const sorted = [...routes];
+            if (sortKey === 'price') sorted.sort((a, b) => a.total_cost - b.total_cost);
+            else if (sortKey === 'time') sorted.sort((a, b) => (a.total_flight_time || a.segments.reduce((sum, s) => sum + s.duration, 0)) - (b.total_flight_time || b.segments.reduce((sum, s) => sum + s.duration, 0)));
+            else if (sortKey === 'flights') sorted.sort((a, b) => a.num_segments - b.num_segments);
+            return sorted;
+        }
+
+        // --- Render all routes ---
         function renderRoutes(routes) {
             const container = document.getElementById('results-container');
             document.getElementById('empty-state').style.display = 'none';
 
-            const routesHtml = routes.map((route, index) => `
+            const badges = computeBadges(routes);
+
+            const routesHtml = routes.map((route, index) => {
+                const routeBadges = badges[index] || [];
+                const badgesHtml = routeBadges.map(b =>
+                    `<span class="px-2 py-0.5 ${b.color} text-white text-xs rounded-full font-semibold">${b.label}</span>`
+                ).join(' ');
+
+                // Date range
+                const depDate = formatDate(route.segments[0].dep_time);
+                const arrDate = formatDate(route.segments[route.segments.length - 1].arr_time);
+                const dateRange = depDate === arrDate ? depDate : `${depDate} – ${arrDate}`;
+
+                // Segments with layovers
+                const segmentsHtml = route.segments.map((seg, i) =>
+                    renderSegment(seg, i < route.segments.length - 1 ? route.segments[i + 1] : null)
+                ).join('');
+
+                return `
                 <div class="card-warm rounded-2xl shadow-xl shadow-navy-900/10 border border-cream-300/50 overflow-hidden">
                     <!-- Route Header -->
                     <div class="bg-navy-800 text-cream-100 px-6 py-4 flex items-center justify-between">
                         <div>
-                            <span class="text-cream-400 text-sm">Route ${index + 1}</span>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-cream-400 text-sm">Route ${index + 1}</span>
+                                ${badgesHtml}
+                            </div>
                             <div class="font-display text-lg font-semibold">
-                                ${route.route_cities.join(' → ')}
+                                ${route.route_cities.map(c => cityName(c)).join(' → ')}
+                            </div>
+                            <div class="text-cream-400 text-xs mt-1">
+                                <i class="fa-regular fa-calendar mr-1"></i>${dateRange}
                             </div>
                         </div>
                         <div class="text-right">
@@ -231,7 +321,7 @@
                     </div>
                     <!-- Segments -->
                     <div class="px-6 pb-4">
-                        ${route.segments.map(seg => renderSegment(seg)).join('')}
+                        ${segmentsHtml}
                     </div>
                     <!-- Footer -->
                     <div class="bg-cream-200/50 px-6 py-3 flex items-center justify-between text-sm text-navy-600">
@@ -240,44 +330,72 @@
                         <span><i class="fa-solid fa-calendar-days mr-2"></i>Trip: ${formatDays(route.trip_duration_days || route.total_time / (24 * 60))}</span>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
 
             container.innerHTML = routesHtml;
         }
 
-        // Update search summary
+        // --- Update search summary ---
         function updateSummary(searchData) {
             const summaryEl = document.getElementById('search-summary');
             if (!searchData.origin_city) return;
 
-            const cities = [searchData.origin_city, ...searchData.cities];
-            let summary = `${cities.join(' → ')} | ${searchData.departure_date} to ${searchData.return_date}`;
-            if (searchData.min_stay_hours) {
-                summary += ` | Min. ${searchData.min_stay_hours}h per city`;
+            function fmtDate(iso) {
+                const d = new Date(iso + 'T00:00:00Z');
+                return d.toLocaleDateString('en-GB', { month: 'short', day: 'numeric', timeZone: 'UTC' });
             }
-            summaryEl.textContent = summary;
+
+            const origin = searchData.origin_city;
+            const dests = searchData.cities || [];
+            const dateStr = `${fmtDate(searchData.departure_date)} – ${fmtDate(searchData.return_date)}`;
+
+            let parts = [`From ${origin}`, dests.join(', '), dateStr];
+            if (searchData.min_stay_hours) {
+                parts.push(`Min. ${searchData.min_stay_hours}h per city`);
+            }
+            summaryEl.innerHTML = parts.map((p, i) => {
+                if (i === 0) return `<span class="font-semibold">${p}</span>`;
+                return p;
+            }).join(' <span class="text-navy-300 mx-1">·</span> ');
         }
 
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Debug: Log what's in sessionStorage
-            console.log('Raw routeSearchData:', sessionStorage.getItem('routeSearchData'));
-            console.log('Raw routeResults:', sessionStorage.getItem('routeResults'));
+        // --- Sort toolbar ---
+        function initSortToolbar() {
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentSort = btn.dataset.sort;
+                    // Update button styles
+                    document.querySelectorAll('.sort-btn').forEach(b => {
+                        b.className = 'sort-btn px-3 py-1.5 rounded-full text-sm font-medium transition-all bg-cream-200 text-navy-600 hover:bg-cream-300';
+                    });
+                    btn.className = 'sort-btn px-3 py-1.5 rounded-full text-sm font-medium transition-all bg-navy-800 text-white';
+                    // Re-render
+                    renderRoutes(sortRoutes(allRoutes, currentSort));
+                });
+            });
+        }
 
+        // --- Initialize on page load ---
+        document.addEventListener('DOMContentLoaded', async function() {
+            if (window.AirportIndex) await window.AirportIndex.load();
             const searchData = JSON.parse(sessionStorage.getItem('routeSearchData') || '{}');
             const results = JSON.parse(sessionStorage.getItem('routeResults') || '[]');
-
-            console.log('Parsed searchData:', searchData);
-            console.log('Parsed results:', results);
-            console.log('Results count:', results.length);
 
             updateSummary(searchData);
 
             if (results.length > 0) {
-                console.log('Rendering routes:', results);
-                renderRoutes(results);
-            } else {
-                console.log('No results to render - showing empty state');
+                allRoutes = results;
+
+                // Results count
+                document.getElementById('results-count').textContent = `Found ${results.length} route${results.length > 1 ? 's' : ''}`;
+
+                // Show sort toolbar
+                document.getElementById('sort-toolbar').classList.remove('hidden');
+                initSortToolbar();
+
+                // Render sorted by price (default)
+                renderRoutes(sortRoutes(allRoutes, currentSort));
             }
         });
     </script>
