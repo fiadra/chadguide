@@ -66,7 +66,9 @@ class RouteResultSchema(BaseModel):
     route_id: int
     segments: List[RouteSegmentSchema]
     total_cost: float  # Captures @property
-    total_time: float  # Captures @property
+    total_time: float  # Captures @property - elapsed time from first departure to last arrival
+    total_flight_time: float  # Captures @property - sum of flight durations (time in air)
+    trip_duration_days: float  # Captures @property - trip duration in days
     route_cities: List[str]  # Captures @property
     num_segments: int  # Captures @property
 
@@ -179,6 +181,8 @@ async def search_with_validation(request: SearchRequest):
             ],
             "total_cost": v.total_price,  # Use validated price
             "total_time": route.total_time,
+            "total_flight_time": route.total_flight_time,
+            "trip_duration_days": route.trip_duration_days,
             "route_cities": list(route.route_cities),
             "num_segments": route.num_segments,
         })

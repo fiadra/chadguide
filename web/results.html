@@ -169,6 +169,12 @@
             return `€${price.toFixed(2)}`;
         }
 
+        function formatDays(days) {
+            const roundedDays = Math.round(days);
+            if (roundedDays === 1) return '1 day';
+            return `${roundedDays} days`;
+        }
+
         // Render a single segment
         function renderSegment(segment) {
             return `
@@ -230,7 +236,8 @@
                     <!-- Footer -->
                     <div class="bg-cream-200/50 px-6 py-3 flex items-center justify-between text-sm text-navy-600">
                         <span><i class="fa-solid fa-plane-up mr-2"></i>${route.num_segments} flight${route.num_segments > 1 ? 's' : ''}</span>
-                        <span><i class="fa-solid fa-clock mr-2"></i>Total: ${formatDuration(route.total_time)}</span>
+                        <span><i class="fa-solid fa-clock mr-2"></i>Flight time: ${formatDuration(route.total_flight_time || route.segments.reduce((sum, s) => sum + s.duration, 0))}</span>
+                        <span><i class="fa-solid fa-calendar-days mr-2"></i>Trip: ${formatDays(route.trip_duration_days || route.total_time / (24 * 60))}</span>
                     </div>
                 </div>
             `).join('');

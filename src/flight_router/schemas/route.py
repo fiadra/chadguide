@@ -143,10 +143,20 @@ class RouteResult:
 
     @property
     def total_time(self) -> float:
-        """Total time from first departure to last arrival."""
+        """Total elapsed time from first departure to last arrival (in minutes)."""
         if not self.segments:
             return 0.0
         return self.segments[-1].arr_time - self.segments[0].dep_time
+
+    @property
+    def total_flight_time(self) -> float:
+        """Sum of all flight durations - actual time spent in air (in minutes)."""
+        return sum(seg.duration for seg in self.segments)
+
+    @property
+    def trip_duration_days(self) -> float:
+        """Trip duration in days (from first departure to last arrival)."""
+        return self.total_time / (24 * 60)
 
     @property
     def num_segments(self) -> int:

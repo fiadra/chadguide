@@ -25,6 +25,9 @@ from src.flight_router.adapters.repositories.flight_graph_repo import (
 from src.flight_router.ports.flight_data_provider import FlightDataProvider
 from src.flight_router.ports.route_finder import RouteFinder
 from src.flight_router.schemas.route import RouteResult
+from src.flight_router.services.flight_data_expander_service import (
+    FlightDataExpanderService,
+)
 from src.flight_router.services.route_finder_service import RouteFinderService
 
 logger = logging.getLogger(__name__)
@@ -63,6 +66,7 @@ class FindOptimalRoutes:
         data_provider: Optional[FlightDataProvider] = None,
         route_finder: Optional[RouteFinder] = None,
         cache_ttl: timedelta = DEFAULT_CACHE_TTL,
+        enable_date_extrapolation: bool = True,
     ) -> None:
         """
         Initialize the route finder with optional custom dependencies.
@@ -72,6 +76,9 @@ class FindOptimalRoutes:
             data_provider: Custom data provider. If None, uses DuffelDataProvider.
             route_finder: Custom algorithm. If None, uses DijkstraRouteFinder.
             cache_ttl: Cache time-to-live. Defaults to 1 hour.
+            enable_date_extrapolation: If True, enables searching for flights
+                on dates outside the base data week by extrapolating weekly
+                patterns. Defaults to True.
         """
         # Initialize data provider
         if data_provider is not None:
@@ -88,11 +95,20 @@ class FindOptimalRoutes:
             auto_refresh=True,
         )
 
+        # Initialize date expander if enabled
+        self._data_expander = None
+        if enable_date_extrapolation:
+            self._data_expander = FlightDataExpanderService()
+            logger.info("Date extrapolation enabled (base week: 2026-07-13 to 2026-07-19)")
+
         # Initialize algorithm
         if route_finder is not None:
             self._route_finder = route_finder
         else:
-            self._route_finder = DijkstraRouteFinder(require_defensive_copy=False)
+            self._route_finder = DijkstraRouteFinder(
+                require_defensive_copy=False,
+                data_expander=self._data_expander,
+            )
 
         # Create the service
         self._service = RouteFinderService(
