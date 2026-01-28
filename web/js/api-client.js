@@ -212,6 +212,10 @@ function handleFormSubmit(event) {
     const originInput = document.getElementById('origin-input');
     const originCity = originInput ? originInput.value : origin;
 
+    // Get optional min stay hours
+    const minStayInput = document.getElementById('min-stay');
+    const minStayHours = minStayInput && minStayInput.value ? parseFloat(minStayInput.value) : null;
+
     // Store search data for results page
     const searchData = {
         origin: origin,
@@ -219,7 +223,8 @@ function handleFormSubmit(event) {
         cities: cities,
         destinations: destinations,
         departure_date: departureDate,
-        return_date: returnDate
+        return_date: returnDate,
+        min_stay_hours: minStayHours,
     };
     sessionStorage.setItem('routeSearchData', JSON.stringify(searchData));
 
@@ -237,7 +242,8 @@ function handleFormSubmit(event) {
         origin: origin,
         destinations: destinations,
         departure_date: `${departureDate}T00:00:00`,
-        return_date: returnDate ? `${returnDate}T00:00:00` : null
+        return_date: returnDate ? `${returnDate}T00:00:00` : null,
+        min_stay_hours: minStayHours,
     };
 
     if (animationConsole) {

@@ -363,6 +363,19 @@
                     </div>
                 </div>
 
+                <!-- Minimum Stay -->
+                <div class="mb-6">
+                    <label for="min-stay" class="flex items-center gap-2 text-sm font-semibold text-navy-600 mb-3 uppercase tracking-wider">
+                        <i class="fa-solid fa-hourglass-half text-terracotta-500"></i>
+                        Minimum Stay per City
+                    </label>
+                    <div class="flex items-center gap-3">
+                        <input type="number" id="min-stay" min="0" max="168" step="1" placeholder="Optional"
+                               class="w-32 px-3 py-2.5 bg-white border-2 border-cream-300 rounded-xl text-navy-800 placeholder-navy-400 focus:outline-none focus:border-terracotta-400 transition-all text-sm">
+                        <span class="text-sm text-navy-500">hours in each destination</span>
+                    </div>
+                </div>
+
                 <!-- Trip Summary Pill -->
                 <div class="bg-gradient-to-r from-navy-800 to-navy-900 rounded-xl p-4 mb-6 text-cream-100">
                     <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm">

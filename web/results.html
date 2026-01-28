@@ -251,7 +251,11 @@
             if (!searchData.origin_city) return;
 
             const cities = [searchData.origin_city, ...searchData.cities];
-            summaryEl.textContent = `${cities.join(' → ')} | ${searchData.departure_date} to ${searchData.return_date}`;
+            let summary = `${cities.join(' → ')} | ${searchData.departure_date} to ${searchData.return_date}`;
+            if (searchData.min_stay_hours) {
+                summary += ` | Min. ${searchData.min_stay_hours}h per city`;
+            }
+            summaryEl.textContent = summary;
         }
 
         // Initialize on page load
