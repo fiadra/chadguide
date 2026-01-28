@@ -218,8 +218,12 @@
         // --- Render a single segment with optional layover after ---
         function renderSegment(segment, nextSegment) {
             const carrierText = segment.carrier_name || segment.carrier_code || '';
+            const url = airlineUrls[segment.carrier_code];
+            const carrierContent = url
+                ? `<a href="${url}" target="_blank" rel="noopener" class="hover:text-terracotta-500 underline decoration-dotted">${carrierText}</a>`
+                : carrierText;
             const carrierHtml = carrierText
-                ? `<div class="text-sm text-navy-400 mt-1">${carrierText}</div>`
+                ? `<div class="text-sm text-navy-400 mt-1">${carrierContent}</div>`
                 : '';
 
             let layoverHtml = '';
@@ -377,8 +381,14 @@
         }
 
         // --- Initialize on page load ---
+        let airlineUrls = {};
+
         document.addEventListener('DOMContentLoaded', async function() {
             if (window.AirportIndex) await window.AirportIndex.load();
+            try {
+                const resp = await fetch('data/airlines.json');
+                if (resp.ok) airlineUrls = await resp.json();
+            } catch (e) { /* graceful fallback */ }
             const searchData = JSON.parse(sessionStorage.getItem('routeSearchData') || '{}');
             const results = JSON.parse(sessionStorage.getItem('routeResults') || '[]');
 
