@@ -152,15 +152,14 @@ async def search_with_validation(request: SearchRequest):
         validate_top_n=5,  # Only validate top 5 to save time
     )
 
-    # Filter: bookable routes, sorted by price, top 2
+    # Filter: all bookable routes, sorted by price
     bookable = [v for v in validated if v.is_bookable]
     bookable.sort(key=lambda v: v.total_price)
-    top_routes = bookable[:2]
+    top_routes = bookable
 
-    # Fallback: if no bookable routes, return top 2 unvalidated routes
-    # This ensures users see results even if Duffel API doesn't have matching flights
+    # Fallback: if no bookable routes, return top validated routes
     if not top_routes:
-        top_routes = validated[:2]
+        top_routes = validated
 
     # Convert to schema-compatible dicts (just the route, no validation details)
     results = []

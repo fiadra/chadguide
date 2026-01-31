@@ -259,7 +259,7 @@ function handleFormSubmit(event) {
         fetchAttractions(cities).then(attractions => {
             console.log('Attractions loaded:', Object.keys(attractions));
             animationConsole.setAttractions(attractions);
-            animationConsole.startAttractionCycle(2500);
+            animationConsole.startAttractionCycle(7000);
         });
 
         // API call with stage signals that DRIVE the animation

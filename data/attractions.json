@@ -2828,7 +2828,8 @@
       "lon": -2.5995614977157366,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Red_Lodge_Museum,_Bristol.jpg/300px-Red_Lodge_Museum,_Bristol.jpg",
       "wikipedia_url": null,
-      "name_pl": "Muzeum Red Lodge"
+      "name_pl": "Muzeum Red Lodge",
+      "local_image": "images/attractions/Bristol/The_Red_Lodge_Museum.jpg"
     },
     {
       "name": "We The Curious",
@@ -3030,7 +3031,8 @@
       "lon": 9.191612078686639,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/20110724_Milan_Cathedral_5260.jpg/300px-20110724_Milan_Cathedral_5260.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Katedra_w_Mediolanie",
-      "name_pl": "Katedra w Mediolanie"
+      "name_pl": "Katedra w Mediolanie",
+      "local_image": "images/attractions/Milan/Duomo_di_Milano.jpg"
     }
   ],
   "Bologna": [
@@ -3143,7 +3145,8 @@
       "lon": 12.484848642809101,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Colonna_di_Foca_Forum_Romanum_Rome.jpg/300px-Colonna_di_Foca_Forum_Romanum_Rome.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Kolumna_Fokasa",
-      "name_pl": "Kolumna Fokasa"
+      "name_pl": "Kolumna Fokasa",
+      "local_image": "images/attractions/Rome/Colonna_di_Foca.jpg"
     }
   ],
   "Catania": [
@@ -3247,7 +3250,8 @@
       "lon": 12.2016602457565,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Villa_Foscari_20070710-1.jpg/300px-Villa_Foscari_20070710-1.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Villa_Foscari",
-      "name_pl": "Villa Foscari"
+      "name_pl": "Villa Foscari",
+      "local_image": "images/attractions/Venice/Villa_Foscari_detta_La_Malcontenta.jpg"
     },
     {
       "name": "Ca' d'Oro",
@@ -3257,7 +3261,8 @@
       "lon": 12.333852264136105,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Ca'_d'Oro_facciata.jpg/300px-Ca'_d'Oro_facciata.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Ca’_d’Oro",
-      "name_pl": "Ca’ d’Oro"
+      "name_pl": "Ca’ d’Oro",
+      "local_image": "images/attractions/Venice/Ca_dOro.jpg"
     },
     {
       "name": "Negozio Olivetti",
@@ -3403,7 +3408,8 @@
       "lon": 18.407891832634373,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Sarajevo_Jevrejsko_groblje_23.jpg/300px-Sarajevo_Jevrejsko_groblje_23.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Cmentarz_żydowski_w_Sarajewie",
-      "name_pl": "Cmentarz żydowski w Sarajewie"
+      "name_pl": "Cmentarz żydowski w Sarajewie",
+      "local_image": "images/attractions/Sarajevo/Jevrejsko_groblje.jpg"
     },
     {
       "name": "Slavija Building",
@@ -3570,7 +3576,8 @@
       "lon": 2.3471336607553983,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Saint_Julien_le_Pauvre_02.jpg/300px-Saint_Julien_le_Pauvre_02.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Kościół_Saint_Julien-le-Pauvre_w_Paryżu",
-      "name_pl": "Kościół Saint Julien-le-Pauvre w Paryżu"
+      "name_pl": "Kościół Saint Julien-le-Pauvre w Paryżu",
+      "local_image": "images/attractions/Paris/Église_Saint-Julien-le-Pauvre.jpg"
     },
     {
       "name": "Édicule Guimard",
@@ -3784,7 +3791,8 @@
       "lon": 7.2675860410924376,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Eglise_russe_longchamp_nice.jpg/300px-Eglise_russe_longchamp_nice.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Cerkiew_św._Mikołaja_i_św._Aleksandry_w_Nicei",
-      "name_pl": "Cerkiew św. Mikołaja i św. Aleksandry w Nicei"
+      "name_pl": "Cerkiew św. Mikołaja i św. Aleksandry w Nicei",
+      "local_image": "images/attractions/Nice/Église_Saint-Nicolas_et_Sainte-Alexandra.jpg"
     },
     {
       "name": "Palais Baréty",
@@ -3807,7 +3815,8 @@
       "lon": -1.5530492234382833,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Ancien_Hôtel_Saint-Aignan_(façade)_-_Nantes.jpg/300px-Ancien_Hôtel_Saint-Aignan_(façade)_-_Nantes.jpg",
       "wikipedia_url": null,
-      "name_pl": "Hotel Saint-Aignan"
+      "name_pl": "Hotel Saint-Aignan",
+      "local_image": "images/attractions/Nantes/Hôtel_Saint-Aignan.jpg"
     },
     {
       "name": "Enceinte gallo-romaine",
@@ -3839,7 +3848,8 @@
       "lon": -1.5545292,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Monument_aux_Cinquante_Otages_Nantes2.JPG/300px-Monument_aux_Cinquante_Otages_Nantes2.JPG",
       "wikipedia_url": null,
-      "name_pl": "Pomnik Pięćdziesięciu Zakładników i Ruchu Oporu"
+      "name_pl": "Pomnik Pięćdziesięciu Zakładników i Ruchu Oporu",
+      "local_image": "images/attractions/Nantes/Monument_aux_Cinquante_Otages_et_à_la_Résistance.jpg"
     },
     {
       "name": "Musée d'arts de Nantes",
@@ -3884,7 +3894,8 @@
       "lon": 7.750102080989647,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Façade_du_Palais_vu_2eme_étage_du_cercle_mess.jpg/300px-Façade_du_Palais_vu_2eme_étage_du_cercle_mess.jpg",
       "wikipedia_url": null,
-      "name_pl": "Hotel Dwóch Mostów"
+      "name_pl": "Hotel Dwóch Mostów",
+      "local_image": "images/attractions/Strasbourg/Hôtel_des_Deux_Ponts.jpg"
     },
     {
       "name": "Grenier d'abondance dit Kornspeicher",
@@ -3905,7 +3916,8 @@
       "lon": 7.752266823399006,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Opera_of_Strasbourg_front_view.jpg/300px-Opera_of_Strasbourg_front_view.jpg",
       "wikipedia_url": null,
-      "name_pl": "Opera Reńska"
+      "name_pl": "Opera Reńska",
+      "local_image": "images/attractions/Strasbourg/Opéra_du_Rhin.jpg"
     }
   ],
   "Toulouse": [
@@ -3917,7 +3929,8 @@
       "lon": 1.4444953299375558,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Toulouse_capitole_R.jpg/300px-Toulouse_capitole_R.jpg",
       "wikipedia_url": null,
-      "name_pl": "Kapitol"
+      "name_pl": "Kapitol",
+      "local_image": "images/attractions/Toulouse/Capitole.jpg"
     },
     {
       "name": "Église Notre-Dame-du-Taur",
@@ -3938,7 +3951,8 @@
       "lon": 1.4423358462730786,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Hôtel_du_Grand_Balcon_-_Toulouse.jpg/300px-Hôtel_du_Grand_Balcon_-_Toulouse.jpg",
       "wikipedia_url": null,
-      "name_pl": "Hotel Grand Balcon"
+      "name_pl": "Hotel Grand Balcon",
+      "local_image": "images/attractions/Toulouse/Hôtel_du_Grand_Balcon.jpg"
     },
     {
       "name": "Ensemble conventuel des Jacobins",
@@ -3948,7 +3962,8 @@
       "lon": 1.440087432901541,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Couvent_des_Jacobins_de_Toulouse.jpg/300px-Couvent_des_Jacobins_de_Toulouse.jpg",
       "wikipedia_url": null,
-      "name_pl": "Zespół klasztorny Jakobinów"
+      "name_pl": "Zespół klasztorny Jakobinów",
+      "local_image": "images/attractions/Toulouse/Ensemble_conventuel_des_Jacobins.jpg"
     },
     {
       "name": "Musée du Vieux-Toulouse",
@@ -4004,7 +4019,8 @@
       "lon": 4.361455491520498,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Salle_du_fond_420.JPG/300px-Salle_du_fond_420.JPG",
       "wikipedia_url": null,
-      "name_pl": "Średniowieczne piwnice pod galerią Saint-Germain"
+      "name_pl": "Średniowieczne piwnice pod galerią Saint-Germain",
+      "local_image": "images/attractions/Chalons/Caves_médiévales_sous_la_galerie_Saint-Germain.jpg"
     }
   ],
   "Brussels": [
@@ -4027,7 +4043,8 @@
       "lon": 4.352778903730833,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Belgique_-_Bruxelles_-_Maison_de_l'Agneau_Blanc_-_02.jpg/300px-Belgique_-_Bruxelles_-_Maison_de_l'Agneau_Blanc_-_02.jpg",
       "wikipedia_url": null,
-      "name_pl": "Biały Baranek"
+      "name_pl": "Biały Baranek",
+      "local_image": "images/attractions/Brussels/LAgneau_Blanc_-_Het_Wit_Lammeke.jpg"
     },
     {
       "name": "Les Grands Carmes",
@@ -4140,7 +4157,8 @@
       "lon": 6.113744528571428,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Ferney-Voltaire_-_Maison_33,_rue_de_Genève.jpg/300px-Ferney-Voltaire_-_Maison_33,_rue_de_Genève.jpg",
       "wikipedia_url": null,
-      "name_pl": "Dom Racle"
+      "name_pl": "Dom Racle",
+      "local_image": "images/attractions/Geneva/Maison_Racle.jpg"
     },
     {
       "name": "Maison de Loes",
@@ -4150,7 +4168,8 @@
       "lon": 6.110756031249997,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Ferney-Voltaire_-_Maison_de_Loes.jpg/300px-Ferney-Voltaire_-_Maison_de_Loes.jpg",
       "wikipedia_url": null,
-      "name_pl": "Dom de Loes"
+      "name_pl": "Dom de Loes",
+      "local_image": "images/attractions/Geneva/Maison_de_Loes.jpg"
     },
     {
       "name": "Mur des réformateurs",
@@ -4298,7 +4317,8 @@
       "lon": 23.590992765189483,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Bánffy_Palace_in_Kluj-Napoca.PNG/300px-Bánffy_Palace_in_Kluj-Napoca.PNG",
       "wikipedia_url": null,
-      "name_pl": "Pałac Bánffych"
+      "name_pl": "Pałac Bánffych",
+      "local_image": "images/attractions/Cluj-Napoca/Palatul_Bánffy.jpg"
     },
     {
       "name": "Casa Szentkereszthy",
@@ -4308,7 +4328,8 @@
       "lon": 23.58730300668615,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/RepubliciiNr7_(2).JPG/300px-RepubliciiNr7_(2).JPG",
       "wikipedia_url": null,
-      "name_pl": "Dom Szentkereszthy"
+      "name_pl": "Dom Szentkereszthy",
+      "local_image": "images/attractions/Cluj-Napoca/Casa_Szentkereszthy.jpg"
     },
     {
       "name": "Muzeul de Artă",
@@ -4410,7 +4431,8 @@
       "lon": 26.10451294863537,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/4,_Bulevardul_Carol_I,_Bucharest_(Romania)_1.jpg/300px-4,_Bulevardul_Carol_I,_Bucharest_(Romania)_1.jpg",
       "wikipedia_url": null,
-      "name_pl": "Ministerstwo Rolnictwa i Rozwoju Wsi"
+      "name_pl": "Ministerstwo Rolnictwa i Rozwoju Wsi",
+      "local_image": "images/attractions/Bucharest/Ministerul_Agriculturii_și_Dezvoltării_Rurale.jpg"
     },
     {
       "name": "Palatul Suțu",
@@ -4453,7 +4475,8 @@
       "lon": 26.1023926,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Musée_municipal_de_Bucarest_(1).jpg/300px-Musée_municipal_de_Bucarest_(1).jpg",
       "wikipedia_url": null,
-      "name_pl": "Muzeum Miasta Bukareszt"
+      "name_pl": "Muzeum Miasta Bukareszt",
+      "local_image": "images/attractions/Bucharest/Muzeul_Municipiului_București.jpg"
     }
   ],
   "Timisoara": [
@@ -4509,7 +4532,8 @@
       "lon": 21.225280265016963,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Piata_Victoriei_-_panoramio_(3).jpg/300px-Piata_Victoriei_-_panoramio_(3).jpg",
       "wikipedia_url": null,
-      "name_pl": "Fontanna z Rybami"
+      "name_pl": "Fontanna z Rybami",
+      "local_image": "images/attractions/Timisoara/Fântâna_cu_pești.jpg"
     }
   ],
   "Dublin": [
@@ -4521,7 +4545,8 @@
       "lon": -6.2648822,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/St_Winifred's_Well,_Temple_Bar_02.jpg/300px-St_Winifred's_Well,_Temple_Bar_02.jpg",
       "wikipedia_url": null,
-      "name_pl": "Źródło Świętej Winifredy"
+      "name_pl": "Źródło Świętej Winifredy",
+      "local_image": "images/attractions/Dublin/Saint_Winifreds_Well.jpg"
     },
     {
       "name": "Spire of Dublin",
@@ -4621,7 +4646,8 @@
       "lon": -8.846984820638749,
       "image_url": null,
       "wikipedia_url": null,
-      "name_pl": "Łoże Dermota i Granii"
+      "name_pl": "Łoże Dermota i Granii",
+      "local_image": "images/attractions/Knock/Dermot_Granias_Bed.jpg"
     }
   ],
   "Cork": [
@@ -4723,7 +4749,8 @@
       "lon": -8.947822456684847,
       "image_url": null,
       "wikipedia_url": null,
-      "name_pl": "Fort Knockadoon"
+      "name_pl": "Fort Knockadoon",
+      "local_image": "images/attractions/Shannon/Knockadoon_Fort.jpg"
     },
     {
       "name": "Glór",
@@ -4733,7 +4760,8 @@
       "lon": -8.9770509,
       "image_url": null,
       "wikipedia_url": null,
-      "name_pl": "Glór - Centrum Sztuki"
+      "name_pl": "Glór - Centrum Sztuki",
+      "local_image": "images/attractions/Shannon/Glór.jpg"
     }
   ],
   "Gdansk": [
@@ -4802,7 +4830,8 @@
       "lon": 19.937330736723247,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Kraków_-_Sukiennice_01.jpg/300px-Kraków_-_Sukiennice_01.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Stare_Miasto_w_Krakowie",
-      "name_pl": "Stare Miasto w Krakowie"
+      "name_pl": "Stare Miasto w Krakowie",
+      "local_image": "images/attractions/Krakow/Historyczne_centrum_Krakowa.jpg"
     },
     {
       "name": "Sukiennice",
@@ -4845,7 +4874,8 @@
       "lon": 19.938947247192218,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Church_of_Saint_John_the_Baptist_and_Saint_John_the_Evangelist,_7_św._Jana_Street,_Old_Town,_Kraków,_Poland.jpg/300px-Church_of_Saint_John_the_Baptist_and_Saint_John_the_Evangelist,_7_św._Jana_Street,_Old_Town,_Kraków,_Poland.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Kościół_św._Jana_Chrzciciela_i_św._Jana_Ewangelisty_w_Krakowie",
-      "name_pl": "Kościół św. Jana Chrzciciela i św. Jana Ewangelisty w Krakowie"
+      "name_pl": "Kościół św. Jana Chrzciciela i św. Jana Ewangelisty w Krakowie",
+      "local_image": "images/attractions/Krakow/Kościół_pw_Świętego_Jana_Chrzciciela_i_Świętego_Ja.jpg"
     }
   ],
   "Katowice": [
@@ -4879,7 +4909,8 @@
       "lon": 19.023058536311588,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Katowice_-_Teatr_Śląski_im._St._Wyspiańskiego_01.jpg/300px-Katowice_-_Teatr_Śląski_im._St._Wyspiańskiego_01.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Teatr_Śląski_im._Stanisława_Wyspiańskiego_w_Katowicach",
-      "name_pl": "Teatr Śląski im. Stanisława Wyspiańskiego w Katowicach"
+      "name_pl": "Teatr Śląski im. Stanisława Wyspiańskiego w Katowicach",
+      "local_image": "images/attractions/Katowice/Teatr_Śląski_im_Stanisława_Wyspiańskiego.jpg"
     },
     {
       "name": "Hotel Grand",
@@ -4900,7 +4931,8 @@
       "lon": 19.0156814,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Komputery_PRS4_.jpg/300px-Komputery_PRS4_.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Muzeum_Historii_Komputerów_i_Informatyki",
-      "name_pl": "Muzeum Historii Komputerów i Informatyki"
+      "name_pl": "Muzeum Historii Komputerów i Informatyki",
+      "local_image": "images/attractions/Katowice/Muzeum_Historii_Komputerów_i_Informatyki.jpg"
     }
   ],
   "Lublin": [
@@ -4912,7 +4944,8 @@
       "lon": 22.57002867436441,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Lublin_Dominikanie.jpg/300px-Lublin_Dominikanie.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Bazylika_św._Stanisława_Biskupa_Męczennika_w_Lublinie",
-      "name_pl": "Bazylika św. Stanisława Biskupa Męczennika w Lublinie"
+      "name_pl": "Bazylika św. Stanisława Biskupa Męczennika w Lublinie",
+      "local_image": "images/attractions/Lublin/Kościół_pw_Świętego_Stanisława_Biskupa_i_Męczenika.jpg"
     },
     {
       "name": "Cerkiew Przemienienia Pańskiego",
@@ -4922,7 +4955,8 @@
       "lon": 22.573854990816326,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/A227_zespół_cerkwi_par._p.w._Przemienienia_Pańskiego_ul._Ruska_40_Lublin_5s.jpg/300px-A227_zespół_cerkwi_par._p.w._Przemienienia_Pańskiego_ul._Ruska_40_Lublin_5s.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Sobór_Przemienienia_Pańskiego_w_Lublinie",
-      "name_pl": "Sobór Przemienienia Pańskiego w Lublinie"
+      "name_pl": "Sobór Przemienienia Pańskiego w Lublinie",
+      "local_image": "images/attractions/Lublin/Cerkiew_Przemienienia_Pańskiego.jpg"
     },
     {
       "name": "Muzeum Narodowe w Lublinie",
@@ -4932,7 +4966,8 @@
       "lon": 22.5717298,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/ZamekLubelski1.jpg/300px-ZamekLubelski1.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Muzeum_Narodowe_w_Lublinie",
-      "name_pl": "Muzeum Narodowe w Lublinie"
+      "name_pl": "Muzeum Narodowe w Lublinie",
+      "local_image": "images/attractions/Lublin/Muzeum_Narodowe_w_Lublinie.jpg"
     },
     {
       "name": "Piwnica pod Fortuną",
@@ -4977,7 +5012,8 @@
       "lon": 16.93401663108951,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Poznan_10-2013_img10_Town_hall.jpg/300px-Poznan_10-2013_img10_Town_hall.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Ratusz_w_Poznaniu",
-      "name_pl": "Ratusz w Poznaniu"
+      "name_pl": "Ratusz w Poznaniu",
+      "local_image": "images/attractions/Poznan/Ratusz.jpg"
     },
     {
       "name": "Pałac Działyńskich",
@@ -4987,7 +5023,8 @@
       "lon": 16.932267708599486,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Poland-00580_-_Działyński_Palace_(29733493963).jpg/300px-Poland-00580_-_Działyński_Palace_(29733493963).jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Pałac_Działyńskich_w_Poznaniu",
-      "name_pl": "Pałac Działyńskich w Poznaniu"
+      "name_pl": "Pałac Działyńskich w Poznaniu",
+      "local_image": "images/attractions/Poznan/Pałac_Działyńskich.jpg"
     },
     {
       "name": "Pałac Mielżyńskich",
@@ -5032,7 +5069,8 @@
       "lon": 22.007567061523137,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/SynagogaNowomiejska-POL,_Rzeszów.jpg/300px-SynagogaNowomiejska-POL,_Rzeszów.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Synagoga_Nowomiejska_w_Rzeszowie",
-      "name_pl": "Biuro Wystaw Artystycznych w Rzeszowie"
+      "name_pl": "Biuro Wystaw Artystycznych w Rzeszowie",
+      "local_image": "images/attractions/Rzeszow/Biuro_Wystaw_Artystycznych.jpg"
     },
     {
       "name": "Teatr im. Wandy Siemaszkowej",
@@ -5042,7 +5080,8 @@
       "lon": 21.99950515367914,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/TeatrImWandySiemaszkowej-POL,_Rzeszów.jpg/300px-TeatrImWandySiemaszkowej-POL,_Rzeszów.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Teatr_im._Wandy_Siemaszkowej_w_Rzeszowie",
-      "name_pl": "Teatr im. Wandy Siemaszkowej w Rzeszowie"
+      "name_pl": "Teatr im. Wandy Siemaszkowej w Rzeszowie",
+      "local_image": "images/attractions/Rzeszow/Teatr_im_Wandy_Siemaszkowej.jpg"
     },
     {
       "name": "Rzeszowskie Piwnice",
@@ -5087,7 +5126,8 @@
       "lon": 14.548522428159483,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Grunwaldzki_Square_in_Szczecin,_2018_(7).jpg/300px-Grunwaldzki_Square_in_Szczecin,_2018_(7).jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Kamienica_Augusta_Mintza_w_Szczecinie",
-      "name_pl": "Kamienica Augusta Mintza w Szczecinie"
+      "name_pl": "Kamienica Augusta Mintza w Szczecinie",
+      "local_image": "images/attractions/Szczecin/Kamienica_Augusta_Mintza.jpg"
     },
     {
       "name": "Pomnik Bartolomeo Colleoniego",
@@ -5108,7 +5148,8 @@
       "lon": 14.558129849753946,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Szczecin_Philharmonic_Hall_3304.jpg/300px-Szczecin_Philharmonic_Hall_3304.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Filharmonia_im._Mieczysława_Karłowicza_w_Szczecinie",
-      "name_pl": "Filharmonia im. Mieczysława Karłowicza w Szczecinie"
+      "name_pl": "Filharmonia im. Mieczysława Karłowicza w Szczecinie",
+      "local_image": "images/attractions/Szczecin/Filharmonia_im_Mieczysława_Karłowicza.jpg"
     },
     {
       "name": "plac Lotników",
@@ -5118,7 +5159,8 @@
       "lon": 14.550928216206371,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Lotników_Square_in_Szczecin,_2015_(2).jpg/300px-Lotników_Square_in_Szczecin,_2015_(2).jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Plac_Lotników_w_Szczecinie",
-      "name_pl": "Plac Lotników w Szczecinie"
+      "name_pl": "Plac Lotników w Szczecinie",
+      "local_image": "images/attractions/Szczecin/plac_Lotników.jpg"
     }
   ],
   "Warsaw": [
@@ -5130,7 +5172,8 @@
       "lon": 21.005799675758887,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Pałac_Kultury_i_Nauki_2019.jpg/300px-Pałac_Kultury_i_Nauki_2019.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Pałac_Kultury_i_Nauki",
-      "name_pl": "Pałac Kultury i Nauki"
+      "name_pl": "Pałac Kultury i Nauki",
+      "local_image": "images/attractions/Warsaw/Pałac_Kultury_i_Nauki.jpg"
     },
     {
       "name": "Warszawa Centralna",
@@ -5197,7 +5240,8 @@
       "lon": 17.033178230376343,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Oławska_2,_Rynek_29_(01).JPG/300px-Oławska_2,_Rynek_29_(01).JPG",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Kamienica_Pod_Złotą_Koroną_we_Wrocławiu",
-      "name_pl": "Kamienica Pod Złotą Koroną we Wrocławiu"
+      "name_pl": "Kamienica Pod Złotą Koroną we Wrocławiu",
+      "local_image": "images/attractions/Wroclaw/Kamienica_Pod_Złotą_Koroną.jpg"
     },
     {
       "name": "Muzeum Farmacji Uniwersytetu Medycznego",
@@ -5264,7 +5308,8 @@
       "lon": 15.438292030567684,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/17-05-16-Graz_Rathaus-aDSC_1282.jpg/300px-17-05-16-Graz_Rathaus-aDSC_1282.jpg",
       "wikipedia_url": null,
-      "name_pl": "Ratusz"
+      "name_pl": "Ratusz",
+      "local_image": "images/attractions/Graz/Rathaus.jpg"
     },
     {
       "name": "Landeszeughaus",
@@ -5342,7 +5387,8 @@
       "lon": 11.394589673517693,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Maria-Theresien-Straße_38_(IMG_1851).jpg/300px-Maria-Theresien-Straße_38_(IMG_1851).jpg",
       "wikipedia_url": null,
-      "name_pl": "Pałac Trappów"
+      "name_pl": "Pałac Trappów",
+      "local_image": "images/attractions/Innsbruck/Palais_Trapp.jpg"
     }
   ],
   "Klagenfurt": [
@@ -5354,7 +5400,8 @@
       "lon": 14.311749229545455,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Klagenfurt_Sankt_Ruprecht_Heizhausgasse_Israelitischer_Friedhof_Eingang_03072012_7395.jpg/300px-Klagenfurt_Sankt_Ruprecht_Heizhausgasse_Israelitischer_Friedhof_Eingang_03072012_7395.jpg",
       "wikipedia_url": null,
-      "name_pl": "Cmentarz Izraelski"
+      "name_pl": "Cmentarz Izraelski",
+      "local_image": "images/attractions/Klagenfurt/Israelitischer_Friedhof.jpg"
     },
     {
       "name": "Hl. Ulrich",
@@ -5364,7 +5411,8 @@
       "lon": 14.352510995424403,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Klagenfurt_Sr._Peter_Welzenegg_Gottscheer_Strasse_1_Filialkirche_hl._Ulrich_27022015_0031.jpg/300px-Klagenfurt_Sr._Peter_Welzenegg_Gottscheer_Strasse_1_Filialkirche_hl._Ulrich_27022015_0031.jpg",
       "wikipedia_url": null,
-      "name_pl": "Kościół Świętego Ulryka"
+      "name_pl": "Kościół Świętego Ulryka",
+      "local_image": "images/attractions/Klagenfurt/Hl_Ulrich.jpg"
     },
     {
       "name": "Schloss Krastowitz",
@@ -5385,7 +5433,8 @@
       "lon": 14.383926091376992,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Magdalensberg_Zeiselberg_Zeiselburg_06102006_776.jpg/300px-Magdalensberg_Zeiselberg_Zeiselburg_06102006_776.jpg",
       "wikipedia_url": null,
-      "name_pl": "Ruiny zamku Zeiselberg"
+      "name_pl": "Ruiny zamku Zeiselberg",
+      "local_image": "images/attractions/Klagenfurt/Burgruine_Zeiselberg.jpg"
     },
     {
       "name": "Schloss Rain",
@@ -5395,7 +5444,8 @@
       "lon": 14.418542184276543,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Poggersdorf_Rain_Schloss_14072006_01.jpg/300px-Poggersdorf_Rain_Schloss_14072006_01.jpg",
       "wikipedia_url": null,
-      "name_pl": "Zamek Rain"
+      "name_pl": "Zamek Rain",
+      "local_image": "images/attractions/Klagenfurt/Schloss_Rain.jpg"
     }
   ],
   "Linz": [
@@ -5532,7 +5582,8 @@
       "lon": 16.37155581996124,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Wien_-_Haas-Haus_(3).JPG/300px-Wien_-_Haas-Haus_(3).JPG",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Haas-Haus",
-      "name_pl": "Haas-Haus"
+      "name_pl": "Haas-Haus",
+      "local_image": "images/attractions/Vienna/Haas-Haus.jpg"
     },
     {
       "name": "Deutschordenshaus",
@@ -5577,7 +5628,8 @@
       "lon": 14.420971429359513,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg/300px-Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Rynek_Staromiejski_w_Pradze",
-      "name_pl": "Rynek Staromiejski w Pradze"
+      "name_pl": "Rynek Staromiejski w Pradze",
+      "local_image": "images/attractions/Prague/Staroměstské_náměstí.jpg"
     },
     {
       "name": "Pomník mistra Jana Husa",
@@ -5587,7 +5639,8 @@
       "lon": 14.421139894210526,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Prague_hus_statue.jpg/300px-Prague_hus_statue.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Pomnik_Jana_Husa",
-      "name_pl": "Pomnik Jana Husa"
+      "name_pl": "Pomnik Jana Husa",
+      "local_image": "images/attractions/Prague/Pomník_mistra_Jana_Husa.jpg"
     },
     {
       "name": "palác Kinských",
@@ -5632,7 +5685,8 @@
       "lon": 33.6363974,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Larnaca_01-2017_img08_Pieridis_Museum_of_Antiquities.jpg/300px-Larnaca_01-2017_img08_Pieridis_Museum_of_Antiquities.jpg",
       "wikipedia_url": null,
-      "name_pl": "Muzeum Pierides - Fundacja Kulturalna Banku Cypru"
+      "name_pl": "Muzeum Pierides - Fundacja Kulturalna Banku Cypru",
+      "local_image": "images/attractions/Larnaca/Pierides_Museum_-_Bank_of_Cyprus_Cultural_Foundati.jpg"
     },
     {
       "name": "Fountain & Statue of Artemis",
@@ -5734,7 +5788,8 @@
       "lon": 23.897344004632654,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/LT_ist-prez_2022.jpg/300px-LT_ist-prez_2022.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Pałac_Prezydencki_w_Kownie",
-      "name_pl": "Pałac Prezydencki w Kownie"
+      "name_pl": "Pałac Prezydencki w Kownie",
+      "local_image": "images/attractions/Kaunas/Istorinė_prezidentūra.jpg"
     },
     {
       "name": "Kauno valstybinė Filharmonija",
@@ -5779,7 +5834,8 @@
       "lon": 21.051,
       "image_url": null,
       "wikipedia_url": null,
-      "name_pl": "Miejsce zatopionego statku L-11"
+      "name_pl": "Miejsce zatopionego statku L-11",
+      "local_image": "images/attractions/Palanga/Nuskendusio_laivo_L-11_vieta.jpg"
     },
     {
       "name": "Melno sutartimi nustatytos LDK valstybinės sienos atkarpa II",
@@ -5789,7 +5845,8 @@
       "lon": 21.0573176,
       "image_url": null,
       "wikipedia_url": null,
-      "name_pl": "Odcinek II granicy państwowej WKL wg traktatu mełneńskiego"
+      "name_pl": "Odcinek II granicy państwowej WKL wg traktatu mełneńskiego",
+      "local_image": "images/attractions/Palanga/Melno_sutartimi_nustatytos_LDK_valstybinės_sienos_.jpg"
     },
     {
       "name": "Nuskendusio laivo „L-9“ vieta",
@@ -5799,7 +5856,8 @@
       "lon": 21.0520356,
       "image_url": null,
       "wikipedia_url": null,
-      "name_pl": "Miejsce zatopionego statku L-9"
+      "name_pl": "Miejsce zatopionego statku L-9",
+      "local_image": "images/attractions/Palanga/Nuskendusio_laivo_L-9_vieta.jpg"
     },
     {
       "name": "Buvusi Nemirsetos laivų gelbėjimo stotis",
@@ -5865,7 +5923,8 @@
       "lon": 25.279831,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Цэнтр_беларускай_супольнасці_і_культуры_ў_Вільні_02.jpg/300px-Цэнтр_беларускай_супольнасці_і_культуры_ў_Вільні_02.jpg",
       "wikipedia_url": null,
-      "name_pl": "Wileńskie Muzeum Białoruskie im. Iwana Łuckiewicza"
+      "name_pl": "Wileńskie Muzeum Białoruskie im. Iwana Łuckiewicza",
+      "local_image": "images/attractions/Vilnius/Vilniaus_Ivano_Lukievičiaus_baltarusių_muziejus.jpg"
     }
   ],
   "Riga": [
@@ -5921,7 +5980,8 @@
       "lon": 24.10436452400463,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Riga_by-_og_sjøfartsmuseum.JPG/300px-Riga_by-_og_sjøfartsmuseum.JPG",
       "wikipedia_url": null,
-      "name_pl": "Muzeum Historii i Żeglugi w Rydze"
+      "name_pl": "Muzeum Historii i Żeglugi w Rydze",
+      "local_image": "images/attractions/Riga/Rīgas_vēstures_un_kuģniecības_muzejs.jpg"
     }
   ],
   "Tartu": [
@@ -5933,7 +5993,8 @@
       "lon": 26.7200916,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Tartu_asv2022-04_img06_Old_Observatory.jpg/300px-Tartu_asv2022-04_img06_Old_Observatory.jpg",
       "wikipedia_url": null,
-      "name_pl": "Obserwatorium w Tartu"
+      "name_pl": "Obserwatorium w Tartu",
+      "local_image": "images/attractions/Tartu/Tartu_Tähetorn.jpg"
     },
     {
       "name": "Barclay de Tolly",
@@ -6057,7 +6118,8 @@
       "lon": 25.458053167348158,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Pikisaarentie_6_Oulu.JPG/300px-Pikisaarentie_6_Oulu.JPG",
       "wikipedia_url": null,
-      "name_pl": "Muzeum Domu Marynarza"
+      "name_pl": "Muzeum Domu Marynarza",
+      "local_image": "images/attractions/Oulu/Merimiehenkotimuseo.jpg"
     },
     {
       "name": "Oulun taidemuseo",
@@ -6170,7 +6232,8 @@
       "lon": 22.267882929659088,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Aurajoki,_Apteekkimuseo.jpg/300px-Aurajoki,_Apteekkimuseo.jpg",
       "wikipedia_url": null,
-      "name_pl": "Dom Qwenselów"
+      "name_pl": "Dom Qwenselów",
+      "local_image": "images/attractions/Turku/Qwenselin_talo.jpg"
     },
     {
       "name": "Apteekkimuseo",
@@ -6202,7 +6265,8 @@
       "lon": 22.2637892,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Partiomuseo_Scout_museum_Turku.jpg/300px-Partiomuseo_Scout_museum_Turku.jpg",
       "wikipedia_url": null,
-      "name_pl": "Fińskie Muzeum Harcerstwa"
+      "name_pl": "Fińskie Muzeum Harcerstwa",
+      "local_image": "images/attractions/Turku/Suomen_Partiomuseo.jpg"
     }
   ],
   "Tampere": [
@@ -6293,7 +6357,8 @@
       "lon": 18.29283073244681,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/St_Per_och_St_Hans.JPG/300px-St_Per_och_St_Hans.JPG",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Ruiny_kościołów_Sankt_Hans_i_Sankt_Per_w_Visby",
-      "name_pl": "Ruiny kościołów Sankt Hans i Sankt Per w Visby"
+      "name_pl": "Ruiny kościołów Sankt Hans i Sankt Per w Visby",
+      "local_image": "images/attractions/Visby/Sankt_Hans_och_Sankt_Pers_kyrkoruiner.jpg"
     },
     {
       "name": "Sankta Katarina ruin",
@@ -6303,7 +6368,8 @@
       "lon": 18.295695376700927,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Sankta_Katarina_kyrkoruin01.jpg/300px-Sankta_Katarina_kyrkoruin01.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Ruiny_kościoła_Sankta_Katarina_w_Visby",
-      "name_pl": "Ruiny kościoła Sankta Katarina w Visby"
+      "name_pl": "Ruiny kościoła Sankta Katarina w Visby",
+      "local_image": "images/attractions/Visby/Sankta_Katarina_ruin.jpg"
     },
     {
       "name": "Fornsalen",
@@ -6337,7 +6403,8 @@
       "lon": 6.1286033,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Luxembourg,_Dicks-Lentz-Monument_(1).jpg/300px-Luxembourg,_Dicks-Lentz-Monument_(1).jpg",
       "wikipedia_url": null,
-      "name_pl": "Pomnik Edmonda de la Fontaine'a i Michela Lentza"
+      "name_pl": "Pomnik Edmonda de la Fontaine'a i Michela Lentza",
+      "local_image": "images/attractions/Luxembourg/Edmond_de_la_Fontaine_Michel_Lentz.jpg"
     },
     {
       "name": "Casino Luxembourg - Forum d'art contemporain",
@@ -6553,7 +6620,8 @@
       "lon": 20.793577454276317,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Ancient_Macedonian_Theatre_of_Ohrid_3.jpg/300px-Ancient_Macedonian_Theatre_of_Ohrid_3.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Starożytny_Teatr_w_Ochrydzie",
-      "name_pl": "Starożytny Teatr w Ochrydzie"
+      "name_pl": "Starożytny Teatr w Ochrydzie",
+      "local_image": "images/attractions/Ohrid/Антички_театар.jpg"
     },
     {
       "name": "Свети Кирил и Методиј",
@@ -6642,7 +6710,8 @@
       "lon": 21.433383200000005,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Skopje_X16.jpg/300px-Skopje_X16.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Centrum_Holocaustu_w_Skopje",
-      "name_pl": "Centrum Holocaustu w Skopje"
+      "name_pl": "Centrum Holocaustu w Skopje",
+      "local_image": "images/attractions/Skopje/Меморијален_центар_на_холокаустот_на_Евреите_од_Ма.jpg"
     },
     {
       "name": "Спомен куќа на Мајка Тереза",
@@ -6665,7 +6734,8 @@
       "lon": 21.193492319373085,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Gračanica_Monastery,_2010.jpg/300px-Gračanica_Monastery,_2010.jpg",
       "wikipedia_url": "https://pl.wikipedia.org/wiki/Monaster_Gračanica",
-      "name_pl": "Monaster Gračanica"
+      "name_pl": "Monaster Gračanica",
+      "local_image": "images/attractions/Pristina/Manastir_Gračanica.jpg"
     },
     {
       "name": "Gazimestan",
@@ -6686,7 +6756,8 @@
       "lon": 21.17464312093702,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Ulpiana1.JPG/300px-Ulpiana1.JPG",
       "wikipedia_url": null,
-      "name_pl": "Park Archeologiczny Ulpiana"
+      "name_pl": "Park Archeologiczny Ulpiana",
+      "local_image": "images/attractions/Pristina/Parku_Arkeologjik_Ulpiana.jpg"
     },
     {
       "name": "Crkva Vavedenja Presvete Bogorodice",
@@ -6696,7 +6767,8 @@
       "lon": 21.5030514,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Vaganeš,_Church_of_Dormition_of_the_Mother_of_God,_view_from_the_southwest_2.jpg/300px-Vaganeš,_Church_of_Dormition_of_the_Mother_of_God,_view_from_the_southwest_2.jpg",
       "wikipedia_url": null,
-      "name_pl": "Cerkiew Wprowadzenia Najświętszej Bogurodzicy"
+      "name_pl": "Cerkiew Wprowadzenia Najświętszej Bogurodzicy",
+      "local_image": "images/attractions/Pristina/Crkva_Vavedenja_Presvete_Bogorodice.jpg"
     }
   ],
   "Chisinau": [
@@ -6719,7 +6791,8 @@
       "lon": 28.8320024,
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/National_Assembly,_Chisinau,_Moldova_(7992625612).jpg/300px-National_Assembly,_Chisinau,_Moldova_(7992625612).jpg",
       "wikipedia_url": null,
-      "name_pl": "Kamień Pamięci Ofiar Okupacji Sowieckiej i Reżimu Komunistycznego"
+      "name_pl": "Kamień Pamięci Ofiar Okupacji Sowieckiej i Reżimu Komunistycznego",
+      "local_image": "images/attractions/Chisinau/Piatra_Comemorativă_a_Victimelor_Ocupației_Sovieti.jpg"
     },
     {
       "name": "Muzeul Național de Istorie a Moldovei",
