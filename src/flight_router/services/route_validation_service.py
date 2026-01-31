@@ -132,8 +132,7 @@ class RouteValidationService:
             validate_top_n: If set, only validate top N routes.
 
         Returns:
-            List of ValidatedRoute objects. Unvalidated routes
-            have validation=None.
+            List of ValidatedRoute objects (only validated routes).
         """
         if not routes:
             return []
@@ -142,21 +141,16 @@ class RouteValidationService:
 
         # Determine which routes to validate
         to_validate = routes[:validate_top_n] if validate_top_n else routes
-        to_skip = routes[validate_top_n:] if validate_top_n else []
 
-        # Validate selected routes
+        # Validate selected routes (only validated routes are returned)
         validated: List[ValidatedRoute] = []
         for route in to_validate:
             result = await self.validate_route(route, departure_date)
             validated.append(result)
 
-        # Add unvalidated routes
-        for route in to_skip:
-            validated.append(ValidatedRoute(route=route, validation=None))
-
         total_time = time.perf_counter() - start_time
         logger.info(
-            "Validated %d/%d routes in %.0fms",
+            "Validated %d/%d routes in %.0fms (returning only validated)",
             len(to_validate),
             len(routes),
             total_time * 1000,

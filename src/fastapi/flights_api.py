@@ -152,14 +152,10 @@ async def search_with_validation(request: SearchRequest):
         validate_top_n=5,  # Only validate top 5 to save time
     )
 
-    # Filter: all bookable routes, sorted by price
+    # Filter: bookable routes first, sorted by price
     bookable = [v for v in validated if v.is_bookable]
     bookable.sort(key=lambda v: v.total_price)
-    top_routes = bookable
-
-    # Fallback: if no bookable routes, return top validated routes
-    if not top_routes:
-        top_routes = validated
+    top_routes = bookable if bookable else validated
 
     # Convert to schema-compatible dicts (just the route, no validation details)
     results = []
