@@ -214,7 +214,8 @@ function handleFormSubmit(event) {
 
     // Get optional min stay hours
     const minStayInput = document.getElementById('min-stay');
-    const minStayHours = minStayInput && minStayInput.value ? parseFloat(minStayInput.value) : null;
+    const minStayRaw = minStayInput ? parseFloat(minStayInput.value) : 0;
+    const minStayHours = minStayRaw > 0 ? minStayRaw : null;
 
     // Store search data for results page
     const searchData = {

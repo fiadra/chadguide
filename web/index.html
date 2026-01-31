@@ -97,6 +97,54 @@
     <style>
         .card-warm {
             background: linear-gradient(145deg, #fefdfb 0%, #fcf9f3 100%);
+            animation: card-entrance 0.5s ease-out;
+        }
+        @keyframes card-entrance {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Focus ring */
+        #trip-form input:focus {
+            border-color: #ef8a6d !important;
+            box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.15);
+        }
+
+        /* Submit button glow */
+        #submit-btn:not(:disabled) {
+            animation: subtle-glow 2s ease-in-out infinite;
+        }
+        @keyframes subtle-glow {
+            0%, 100% { box-shadow: 0 4px 20px rgba(224, 122, 95, 0.4); }
+            50% { box-shadow: 0 6px 36px rgba(224, 122, 95, 0.65); }
+        }
+
+        /* Summary pill value update */
+        @keyframes value-update {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .summary-updated {
+            animation: value-update 0.3s ease;
+        }
+
+        /* Min stay slider */
+        input[type="range"] {
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 9999px;
+            background: #f4ead6;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #e07a5f;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(224, 122, 95, 0.4);
         }
 
         /* Loading Overlay */
@@ -277,6 +325,10 @@
                     </div>
                     <span class="font-display font-semibold text-xl tracking-tight italic">ChadGuide</span>
                 </a>
+                <span class="text-sm text-navy-500 hidden sm:block">
+                    <i class="fa-solid fa-circle-info text-navy-400 mr-1"></i>
+                    Multi-city flight optimizer
+                </span>
             </div>
         </nav>
     </header>
@@ -284,11 +336,11 @@
     <!-- Main Content -->
     <main class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="text-center mb-8">
-            <h1 class="font-display text-3xl sm:text-4xl font-medium text-navy-900 mb-3">
-                Plan Your Multi-City Trip
+            <h1 class="font-display text-4xl sm:text-5xl font-medium text-navy-900 mb-3">
+                Discover the <span class="italic text-terracotta-500">smartest</span> route
             </h1>
-            <p class="text-navy-600">
-                Select your destinations and travel dates
+            <p class="text-navy-500 text-lg">
+                We find the cheapest multi-city flights so you don't have to.
             </p>
         </div>
 
@@ -335,7 +387,10 @@
 
                     <!-- Selected Cities Tags -->
                     <div id="selected-cities" class="flex flex-wrap gap-2 min-h-[48px] p-3 bg-white rounded-xl border-2 border-dashed border-cream-300">
-                        <span id="empty-cities-hint" class="text-navy-400 text-sm py-2">Add destinations...</span>
+                        <span id="empty-cities-hint" class="flex items-center justify-center gap-2 w-full text-navy-400 py-2">
+                            <i class="fa-solid fa-circle-plus text-lg"></i>
+                            <span class="text-sm">Type a city name above to add destinations</span>
+                        </span>
                     </div>
 
                     <div class="mt-2 text-xs text-navy-500">
@@ -347,7 +402,7 @@
                 <div class="grid grid-cols-2 gap-3 mb-6">
                     <div>
                         <label for="start-date" class="block text-xs font-semibold text-navy-600 mb-2 uppercase tracking-wider">
-                            Departure Date
+                            <i class="fa-regular fa-calendar text-terracotta-400 mr-1"></i>Departure Date
                         </label>
                         <input type="date" id="start-date"
                                class="w-full px-3 py-2.5 bg-white border-2 border-cream-300 rounded-xl text-navy-800 focus:outline-none focus:border-terracotta-400 transition-all text-sm"
@@ -355,7 +410,7 @@
                     </div>
                     <div>
                         <label for="end-date" class="block text-xs font-semibold text-navy-600 mb-2 uppercase tracking-wider">
-                            Return Date
+                            <i class="fa-regular fa-calendar text-terracotta-400 mr-1"></i>Return Date
                         </label>
                         <input type="date" id="end-date"
                                class="w-full px-3 py-2.5 bg-white border-2 border-cream-300 rounded-xl text-navy-800 focus:outline-none focus:border-terracotta-400 transition-all text-sm"
@@ -369,10 +424,10 @@
                         <i class="fa-solid fa-hourglass-half text-terracotta-500"></i>
                         Minimum Stay per City
                     </label>
-                    <div class="flex items-center gap-3">
-                        <input type="number" id="min-stay" min="0" max="168" step="1" placeholder="Optional"
-                               class="w-32 px-3 py-2.5 bg-white border-2 border-cream-300 rounded-xl text-navy-800 placeholder-navy-400 focus:outline-none focus:border-terracotta-400 transition-all text-sm">
-                        <span class="text-sm text-navy-500">hours in each destination</span>
+                    <div class="flex items-center gap-4">
+                        <input type="range" id="min-stay" min="0" max="72" step="1" value="0"
+                               class="flex-1">
+                        <span id="min-stay-value" class="text-sm font-semibold text-navy-700 w-16 text-right">Off</span>
                     </div>
                 </div>
 
@@ -399,6 +454,38 @@
             </form>
         </div>
     </main>
+
+    <!-- How it works -->
+    <div class="max-w-2xl mx-auto px-4 mt-12 mb-16">
+        <div class="grid grid-cols-3 gap-6 text-center">
+            <div>
+                <div class="w-12 h-12 bg-terracotta-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-city text-terracotta-500"></i>
+                </div>
+                <h3 class="font-display font-semibold text-navy-800 text-sm mb-1">Pick cities</h3>
+                <p class="text-xs text-navy-500">Choose destinations you want to visit</p>
+            </div>
+            <div>
+                <div class="w-12 h-12 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-route text-gold-600"></i>
+                </div>
+                <h3 class="font-display font-semibold text-navy-800 text-sm mb-1">We optimize</h3>
+                <p class="text-xs text-navy-500">Our algorithm finds the best route order</p>
+            </div>
+            <div>
+                <div class="w-12 h-12 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-plane-departure text-sage-500"></i>
+                </div>
+                <h3 class="font-display font-semibold text-navy-800 text-sm mb-1">Book & fly</h3>
+                <p class="text-xs text-navy-500">Direct links to airline booking pages</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-cream-200 py-6 text-center text-xs text-navy-400">
+        <span>ChadGuide — Multi-city flight optimizer</span>
+    </footer>
 
     <!-- Loading Overlay -->
     <div id="loading-overlay" class="loading-overlay">
@@ -428,6 +515,23 @@
             </div>
         </div>
     </div>
+
+    <!-- Min stay slider JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.getElementById('min-stay');
+            const label = document.getElementById('min-stay-value');
+            if (slider && label) {
+                slider.addEventListener('input', () => {
+                    const v = parseInt(slider.value);
+                    label.textContent = v === 0 ? 'Off' : v + 'h';
+                    label.classList.remove('summary-updated');
+                    void label.offsetWidth;
+                    label.classList.add('summary-updated');
+                });
+            }
+        });
+    </script>
 
     <!-- Scripts -->
     <script src="js/airport-index.js"></script>
