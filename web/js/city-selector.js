@@ -20,13 +20,13 @@ const originIataInput = document.getElementById('origin-iata');
 const originSearchIcon = document.getElementById('origin-search-icon');
 const originCheckIcon = document.getElementById('origin-check-icon');
 
-// City tag color rotation
+// City tag color rotation (outline style)
 const cityColors = [
-    'bg-navy-800 text-cream-100',
-    'bg-terracotta-500 text-white',
-    'bg-sage-500 text-white',
-    'bg-gold-500 text-navy-900',
-    'bg-navy-600 text-cream-100'
+    { border: 'border-navy-300', bg: 'bg-navy-50', dot: 'bg-navy-400' },
+    { border: 'border-terracotta-300', bg: 'bg-terracotta-50', dot: 'bg-terracotta-400' },
+    { border: 'border-sage-300', bg: 'bg-sage-50', dot: 'bg-sage-400' },
+    { border: 'border-gold-300', bg: 'bg-gold-50', dot: 'bg-gold-500' },
+    { border: 'border-navy-200', bg: 'bg-cream-50', dot: 'bg-navy-300' },
 ];
 
 // Autocomplete state - Destinations
@@ -129,15 +129,12 @@ function showOriginSuggestions(suggestions) {
     originSelectedIndex = -1;
 
     originAutocompleteDropdown.innerHTML = suggestions.map((airport, index) => `
-        <div class="origin-autocomplete-item px-4 py-3 cursor-pointer hover:bg-cream-100 flex items-center gap-3 border-b border-cream-100 last:border-0 transition-colors"
+        <div class="origin-autocomplete-item px-4 py-2.5 cursor-pointer hover:bg-cream-100 flex items-center gap-3 border-b border-cream-100 last:border-0 transition-colors"
              data-index="${index}" data-iata="${airport.iata}">
-            <div class="w-8 h-8 bg-terracotta-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <i class="fa-solid fa-plane-departure text-terracotta-500 text-sm"></i>
-            </div>
-            <div class="flex-1 min-w-0">
-                <div class="font-semibold text-navy-800">${airport.city}</div>
-                <div class="text-sm text-navy-500">${airport.country}</div>
-            </div>
+            <i class="fa-solid fa-plane-departure text-terracotta-400 text-xs"></i>
+            <span class="flex-1 font-medium text-navy-800">${airport.city}</span>
+            <span class="text-xs text-navy-400 bg-cream-200 px-1.5 py-0.5 rounded font-mono">${airport.iata}</span>
+            <span class="text-xs text-navy-400">${airport.country}</span>
         </div>
     `).join('');
 
@@ -294,15 +291,12 @@ function showSuggestions(suggestions) {
     selectedSuggestionIndex = -1;
 
     autocompleteDropdown.innerHTML = suggestions.map((airport, index) => `
-        <div class="autocomplete-item px-4 py-3 cursor-pointer hover:bg-cream-100 flex items-center gap-3 border-b border-cream-100 last:border-0 transition-colors"
+        <div class="autocomplete-item px-4 py-2.5 cursor-pointer hover:bg-cream-100 flex items-center gap-3 border-b border-cream-100 last:border-0 transition-colors"
              data-index="${index}" data-iata="${airport.iata}">
-            <div class="w-8 h-8 bg-terracotta-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <i class="fa-solid fa-location-dot text-terracotta-500 text-sm"></i>
-            </div>
-            <div class="flex-1 min-w-0">
-                <div class="font-semibold text-navy-800">${airport.city}</div>
-                <div class="text-sm text-navy-500">${airport.country}</div>
-            </div>
+            <i class="fa-solid fa-plane text-navy-300 text-xs"></i>
+            <span class="flex-1 font-medium text-navy-800">${airport.city}</span>
+            <span class="text-xs text-navy-400 bg-cream-200 px-1.5 py-0.5 rounded font-mono">${airport.iata}</span>
+            <span class="text-xs text-navy-400">${airport.country}</span>
         </div>
     `).join('');
 
@@ -461,13 +455,14 @@ function addCity(cityName, iata) {
 
     // Create city tag
     const colorIndex = selectedCities.querySelectorAll('.city-tag').length % cityColors.length;
+    const c = cityColors[colorIndex];
     const cityTag = document.createElement('div');
-    cityTag.className = `city-tag flex items-center gap-2 px-4 py-2 ${cityColors[colorIndex]} rounded-full text-sm font-medium transition-transform hover:scale-105`;
+    cityTag.className = `city-tag inline-flex items-center gap-1.5 px-3 py-1.5 border-2 ${c.border} ${c.bg} rounded-full text-sm font-medium text-navy-700 transition-transform hover:scale-105`;
     cityTag.dataset.iata = iata;
     cityTag.innerHTML = `
-        <span class="w-2 h-2 bg-current opacity-50 rounded-full"></span>
+        <span class="w-2 h-2 rounded-full ${c.dot}"></span>
         <span class="city-name">${trimmedName}</span>
-        <button type="button" class="remove-city hover:opacity-70 transition-opacity ml-1" aria-label="Remove ${trimmedName}">
+        <button type="button" class="remove-city ml-1 text-navy-400 hover:text-terracotta-500 transition-colors" aria-label="Remove ${trimmedName}">
             <i class="fa-solid fa-xmark text-xs"></i>
         </button>
     `;
@@ -528,13 +523,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 50);
 
-    // Initialize dates (default: 30 days from now, 5 day trip)
+    // Initialize dates (default: Jul 1–7, 2026)
     const today = new Date();
-    const startDate = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
-    const endDate = new Date(startDate.getTime() + 4 * 24 * 60 * 60 * 1000);
 
-    startDateInput.value = startDate.toISOString().split('T')[0];
-    endDateInput.value = endDate.toISOString().split('T')[0];
+    startDateInput.value = '2026-07-01';
+    endDateInput.value = '2026-07-07';
     startDateInput.min = today.toISOString().split('T')[0];
     endDateInput.min = startDateInput.value;
 
