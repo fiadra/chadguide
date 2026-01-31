@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict
 from datetime import datetime
@@ -20,6 +21,7 @@ from src.flight_router.adapters.validators.duffel_validator import DuffelOfferVa
 from src.flight_router.services.route_validation_service import RouteValidationService
 import random
 
+WEB_DIR = Path("web")
 DEMO_DB = Path("src/flight_router/examples/data/demo_flights.db")
 router = FindOptimalRoutes(db_path=DEMO_DB)
 
@@ -32,7 +34,7 @@ app = FastAPI(title="Flight Routing API")
 # Enable CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001", "http://127.0.0.1:3000", "http://127.0.0.1:3001"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -66,8 +68,12 @@ class RouteResultSchema(BaseModel):
     route_id: int
     segments: List[RouteSegmentSchema]
     total_cost: float  # Captures @property
-    total_time: float  # Captures @property - elapsed time from first departure to last arrival
-    total_flight_time: float  # Captures @property - sum of flight durations (time in air)
+    total_time: (
+        float  # Captures @property - elapsed time from first departure to last arrival
+    )
+    total_flight_time: (
+        float  # Captures @property - sum of flight durations (time in air)
+    )
     trip_duration_days: float  # Captures @property - trip duration in days
     route_cities: List[str]  # Captures @property
     num_segments: int  # Captures @property
@@ -131,13 +137,13 @@ async def search_with_validation(request: SearchRequest):
             departure_date=request.departure_date,
             return_date=request.return_date,
             min_stay_hours=request.min_stay_hours,
-        )
+        ),
     )
 
     if not routes:
         yield {
             "event": "complete",
-            "data": json.dumps({"routes": [], "error": "No routes found"})
+            "data": json.dumps({"routes": [], "error": "No routes found"}),
         }
         return
 
@@ -166,29 +172,31 @@ async def search_with_validation(request: SearchRequest):
     results = []
     for v in top_routes:
         route = v.route
-        results.append({
-            "route_id": route.route_id,
-            "segments": [
-                {
-                    "segment_index": s.segment_index,
-                    "departure_airport": s.departure_airport,
-                    "arrival_airport": s.arrival_airport,
-                    "dep_time": s.dep_time,
-                    "arr_time": s.arr_time,
-                    "price": s.price,
-                    "duration": s.duration,
-                    "carrier_code": s.carrier_code,
-                    "carrier_name": s.carrier_name,
-                }
-                for s in route.segments
-            ],
-            "total_cost": v.total_price,  # Use validated price
-            "total_time": route.total_time,
-            "total_flight_time": route.total_flight_time,
-            "trip_duration_days": route.trip_duration_days,
-            "route_cities": list(route.route_cities),
-            "num_segments": route.num_segments,
-        })
+        results.append(
+            {
+                "route_id": route.route_id,
+                "segments": [
+                    {
+                        "segment_index": s.segment_index,
+                        "departure_airport": s.departure_airport,
+                        "arrival_airport": s.arrival_airport,
+                        "dep_time": s.dep_time,
+                        "arr_time": s.arr_time,
+                        "price": s.price,
+                        "duration": s.duration,
+                        "carrier_code": s.carrier_code,
+                        "carrier_name": s.carrier_name,
+                    }
+                    for s in route.segments
+                ],
+                "total_cost": v.total_price,  # Use validated price
+                "total_time": route.total_time,
+                "total_flight_time": route.total_flight_time,
+                "trip_duration_days": route.trip_duration_days,
+                "route_cities": list(route.route_cities),
+                "num_segments": route.num_segments,
+            }
+        )
 
     # Stage 3: Complete
     yield {"event": "complete", "data": json.dumps({"routes": results})}
@@ -245,3 +253,21 @@ async def get_attractions(cities: str, limit: int = 5):
             result[city] = []
 
     return result
+
+
+app.mount(
+    "/static",
+    StaticFiles(directory=WEB_DIR),
+    name="static",
+)
+
+
+@app.get("/index.html")
+@app.get("/")
+async def index():
+    return FileResponse(WEB_DIR / "index.html")
+
+
+@app.get("/results")
+async def results():
+    return FileResponse(WEB_DIR / "results.html")

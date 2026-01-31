@@ -235,7 +235,7 @@ function handleFormSubmit(event) {
 
     function redirect() {
         hideLoadingAnimation();
-        window.location.href = 'results.html';
+        window.location.href = '/results';
     }
 
     // Request data for streaming API
