@@ -35,7 +35,7 @@ Planning a multi-city trip means checking every possible city order — a proble
 
 ```bash
 # Clone the repository
-git clone <repo-url>
+git clone https://github.com/fiadra/chadguide
 cd chadguide
 
 # Install dependencies
@@ -143,9 +143,6 @@ GEOAPIFY_API_KEY=...
 ```bash
 # Run all tests
 poetry run pytest
-
-# Run with coverage
-poetry run pytest --cov=src/flight_router --cov-report=html
 
 # Build/update flight database
 poetry run python Duffel_api/run_scanner.py
